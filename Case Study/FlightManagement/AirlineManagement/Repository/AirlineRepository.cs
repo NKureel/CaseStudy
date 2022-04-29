@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AirlineManagement.Repository
 {
-    public class AirlineRepository : IAirlineRepository,IInventoryRespository
+    public class AirlineRepository : IAirlineRepository
     {
         private readonly AirlineDbContext _airlineDb;
         public AirlineRepository(AirlineDbContext context)
@@ -15,14 +15,14 @@ namespace AirlineManagement.Repository
             _airlineDb = context;
         }
 
-        public void AddInventory(InventoryTbl tbl)
-        {
-            _airlineDb.inventoryTbls.Add(tbl);
-            Save();
-        }
-
+ 
         public void DeleteAirline(string airlineNo)
         {
+            //var inventoryRecord = _airlineDb.inventoryTbls.Find(airlineNo);
+            //foreach (var record in inventoryRecord)
+            //{
+                
+            //}
             var airline = _airlineDb.airlineTbls.Find(airlineNo);
             if (airline != null)
                 _airlineDb.airlineTbls.Remove(airline);
@@ -39,10 +39,7 @@ namespace AirlineManagement.Repository
             return _airlineDb.airlineTbls.ToList();
         }
 
-        public IEnumerable<InventoryTbl> GetInventory()
-        {
-            return _airlineDb.inventoryTbls.ToList();
-        }
+       
 
         public void InsertAirline(AirlineTbl tbl)
         {

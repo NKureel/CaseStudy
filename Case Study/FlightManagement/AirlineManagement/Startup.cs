@@ -31,6 +31,7 @@ namespace AirlineManagement
             services.AddControllers();
             services.AddDbContext<AirlineDbContext>(o => o.UseSqlServer(Configuration.GetConnectionString("DefaultConnectionString")));
             services.AddTransient<IAirlineRepository, AirlineRepository>();
+            services.AddTransient<IInventoryRepository, InventoryRepository>();
             services.AddSwaggerGen();
         }
 

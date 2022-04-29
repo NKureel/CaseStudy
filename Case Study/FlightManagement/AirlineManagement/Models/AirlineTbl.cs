@@ -13,5 +13,6 @@ namespace AirlineManagement.Models
         public string UploadLogo { get; set; }
         public string ContactNumber { get; set; }
         public string ContactAddress { get; set; }
+        public virtual ICollection<InventoryTbl> Inventories { get; set; }
     }
 }

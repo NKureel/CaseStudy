@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace AirlineManagement.Repository
 {
-    public interface IInventoryRespository
+    public interface IInventoryRepository
     {
         public void AddInventory(InventoryTbl tbl);
         public IEnumerable<InventoryTbl> GetInventory();

@@ -22,7 +22,7 @@ namespace AirlineManagement.Controllers
         }
 
         [HttpGet]
-        [Route("GetAllAirline")]
+        //[Route("GetAllAirline")]
         public IActionResult Get()
         {
             var airline = _airlineRepository.GetAirlines();
@@ -31,16 +31,8 @@ namespace AirlineManagement.Controllers
             else
                 return new NotFoundResult();
         }
+                       
 
-        [HttpGet]
-        public IActionResult Get(string airlineNo)
-        {
-            var airline=_airlineRepository.GetAirlineByNumber(airlineNo);
-            if (airline != null)
-                return new OkObjectResult(airline);
-            else
-                return new NotFoundResult();
-        }
 
         [HttpPost]
         [Route("register")]
@@ -50,11 +42,12 @@ namespace AirlineManagement.Controllers
             {
                 _airlineRepository.InsertAirline(tbl);
                 scope.Complete();
-                return CreatedAtAction(nameof(Get), new { airlineNo = tbl.AirlineNo }, tbl);
+                return Created("api/airline/",tbl);
             }
         }
 
-        [HttpDelete]        
+        [HttpDelete]
+        [Route("[Action]/{airlineNo}")]
         public IActionResult Delete(string airlineNo)
         {
             _airlineRepository.DeleteAirline(airlineNo);
