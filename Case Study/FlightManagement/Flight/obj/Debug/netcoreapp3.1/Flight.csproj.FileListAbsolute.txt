@@ -336,7 +336,6 @@ D:\Training\CaseStudy\Case Study\FlightManagement\Flight\bin\Debug\netcoreapp3.1
 D:\Training\CaseStudy\Case Study\FlightManagement\Flight\bin\Debug\netcoreapp3.1\zh-Hant\Microsoft.CodeAnalysis.CSharp.resources.dll
 D:\Training\CaseStudy\Case Study\FlightManagement\Flight\bin\Debug\netcoreapp3.1\runtimes\unix\lib\netstandard1.3\System.Net.Http.WinHttpHandler.dll
 D:\Training\CaseStudy\Case Study\FlightManagement\Flight\bin\Debug\netcoreapp3.1\runtimes\win\lib\netstandard1.3\System.Net.Http.WinHttpHandler.dll
-D:\Training\CaseStudy\Case Study\FlightManagement\Flight\obj\Debug\netcoreapp3.1\Flight.csproj.AssemblyReference.cache
 D:\Training\CaseStudy\Case Study\FlightManagement\Flight\obj\Debug\netcoreapp3.1\Flight.GeneratedMSBuildEditorConfig.editorconfig
 D:\Training\CaseStudy\Case Study\FlightManagement\Flight\obj\Debug\netcoreapp3.1\Flight.AssemblyInfoInputs.cache
 D:\Training\CaseStudy\Case Study\FlightManagement\Flight\obj\Debug\netcoreapp3.1\Flight.AssemblyInfo.cs
@@ -365,3 +364,4 @@ D:\Training\CaseStudy\Case Study\FlightManagement\Flight\obj\Debug\netcoreapp3.1
 D:\Training\CaseStudy\Case Study\FlightManagement\Flight\obj\Debug\netcoreapp3.1\Flight.dll
 D:\Training\CaseStudy\Case Study\FlightManagement\Flight\obj\Debug\netcoreapp3.1\Flight.pdb
 D:\Training\CaseStudy\Case Study\FlightManagement\Flight\obj\Debug\netcoreapp3.1\Flight.genruntimeconfig.cache
+D:\Training\CaseStudy\Case Study\FlightManagement\Flight\obj\Debug\netcoreapp3.1\Flight.csproj.AssemblyReference.cache

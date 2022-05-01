@@ -10,8 +10,32 @@
     },
     {
       "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/api/v1.0/airline/register",
+      "DownstreamScheme": "https",
+      "ServiceName": "AirlineManagement",
+      "UpstreamPathTemplate": "/api/v1.0/flight/airline/register",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+    {
+      "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/api/v1.0/airline/inventory/add",
+      "DownstreamScheme": "https",
+      "ServiceName": "AirlineManagement",
+      "UpstreamPathTemplate": "/api/v1.0/flight/airline/inventory/add",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+    {
+      "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/api/v1.0/airline/inventory",
+      "DownstreamScheme": "https",
+      "ServiceName": "AirlineManagement",
+      "UpstreamPathTemplate": "/api/v1.0/flight/airline/inventory",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "UseServiceDiscovery": true,
       "DownstreamPathTemplate": "/api/v1.0/booking",
-      "DownstreamScheme": "http",
+      "DownstreamScheme": "https",
       "ServiceName": "Booking",
       "UpstreamPathTemplate": "/api/v1.0/flight/booking",
       "UpstreamHttpMethod": [ "Get" ]
