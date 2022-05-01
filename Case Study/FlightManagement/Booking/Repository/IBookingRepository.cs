@@ -6,13 +6,15 @@ using System.Threading.Tasks;
 
 namespace Booking.Repository
 {
-    interface IBookingRepository
+    public interface IBookingRepository
     {
-      //  public IEnumerable<UserBookingTbl> GetUserBookingDetail(string fligntNo);
+        public IEnumerable<UserBookingTbl> GetBookingDetail();
         public void CancelBooking(string pnr);
 
         public IEnumerable<UserBookingTbl> GetUserHistory(string emailId);
 
         public void AddUserBookingDetail(UserBookingTbl tbl);
+
+        public void SaveChanges();
     }
 }

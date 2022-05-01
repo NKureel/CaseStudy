@@ -1,5 +1,7 @@
 using Booking.DBContext;
 using Booking.Models;
+using Booking.Repository;
+using Common;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -29,6 +31,15 @@ namespace Booking
         {
             services.AddControllers();
             services.AddDbContext<BookingDbContext>(o => o.UseSqlServer(Configuration.GetConnectionString("DefaultConnectionString")));
+            services.AddTransient<IBookingRepository, BookingRepository>();
+            services.AddApiVersioning(x =>
+            {
+                x.DefaultApiVersion = new ApiVersion(1, 0);
+                x.AssumeDefaultVersionWhenUnspecified = true;
+                x.ReportApiVersions = true;
+            });
+            services.AddSwaggerGen();
+            services.AddConsulConfig(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -38,7 +49,9 @@ namespace Booking
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseConsul(Configuration);
+            app.UseSwagger();
+            app.UseSwaggerUI();
             app.UseRouting();
 
             app.UseAuthorization();

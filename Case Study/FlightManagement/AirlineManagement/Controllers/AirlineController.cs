@@ -11,8 +11,10 @@ using System.Transactions;
 
 namespace AirlineManagement.Controllers
 {
-    [Route("api/[controller]")]
     [ApiController]
+    [ApiVersion("1.0")]
+    [Route("api/v{v:apiVersion}/[controller]")]
+ 
     public class AirlineController : ControllerBase
     {
         private readonly IAirlineRepository _airlineRepository;
@@ -35,8 +37,8 @@ namespace AirlineManagement.Controllers
 
 
         [HttpPost]
-        [Route("register")]
-        public IActionResult Post([FromBody] AirlineTbl tbl)
+        [Route("[Action]")]
+        public IActionResult Register([FromBody] AirlineTbl tbl)
         {
             using (var scope = new TransactionScope())
             {
@@ -48,25 +50,49 @@ namespace AirlineManagement.Controllers
 
         [HttpDelete]
         [Route("[Action]/{airlineNo}")]
-        public IActionResult Delete(string airlineNo)
+        public IActionResult Block(string airlineNo)
         {
             _airlineRepository.DeleteAirline(airlineNo);
             return new OkResult();
         }
 
-        [HttpPut]
-        public IActionResult Put([FromBody] AirlineTbl tbl)
+        //[HttpPut]
+        //[Route("[Action]")]
+        //public IActionResult Update([FromBody] AirlineTbl tbl)
+        //{
+        //    if (tbl != null)
+        //    {
+        //        using (var scope = new TransactionScope())
+        //        {
+        //            _airlineRepository.UpdateAirline(tbl);
+        //            scope.Complete();
+        //            return new OkResult();
+        //        }
+        //    }
+        //    return new NoContentResult();
+        //}
+
+        [HttpGet]
+        [Route("[Action]/get")]
+        public IActionResult Inventory()
         {
-            if (tbl != null)
+            var airline = _airlineRepository.GetInventory();
+            if (airline != null)
+                return new OkObjectResult(airline);
+            else
+                return new NotFoundResult();
+        }
+
+        [HttpPost]
+        [Route("[Action]/add")]
+        public IActionResult Inventory([FromBody] InventoryTbl tbl)
+        {
+            using (var scope = new TransactionScope())
             {
-                using (var scope = new TransactionScope())
-                {
-                    _airlineRepository.UpdateAirline(tbl);
-                    scope.Complete();
-                    return new OkResult();
-                }
+                _airlineRepository.AddInventory(tbl);
+                scope.Complete();
+                return Created("api/airline/inventory/", tbl);
             }
-            return new NoContentResult();
         }
     }
 }

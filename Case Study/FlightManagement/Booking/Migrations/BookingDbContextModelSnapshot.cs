@@ -53,8 +53,9 @@ namespace Booking.Migrations
                     b.Property<string>("FlightNumber")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("Meal")
-                        .HasColumnType("int");
+                    b.Property<string>("Meal")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");

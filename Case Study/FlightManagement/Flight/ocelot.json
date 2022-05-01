@@ -1,0 +1,28 @@
+{
+  "Routes": [
+    {
+      "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/api/v1.0/airline",
+      "DownstreamScheme": "http",
+      "ServiceName": "AirlineManagement",
+      "UpstreamPathTemplate": "/api/v1.0/flight/airline",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/api/v1.0/booking",
+      "DownstreamScheme": "http",
+      "ServiceName": "Booking",
+      "UpstreamPathTemplate": "/api/v1.0/flight/booking",
+      "UpstreamHttpMethod": [ "Get" ]
+    }
+  ],
+  "GlobalConfiguration": {
+    "ServiceDiscoveryProvider": {
+      "Host": "localhost",
+      "Port": "8500",
+      "Type": "Consul"
+    }
+
+  }
+}

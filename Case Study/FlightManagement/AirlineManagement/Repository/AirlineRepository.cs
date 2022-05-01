@@ -57,6 +57,16 @@ namespace AirlineManagement.Repository
             _airlineDb.Entry(tbl).State = Microsoft.EntityFrameworkCore.EntityState.Modified;            
             Save();
             
+        }       
+        public IEnumerable<InventoryTbl> GetInventory()
+        {
+            return _airlineDb.inventoryTbls.ToList();
+        }
+
+        public void AddInventory(InventoryTbl tbl)
+        {
+            _airlineDb.inventoryTbls.Add(tbl);
+            Save();
         }
     }
 }

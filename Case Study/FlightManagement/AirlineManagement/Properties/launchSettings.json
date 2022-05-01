@@ -12,7 +12,7 @@
     "IIS Express": {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "swagger/index.html",
+      "launchUrl": "api/v1.0/airline",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }

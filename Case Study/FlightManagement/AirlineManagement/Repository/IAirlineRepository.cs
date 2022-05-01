@@ -18,5 +18,7 @@ namespace AirlineManagement.Repository
         public void UpdateAirline(AirlineTbl tbl);
 
         public void Save();
+        public void AddInventory(InventoryTbl tbl);
+        public IEnumerable<InventoryTbl> GetInventory();
     }
 }

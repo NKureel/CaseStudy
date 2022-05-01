@@ -1,8 +1,10 @@
 ﻿using Booking.Models;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Threading.Tasks;
 
 namespace Booking.DBContext
@@ -13,8 +15,24 @@ namespace Booking.DBContext
         {
         }
 
-        DbSet<UserBookingTbl> bookingTbls { get; set; }
+       public  DbSet<UserBookingTbl> bookingTbls { get; set; }
         protected override void OnModelCreating(ModelBuilder model)
-        { base.OnModelCreating(model); }
+        { 
+            base.OnModelCreating(model);            
+            model.Entity<UserBookingTbl>().HasEnum(e => e.Meal);            
+        }
+    }
+    public static class Extensions
+    {
+        public static void HasEnum<TEntity, TProperty>(this EntityTypeBuilder<TEntity> entityBuilder, Expression<Func<TEntity, TProperty>> propertyExpression)
+      where TEntity : class
+      where TProperty : Enum
+        {
+            entityBuilder.Property(propertyExpression)
+                .HasConversion(
+                    v => v.ToString(),
+                    v => (TProperty)Enum.Parse(typeof(TProperty), v)
+                );
+        }
     }
 }

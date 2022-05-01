@@ -1,5 +1,6 @@
 using AirlineManagement.DBContext;
 using AirlineManagement.Repository;
+using Common;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -31,8 +32,15 @@ namespace AirlineManagement
             services.AddControllers();
             services.AddDbContext<AirlineDbContext>(o => o.UseSqlServer(Configuration.GetConnectionString("DefaultConnectionString")));
             services.AddTransient<IAirlineRepository, AirlineRepository>();
-            services.AddTransient<IInventoryRepository, InventoryRepository>();
+           // services.AddTransient<IInventoryRepository, InventoryRepository>();
             services.AddSwaggerGen();
+            services.AddApiVersioning(x =>
+            {
+                x.DefaultApiVersion = new ApiVersion(1, 0);
+                x.AssumeDefaultVersionWhenUnspecified = true;
+                x.ReportApiVersions = true;                
+            });
+            services.AddConsulConfig(Configuration);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -42,6 +50,7 @@ namespace AirlineManagement
             {
                 app.UseDeveloperExceptionPage();
             }
+            app.UseConsul(Configuration);
             app.UseSwagger();
             app.UseSwaggerUI();
             app.UseHttpsRedirection();
