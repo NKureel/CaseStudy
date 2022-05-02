@@ -39,7 +39,7 @@ namespace Common
             lifetime.ApplicationStopping.Register(() =>
             {
                 logger.LogInformation("Unregistering from Consul");
-            });
+            });            
             return app;
         }
     }

@@ -19,7 +19,7 @@ namespace AirlineManagement.Migrations
                 .HasAnnotation("ProductVersion", "5.0.16")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("AirlineManagement.Models.AirlineTbl", b =>
+            modelBuilder.Entity("Common.Models.AirlineTbl", b =>
                 {
                     b.Property<string>("AirlineNo")
                         .HasColumnType("nvarchar(450)");
@@ -38,7 +38,7 @@ namespace AirlineManagement.Migrations
                     b.ToTable("airlineTbls");
                 });
 
-            modelBuilder.Entity("AirlineManagement.Models.InventoryTbl", b =>
+            modelBuilder.Entity("Common.Models.InventoryTbl", b =>
                 {
                     b.Property<string>("FlightNumber")
                         .HasColumnType("nvarchar(450)");
@@ -90,9 +90,9 @@ namespace AirlineManagement.Migrations
                     b.ToTable("inventoryTbls");
                 });
 
-            modelBuilder.Entity("AirlineManagement.Models.InventoryTbl", b =>
+            modelBuilder.Entity("Common.Models.InventoryTbl", b =>
                 {
-                    b.HasOne("AirlineManagement.Models.AirlineTbl", "Airlines")
+                    b.HasOne("Common.Models.AirlineTbl", "Airlines")
                         .WithMany("Inventories")
                         .HasForeignKey("AirlineNo")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -101,7 +101,7 @@ namespace AirlineManagement.Migrations
                     b.Navigation("Airlines");
                 });
 
-            modelBuilder.Entity("AirlineManagement.Models.AirlineTbl", b =>
+            modelBuilder.Entity("Common.Models.AirlineTbl", b =>
                 {
                     b.Navigation("Inventories");
                 });

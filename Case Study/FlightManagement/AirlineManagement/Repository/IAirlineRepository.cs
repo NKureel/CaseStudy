@@ -1,8 +1,5 @@
-﻿using AirlineManagement.Models;
-using System;
+﻿using Common.Models;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace AirlineManagement.Repository
 {
@@ -18,7 +15,7 @@ namespace AirlineManagement.Repository
         public void UpdateAirline(AirlineTbl tbl);
 
         public void Save();
-        public void AddInventory(InventoryTbl tbl);
-        public IEnumerable<InventoryTbl> GetInventory();
+        //public void AddInventory(InventoryTbl tbl);
+        //public IEnumerable<InventoryTbl> GetInventory();
     }
 }

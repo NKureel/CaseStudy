@@ -2264,9 +2264,14 @@
           "Consul": "1.6.10.5",
           "Microsoft.AspNetCore.Hosting.Abstractions": "2.2.0",
           "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
+          "Microsoft.AspNetCore.Mvc.Versioning": "5.0.0",
+          "Microsoft.EntityFrameworkCore.SqlServer": "5.0.16",
           "Microsoft.Extensions.Configuration.Abstractions": "6.0.0",
           "Microsoft.Extensions.DependencyInjection.Abstractions": "6.0.0",
-          "Microsoft.Extensions.Logging.Abstractions": "6.0.1"
+          "Microsoft.Extensions.Logging.Abstractions": "6.0.1",
+          "Swashbuckle.AspNetCore.Swagger": "6.3.1",
+          "Swashbuckle.AspNetCore.SwaggerGen": "6.3.1",
+          "Swashbuckle.AspNetCore.SwaggerUI": "6.3.1"
         },
         "compile": {
           "bin/placeholder/Common.dll": {}
@@ -7715,12 +7720,9 @@
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
       "Common >= 1.0.0",
-      "Microsoft.AspNetCore.Mvc.Versioning >= 5.0.0",
+      "Microsoft.EntityFrameworkCore.Design >= 5.0.16",
       "Microsoft.EntityFrameworkCore.SqlServer >= 5.0.16",
-      "Microsoft.EntityFrameworkCore.Tools >= 5.0.16",
-      "Swashbuckle.AspNetCore.Swagger >= 6.3.1",
-      "Swashbuckle.AspNetCore.SwaggerGen >= 6.3.1",
-      "Swashbuckle.AspNetCore.SwaggerUI >= 6.3.1"
+      "Microsoft.EntityFrameworkCore.Tools >= 5.0.16"
     ]
   },
   "packageFolders": {
@@ -7752,7 +7754,8 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "https://api.nuget.org/v3/index.json": {}
+        "https://api.nuget.org/v3/index.json": {},
+        "https://nuget.org/api/v2/": {}
       },
       "frameworks": {
         "netcoreapp3.1": {
@@ -7774,9 +7777,11 @@
       "netcoreapp3.1": {
         "targetAlias": "netcoreapp3.1",
         "dependencies": {
-          "Microsoft.AspNetCore.Mvc.Versioning": {
+          "Microsoft.EntityFrameworkCore.Design": {
+            "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+            "suppressParent": "All",
             "target": "Package",
-            "version": "[5.0.0, )"
+            "version": "[5.0.16, )"
           },
           "Microsoft.EntityFrameworkCore.SqlServer": {
             "target": "Package",
@@ -7787,18 +7792,6 @@
             "suppressParent": "All",
             "target": "Package",
             "version": "[5.0.16, )"
-          },
-          "Swashbuckle.AspNetCore.Swagger": {
-            "target": "Package",
-            "version": "[6.3.1, )"
-          },
-          "Swashbuckle.AspNetCore.SwaggerGen": {
-            "target": "Package",
-            "version": "[6.3.1, )"
-          },
-          "Swashbuckle.AspNetCore.SwaggerUI": {
-            "target": "Package",
-            "version": "[6.3.1, )"
           }
         },
         "imports": [

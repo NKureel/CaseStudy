@@ -1,12 +1,6 @@
-﻿using AirlineManagement.DBContext;
-using AirlineManagement.Models;
-using AirlineManagement.Repository;
-using Microsoft.AspNetCore.Http;
+﻿using AirlineManagement.Repository;
+using Common.Models;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Transactions;
 
 namespace AirlineManagement.Controllers
@@ -72,27 +66,27 @@ namespace AirlineManagement.Controllers
         //    return new NoContentResult();
         //}
 
-        [HttpGet]
-        [Route("[Action]/get")]
-        public IActionResult Inventory()
-        {
-            var airline = _airlineRepository.GetInventory();
-            if (airline != null)
-                return new OkObjectResult(airline);
-            else
-                return new NotFoundResult();
-        }
+        //[HttpGet]
+        //[Route("[Action]/get")]
+        //public IActionResult Inventory()
+        //{
+        //    var airline = _airlineRepository.GetInventory();
+        //    if (airline != null)
+        //        return new OkObjectResult(airline);
+        //    else
+        //        return new NotFoundResult();
+        //}
 
-        [HttpPost]
-        [Route("[Action]/add")]
-        public IActionResult Inventory([FromBody] InventoryTbl tbl)
-        {
-            using (var scope = new TransactionScope())
-            {
-                _airlineRepository.AddInventory(tbl);
-                scope.Complete();
-                return Created("api/airline/inventory/", tbl);
-            }
-        }
+        //[HttpPost]
+        //[Route("[Action]/add")]
+        //public IActionResult Inventory([FromBody] InventoryTbl tbl)
+        //{
+        //    using (var scope = new TransactionScope())
+        //    {
+        //        _airlineRepository.AddInventory(tbl);
+        //        scope.Complete();
+        //        return Created("api/airline/inventory/", tbl);
+        //    }
+        //}
     }
 }
