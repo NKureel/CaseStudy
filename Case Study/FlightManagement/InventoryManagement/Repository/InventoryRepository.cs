@@ -1,5 +1,6 @@
-﻿using AirlineManagement.DBContext;
+﻿
 using Common.Models;
+using InventoryManagement.DBContext;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -7,8 +8,8 @@ namespace InventoryManagement.Repository
 {
     public class InventoryRepository : IInventoryRepository
     {
-        private readonly AirlineDbContext _inventoryContext;
-        public InventoryRepository(AirlineDbContext context)
+        private readonly InventoryDbContext _inventoryContext;
+        public InventoryRepository(InventoryDbContext context)
         {
             _inventoryContext = context;
         }
@@ -25,6 +26,11 @@ namespace InventoryManagement.Repository
         public void Save()
         {
             _inventoryContext.SaveChanges();
+        }
+
+        public IEnumerable<InventoryTbl> GetAllFlightBasedUponPlaces(string fromplace, string toplace) 
+        {
+            return _inventoryContext.inventoryTbls.Where(x => x.ToPlace.ToLower() == toplace.ToLower() && x.FromPlace.ToLower()== fromplace.ToLower()).ToList();
         }
         
     }

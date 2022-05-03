@@ -1,5 +1,5 @@
-using AirlineManagement.DBContext;
 using Common;
+using InventoryManagement.DBContext;
 using InventoryManagement.Repository;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -24,9 +24,8 @@ namespace InventoryManagement
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            services.AddDbContext<AirlineDbContext>(o => o.UseSqlServer(Configuration.GetConnectionString("DefaultConnectionString")));
-            services.AddTransient<IInventoryRepository, InventoryRepository>();
-            // services.AddTransient<IInventoryRepository, InventoryRepository>();
+            services.AddDbContext<InventoryDbContext>(o => o.UseSqlServer(Configuration.GetConnectionString("DefaultConnectionString")));
+            services.AddTransient<IInventoryRepository, InventoryRepository>();            
             services.AddSwaggerGen();
             services.AddApiVersioning(x =>
             {
@@ -44,7 +43,9 @@ namespace InventoryManagement
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseConsul(Configuration);
+            app.UseSwagger();
+            app.UseSwaggerUI();
             app.UseHttpsRedirection();
 
             app.UseRouting();

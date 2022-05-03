@@ -1,5 +1,6 @@
 ﻿using BookingManagement.DBContext;
 using Common.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -14,20 +15,38 @@ namespace BookingManagement.Repository
         }
         
 
-        public void AddUserBookingDetail(UserBookingTbl tbl)
+        public string AddUserBookingDetail(UserBookingTbl tbl)
         {
+            Random generateRandom = new Random();
+            if (tbl != null)
+                tbl.Pnr = generateRandom.Next(1,100) + tbl.FlightNumber;
             _Context.bookingTbls.Add(tbl);
             SaveChanges();
+            return tbl.Pnr;
         }
 
         public void CancelBooking(string pnr)
         {
-            var pnrdetail = _Context.bookingTbls.Find(pnr);
-            if(pnrdetail!=null)
-            _Context.bookingTbls.Remove(pnrdetail);
-            SaveChanges();
+            var pnrdetail = _Context.bookingTbls.Where(x => x.Pnr.ToLower() == pnr.ToLower()).ToList(); ;
+            if (pnrdetail != null)
+            {
+                foreach (var cancel in pnrdetail)
+                {
+                    var persondetail = _Context.person.Where(x => x.PeopleId == cancel.id).ToList();
+                    foreach(var person in persondetail)
+                    _Context.person.Remove(person);
+                    _Context.bookingTbls.Remove(cancel);
+
+                    SaveChanges();
+                }
+            }
+            
         }
-              
+       
+        public IEnumerable<UserBookingTbl> GetBookingDetailFromPNR(string pnr)
+        {
+            return _Context.bookingTbls.Where(x => x.Pnr.ToLower()==pnr.ToLower()).ToList<UserBookingTbl>();
+        }
 
         public void SaveChanges()
         {
@@ -41,7 +60,12 @@ namespace BookingManagement.Repository
 
         IEnumerable<UserBookingTbl> IBookingRepository.GetUserHistory(string emailId)
         {
-            return _Context.bookingTbls.Where(x => x.EmailId == emailId);
+
+            
+           var res = _Context.bookingTbls.Where(x => x.EmailId.ToLower() == emailId.ToString().ToLower()).
+               ToList();
+           
+            return res;
         }
     }
 }

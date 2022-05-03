@@ -22,7 +22,7 @@ namespace AirlineManagement.Controllers
         public IActionResult Get()
         {
             var airline = _airlineRepository.GetAirlines();
-            if (airline != null)
+            if (airline!= null)
                 return new OkObjectResult(airline);
             else
                 return new NotFoundResult();

@@ -7,7 +7,7 @@ namespace BookingManagement.Controllers
 {
     [ApiController]
     [ApiVersion("1.0")]
-    [Route("api/v{v:apiVersion}/[controller]")]    
+    [Route("api/v{v:apiVersion}/[controller]")]
     public class BookingController : ControllerBase
     {
         IBookingRepository _repository;
@@ -19,6 +19,7 @@ namespace BookingManagement.Controllers
         [HttpGet]
         public IActionResult Get()
         {
+            //var allBookings = _repository.GetBookingDetail();
             var allBookings = _repository.GetBookingDetail();
             if (allBookings != null)
                 return new OkObjectResult(allBookings);
@@ -27,18 +28,19 @@ namespace BookingManagement.Controllers
         }
 
         [HttpPost]
-        public IActionResult Post([FromBody] UserBookingTbl userDetail)
+        [Route("{flightid}")]
+        public string Post([FromBody] UserBookingTbl userDetail)
         {
             using(var scope=new TransactionScope())
             {
-                _repository.AddUserBookingDetail(userDetail);
+                var res=_repository.AddUserBookingDetail(userDetail);
                 scope.Complete();
-                return new OkResult();
+                return res;
             }
         }
 
         [HttpGet]
-        [Route("[Action]/{emailid}")]
+        [Route("[Action]/{emailId}")]
         public IActionResult History(string emailId)
         {
             var history = _repository.GetUserHistory(emailId);
@@ -55,6 +57,17 @@ namespace BookingManagement.Controllers
         {
             _repository.CancelBooking(pnr);
             return new OkResult();
+        }
+
+        [HttpGet]
+        [Route("[Action]/{pnr}")]
+        public IActionResult Ticket(string pnr)
+        {
+            var result = _repository.GetBookingDetailFromPNR(pnr);
+            if (result != null)
+                return new OkObjectResult(result);
+            else
+                return new NotFoundResult();
         }
     }
 }

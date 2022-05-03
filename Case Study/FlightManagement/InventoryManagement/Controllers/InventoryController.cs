@@ -4,8 +4,9 @@ using Microsoft.AspNetCore.Mvc;
 using System.Transactions;
 
 namespace InventoryManagement.Controllers
-{
-    [Route("api/airline/[controller]")]
+{    
+    [ApiVersion("1.0")]
+    [Route("api/v{v:apiVersion}/airline/[controller]")]
     [ApiController]
     public class InventoryController : ControllerBase
     {
@@ -19,7 +20,7 @@ namespace InventoryManagement.Controllers
         public IActionResult Get()
         {
             var airline = _inventoryRepository.GetInventory();
-            if (airline != null)
+            if (airline!= null)
                 return new OkObjectResult(airline);
             else
                 return new NotFoundResult();
@@ -36,6 +37,7 @@ namespace InventoryManagement.Controllers
                 return Created("api/airline/inventory/", tbl);
             }
         }
+
 
     }
 }

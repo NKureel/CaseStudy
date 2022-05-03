@@ -1,0 +1,108 @@
+{
+  "Routes": [    
+    {
+      "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/api/v1.0/airline",
+      "DownstreamScheme": "http",
+      "ServiceName": "airlineManagement",
+      "UpstreamPathTemplate": "/api/v1.0/flight/airline",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/api/v1.0/airline/register",
+      "DownstreamScheme": "http",
+      "ServiceName": "airlineManagement",
+      "UpstreamPathTemplate": "/api/v1.0/flight/airline/register",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+    {
+      "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/api/v1.0/airline/block/{airlineno}",
+      "DownstreamScheme": "http",
+      "ServiceName": "airlineManagement",
+      "UpstreamPathTemplate": "/api/v1.0/flight/airline/block/{airlineno}",
+      "UpstreamHttpMethod": [ "Delete" ]
+      },
+    {
+      "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/api/v1.0/airline/inventory",
+      "DownstreamScheme": "http",
+      "ServiceName": "InventoryManagement",
+      "UpstreamPathTemplate": "/api/v1.0/flight/airline/inventory",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/api/v1.0/airline/inventory/add",
+      "DownstreamScheme": "http",
+      "ServiceName": "InventoryManagement",
+      "UpstreamPathTemplate": "/api/v1.0/flight/airline/inventory/add",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+    {
+      "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/api/v1.0/search",
+      "DownstreamScheme": "http",
+      "ServiceName": "InventoryManagement",
+      "UpstreamPathTemplate": "/api/v1.0/flight/search",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/api/v1.0/booking",
+      "DownstreamScheme": "http",
+      "ServiceName": "bookingManagement",
+      "UpstreamPathTemplate": "/api/v1.0/flight/booking",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/api/v1.0/booking/{flightid}",
+      "DownstreamScheme": "http",
+      "ServiceName": "bookingManagement",
+      "UpstreamPathTemplate": "/api/v1.0/flight/booking/{flightid}",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+    {
+      "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/api/v1.0/booking/history/{emailid}",
+      "DownstreamScheme": "http",
+      "ServiceName": "bookingManagement",
+      "UpstreamPathTemplate": "/api/v1.0/flight/booking/history/{emailid}",
+      "UpstreamHttpMethod": [ "Get" ]
+    },
+    {
+      "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/api/v1.0/booking/cancel/{pnr}",
+      "DownstreamScheme": "http",
+      "ServiceName": "bookingManagement",
+      "UpstreamPathTemplate": "/api/v1.0/flight/booking/cancel/{pnr}",
+      "UpstreamHttpMethod": [ "Delete" ]
+    },
+    {
+      "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/api/v1.0/booking/ticket/{pnr}",
+      "DownstreamScheme": "http",
+      "ServiceName": "bookingManagement",
+      "UpstreamPathTemplate": "/api/v1.0/flight/booking/ticket/{pnr}",
+      "UpstreamHttpMethod": [ "Get" ]
+    }
+      //{
+      //  "UseServiceDiscovery": true,
+      //  "DownstreamPathTemplate": "/api/product/findall",
+      //  "DownstreamScheme": "http",
+      //  "ServiceName": "productService",
+      //  "UpstreamPathTemplate": "/api/gatway/product/findall",
+      //  "UpstreamHttpMethod": [ "Get" ]
+      //}
+  ],
+  "GlobalConfiguration": {
+    "ServiceDiscoveryProvider": {
+      "Host": "localhost",
+      "Port": "8500",
+      "Type": "Consul"
+    }
+  }
+
+}

@@ -17,7 +17,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\AirlineManagement\AirlineManagement.csproj" />
     <ProjectReference Include="..\Common\Common.csproj" />
   </ItemGroup>
 

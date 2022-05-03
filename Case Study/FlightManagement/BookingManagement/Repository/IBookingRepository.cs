@@ -7,10 +7,11 @@ namespace BookingManagement.Repository
     {
         public IEnumerable<UserBookingTbl> GetBookingDetail();
         public void CancelBooking(string pnr);
-
+        
+        public IEnumerable<UserBookingTbl> GetBookingDetailFromPNR(string pnr);
         public IEnumerable<UserBookingTbl> GetUserHistory(string emailId);
 
-        public void AddUserBookingDetail(UserBookingTbl tbl);
+        public string AddUserBookingDetail(UserBookingTbl tbl);
 
         public void SaveChanges();
     }

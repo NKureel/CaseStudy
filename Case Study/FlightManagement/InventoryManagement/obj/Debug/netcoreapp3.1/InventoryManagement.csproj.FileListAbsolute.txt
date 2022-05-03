@@ -71,10 +71,3 @@ D:\Training\CaseStudy\Case Study\FlightManagement\InventoryManagement\obj\Debug\
 D:\Training\CaseStudy\Case Study\FlightManagement\InventoryManagement\obj\Debug\netcoreapp3.1\InventoryManagement.MvcApplicationPartsAssemblyInfo.cs
 D:\Training\CaseStudy\Case Study\FlightManagement\InventoryManagement\bin\Debug\netcoreapp3.1\Humanizer.dll
 D:\Training\CaseStudy\Case Study\FlightManagement\InventoryManagement\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Design.dll
-D:\Training\CaseStudy\Case Study\FlightManagement\InventoryManagement\bin\Debug\netcoreapp3.1\AirlineManagement.deps.json
-D:\Training\CaseStudy\Case Study\FlightManagement\InventoryManagement\bin\Debug\netcoreapp3.1\AirlineManagement.runtimeconfig.json
-D:\Training\CaseStudy\Case Study\FlightManagement\InventoryManagement\bin\Debug\netcoreapp3.1\AirlineManagement.runtimeconfig.dev.json
-D:\Training\CaseStudy\Case Study\FlightManagement\InventoryManagement\bin\Debug\netcoreapp3.1\AirlineManagement.exe
-D:\Training\CaseStudy\Case Study\FlightManagement\InventoryManagement\bin\Debug\netcoreapp3.1\AirlineManagement.dll
-D:\Training\CaseStudy\Case Study\FlightManagement\InventoryManagement\bin\Debug\netcoreapp3.1\AirlineManagement.pdb
-D:\Training\CaseStudy\Case Study\FlightManagement\InventoryManagement\obj\Debug\netcoreapp3.1\InventoryManagement.csproj.CopyComplete

@@ -2257,23 +2257,6 @@
           "lib/netstandard1.3/System.Xml.XmlSerializer.dll": {}
         }
       },
-      "AirlineManagement/1.0.0": {
-        "type": "project",
-        "framework": ".NETCoreApp,Version=v3.1",
-        "dependencies": {
-          "Common": "1.0.0",
-          "Microsoft.EntityFrameworkCore.SqlServer": "5.0.16"
-        },
-        "compile": {
-          "bin/placeholder/AirlineManagement.dll": {}
-        },
-        "runtime": {
-          "bin/placeholder/AirlineManagement.dll": {}
-        },
-        "frameworkReferences": [
-          "Microsoft.AspNetCore.App"
-        ]
-      },
       "Common/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v3.1",
@@ -7728,11 +7711,6 @@
         "system.xml.xmlserializer.nuspec"
       ]
     },
-    "AirlineManagement/1.0.0": {
-      "type": "project",
-      "path": "../AirlineManagement/AirlineManagement.csproj",
-      "msbuildProject": "../AirlineManagement/AirlineManagement.csproj"
-    },
     "Common/1.0.0": {
       "type": "project",
       "path": "../Common/Common.csproj",
@@ -7741,7 +7719,6 @@
   },
   "projectFileDependencyGroups": {
     ".NETCoreApp,Version=v3.1": [
-      "AirlineManagement >= 1.0.0",
       "Common >= 1.0.0",
       "Microsoft.EntityFrameworkCore.Design >= 5.0.16",
       "Microsoft.EntityFrameworkCore.SqlServer >= 5.0.16",
@@ -7784,9 +7761,6 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "D:\\Training\\CaseStudy\\Case Study\\FlightManagement\\AirlineManagement\\AirlineManagement.csproj": {
-              "projectPath": "D:\\Training\\CaseStudy\\Case Study\\FlightManagement\\AirlineManagement\\AirlineManagement.csproj"
-            },
             "D:\\Training\\CaseStudy\\Case Study\\FlightManagement\\Common\\Common.csproj": {
               "projectPath": "D:\\Training\\CaseStudy\\Case Study\\FlightManagement\\Common\\Common.csproj"
             }

@@ -7,5 +7,6 @@ namespace InventoryManagement.Repository
     {
         public void AddInventory(InventoryTbl tbl);
         public IEnumerable<InventoryTbl> GetInventory();
+        public IEnumerable<InventoryTbl> GetAllFlightBasedUponPlaces(string fromplace, string toplace);
     }
 }
