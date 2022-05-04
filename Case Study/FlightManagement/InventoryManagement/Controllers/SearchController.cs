@@ -5,7 +5,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-
+/*
+ Created By: Naina Kureel
+ Detail: Search flight Management Web Api
+*/
 namespace InventoryManagement.Controllers
 {
     [ApiVersion("1.0")]
@@ -19,7 +22,13 @@ namespace InventoryManagement.Controllers
             _inventoryRepository = repository;
         }
 
-        [HttpGet]
+        /// <summary>
+        /// Get the flight search based upon from place and to place
+        /// </summary>
+        /// <param name="fromplace"></param>
+        /// <param name="toplace"></param>
+        /// <returns></returns>
+        [HttpGet]        
         public IActionResult Get(string fromplace,string toplace)
         {
             var flights = _inventoryRepository.GetAllFlightBasedUponPlaces(fromplace, toplace);

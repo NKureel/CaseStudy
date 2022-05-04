@@ -3,6 +3,10 @@ using InventoryManagement.Repository;
 using Microsoft.AspNetCore.Mvc;
 using System.Transactions;
 
+/*
+ Created By: Naina Kureel
+ Detail: Inventory Management Web Api
+*/
 namespace InventoryManagement.Controllers
 {    
     [ApiVersion("1.0")]
@@ -16,6 +20,11 @@ namespace InventoryManagement.Controllers
             _inventoryRepository = repository;
         }
 
+
+        /// <summary>
+        /// Get the Inventoyr detail
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]      
         public IActionResult Get()
         {
@@ -26,6 +35,12 @@ namespace InventoryManagement.Controllers
                 return new NotFoundResult();
         }
 
+
+        /// <summary>
+        /// Add Inventory for airlines
+        /// </summary>
+        /// <param name="tbl"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("add")]
         public IActionResult Add([FromBody] InventoryTbl tbl)

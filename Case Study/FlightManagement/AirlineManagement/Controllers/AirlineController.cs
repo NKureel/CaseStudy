@@ -1,9 +1,11 @@
 ﻿using AirlineManagement.Repository;
 using Common.Models;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Transactions;
-
+/*
+ Created By: Naina Kureel
+ Detail: Airline Management Web Api
+*/
 namespace AirlineManagement.Controllers
 {
     [ApiController]
@@ -18,20 +20,30 @@ namespace AirlineManagement.Controllers
             _airlineRepository = airlineDetail;
         }
 
+
+        /// <summary>
+        /// Get all registered airline
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         //[Authorize]
         //[Route("GetAllAirline")]
         public IActionResult Get()
-        {
-            var airline = _airlineRepository.GetAirlines();
-            if (airline!= null)
-                return new OkObjectResult(airline);
-            else
-                return new NotFoundResult();
+        {            
+                var airline = _airlineRepository.GetAirlines();
+                if (airline != null)
+                    return new OkObjectResult(airline);
+                else
+                    return new NotFoundResult();
+           
         }
                        
 
-
+        /// <summary>
+        /// Register Airlines
+        /// </summary>
+        /// <param name="tbl"></param>
+        /// <returns></returns>
         [HttpPost]
         [Route("[Action]")]
         public IActionResult Register([FromBody] AirlineTbl tbl)
@@ -44,6 +56,12 @@ namespace AirlineManagement.Controllers
             }
         }
 
+
+        /// <summary>
+        /// Block Airlines
+        /// </summary>
+        /// <param name="airlineNo"></param>
+        /// <returns></returns>
         [HttpDelete]
         [Route("[Action]/{airlineNo}")]
         public IActionResult Block(string airlineNo)
@@ -51,44 +69,6 @@ namespace AirlineManagement.Controllers
             _airlineRepository.DeleteAirline(airlineNo);
             return new OkResult();
         }
-
-        //[HttpPut]
-        //[Route("[Action]")]
-        //public IActionResult Update([FromBody] AirlineTbl tbl)
-        //{
-        //    if (tbl != null)
-        //    {
-        //        using (var scope = new TransactionScope())
-        //        {
-        //            _airlineRepository.UpdateAirline(tbl);
-        //            scope.Complete();
-        //            return new OkResult();
-        //        }
-        //    }
-        //    return new NoContentResult();
-        //}
-
-        //[HttpGet]
-        //[Route("[Action]/get")]
-        //public IActionResult Inventory()
-        //{
-        //    var airline = _airlineRepository.GetInventory();
-        //    if (airline != null)
-        //        return new OkObjectResult(airline);
-        //    else
-        //        return new NotFoundResult();
-        //}
-
-        //[HttpPost]
-        //[Route("[Action]/add")]
-        //public IActionResult Inventory([FromBody] InventoryTbl tbl)
-        //{
-        //    using (var scope = new TransactionScope())
-        //    {
-        //        _airlineRepository.AddInventory(tbl);
-        //        scope.Complete();
-        //        return Created("api/airline/inventory/", tbl);
-        //    }
-        //}
+        
     }
 }

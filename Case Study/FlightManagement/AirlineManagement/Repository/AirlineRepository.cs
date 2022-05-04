@@ -2,7 +2,10 @@
 using Common.Models;
 using System.Collections.Generic;
 using System.Linq;
-
+/*
+ Created By: Naina Kureel
+ Detail: Airline Management Repositoyr
+*/
 namespace AirlineManagement.Repository
 {
     public class AirlineRepository : IAirlineRepository

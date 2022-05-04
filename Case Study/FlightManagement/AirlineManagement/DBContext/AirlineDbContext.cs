@@ -3,7 +3,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 using System.Linq.Expressions;
-
+/*
+ Created By: Naina Kureel
+ Detail: Db Context of Airline
+*/
 namespace AirlineManagement.DBContext
 {
     public class AirlineDbContext:DbContext

@@ -2,7 +2,10 @@
 using Common.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Transactions;
-
+/*
+ Created By: Naina Kureel
+ Detail: Booking Management Web Api
+*/
 namespace BookingManagement.Controllers
 {
     [ApiController]
@@ -16,6 +19,10 @@ namespace BookingManagement.Controllers
             _repository = repository;
         }
 
+        /// <summary>
+        /// Get all Booking Details
+        /// </summary>
+        /// <returns></returns>
         [HttpGet]
         public IActionResult Get()
         {
@@ -26,6 +33,12 @@ namespace BookingManagement.Controllers
             else
                 return new NoContentResult();
         }
+
+        /// <summary>
+        /// Booking Details for user
+        /// </summary>
+        /// <param name="userDetail"></param>
+        /// <returns></returns>
 
         [HttpPost]
         [Route("{flightid}")]
@@ -39,6 +52,11 @@ namespace BookingManagement.Controllers
             }
         }
 
+        /// <summary>
+        /// Get history based upon user's emailid
+        /// </summary>
+        /// <param name="emailId"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("[Action]/{emailId}")]
         public IActionResult History(string emailId)
@@ -51,6 +69,12 @@ namespace BookingManagement.Controllers
 
         }
 
+
+        /// <summary>
+        /// Cancel booking based upon pnr
+        /// </summary>
+        /// <param name="pnr"></param>
+        /// <returns></returns>
         [HttpDelete]
         [Route("[Action]/{pnr}")]
         public IActionResult Cancel(string pnr)
@@ -59,6 +83,13 @@ namespace BookingManagement.Controllers
             return new OkResult();
         }
 
+
+
+        /// <summary>
+        /// Get Ticket detail based upon pnr
+        /// </summary>
+        /// <param name="pnr"></param>
+        /// <returns></returns>
         [HttpGet]
         [Route("[Action]/{pnr}")]
         public IActionResult Ticket(string pnr)
