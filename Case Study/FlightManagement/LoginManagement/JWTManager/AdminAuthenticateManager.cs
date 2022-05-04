@@ -21,23 +21,28 @@ namespace LoginManagement.JWTManager
             configuration = config;
 
         }
-        public Tokens Authenticate(Admin admin)
+
+        public Tokens Authenticate(UserRegisterTbl admin)
         {
-            if (!adminLoginCredential.Any(x => x.Key == admin.Name && x.Value == admin.Password))
-            {
-                return null;
-            }
-            var tokenHandler = new JwtSecurityTokenHandler();
-            var tokenKey = Encoding.UTF8.GetBytes(configuration["JWT:Key"]);
-            var tokendesc = new SecurityTokenDescriptor
-            {
-                Subject = new System.Security.Claims.ClaimsIdentity(
-                    new Claim[] { new Claim(ClaimTypes.Name, admin.Name) }),
-                Expires = System.DateTime.UtcNow.AddMinutes(10),
-                SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(tokenKey), SecurityAlgorithms.HmacSha256Signature)
-            };
-            var token = tokenHandler.CreateToken(tokendesc);
-            return new Tokens { Token = tokenHandler.WriteToken(token) };
+            throw new System.NotImplementedException();
         }
+        //public Tokens Authenticate(Admin admin)
+        //{
+        //    if (!adminLoginCredential.Any(x => x.Key == admin.Name && x.Value == admin.Password))
+        //    {
+        //        return null;
+        //    }
+        //    var tokenHandler = new JwtSecurityTokenHandler();
+        //    var tokenKey = Encoding.UTF8.GetBytes(configuration["JWT:Key"]);
+        //    var tokendesc = new SecurityTokenDescriptor
+        //    {
+        //        Subject = new System.Security.Claims.ClaimsIdentity(
+        //            new Claim[] { new Claim(ClaimTypes.Name, admin.Name) }),
+        //        Expires = System.DateTime.UtcNow.AddMinutes(10),
+        //        SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(tokenKey), SecurityAlgorithms.HmacSha256Signature)
+        //    };
+        //    var token = tokenHandler.CreateToken(tokendesc);
+        //    return new Tokens { Token = tokenHandler.WriteToken(token) };
+        //}
     }
 }

@@ -7,7 +7,7 @@
       "DownstreamScheme": "http",
       "ServiceName": "airlineManagement",
       "UpstreamPathTemplate": "/api/v1.0/flight/airline",
-      "UpstreamHttpMethod": [ "Get" ],
+      "UpstreamHttpMethod": [ "Get" ]
       //"AuthenticationOptions": {
       //  "AuthenticationProviderKey": "TestKey",
       //  "AllowedScopes": []

@@ -70,3 +70,10 @@ D:\Training\CaseStudy\Case Study\FlightManagement\LoginManagement\obj\Debug\netc
 D:\Training\CaseStudy\Case Study\FlightManagement\LoginManagement\obj\Debug\netcoreapp3.1\LoginManagement.pdb
 D:\Training\CaseStudy\Case Study\FlightManagement\LoginManagement\obj\Debug\netcoreapp3.1\LoginManagement.genruntimeconfig.cache
 D:\Training\CaseStudy\Case Study\FlightManagement\LoginManagement\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\Training\CaseStudy\Case Study\FlightManagement\LoginManagement\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Cryptography.Internal.dll
+D:\Training\CaseStudy\Case Study\FlightManagement\LoginManagement\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+D:\Training\CaseStudy\Case Study\FlightManagement\LoginManagement\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+D:\Training\CaseStudy\Case Study\FlightManagement\LoginManagement\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Core.dll
+D:\Training\CaseStudy\Case Study\FlightManagement\LoginManagement\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Stores.dll
+D:\Training\CaseStudy\Case Study\FlightManagement\LoginManagement\bin\Debug\netcoreapp3.1\Humanizer.dll
+D:\Training\CaseStudy\Case Study\FlightManagement\LoginManagement\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Design.dll

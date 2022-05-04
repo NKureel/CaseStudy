@@ -1,19 +1,15 @@
-using LoginManagement.Interfaces;
-using LoginManagement.JWTManager;
+using Common.Models;
+using LoginManagement.DBContext;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using Microsoft.IdentityModel.Tokens;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace LoginManagement
 {
@@ -30,12 +26,22 @@ namespace LoginManagement
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
-            var authenticationProviderKey = "TestKey";
+            //SQL Connection Part
+            services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DefaultConnectionString")));
+            
+            //Identity Part
+            services.AddIdentity<ApplicationUser,IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
+            
+
+            //Authentication Part
+            // var authenticationProviderKey = "TestKey";
             services.AddAuthentication(x =>
             {
                 x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            }).AddJwtBearer(authenticationProviderKey, o =>
+                x.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+            })//JWT Bearer
+                .AddJwtBearer(o =>
             {
                 var key = Encoding.UTF8.GetBytes(Configuration["JWT:Key"]);
                 o.SaveToken = true;
@@ -50,7 +56,7 @@ namespace LoginManagement
                     IssuerSigningKey = new SymmetricSecurityKey(key)
                 };
             });
-            services.AddSingleton<IAdminAuthenticate, AdminAuthenticateManager>();
+           // services.AddSingleton<IAdminAuthenticate, AdminAuthenticateManager>();
             services.AddSwaggerGen();
         }
 

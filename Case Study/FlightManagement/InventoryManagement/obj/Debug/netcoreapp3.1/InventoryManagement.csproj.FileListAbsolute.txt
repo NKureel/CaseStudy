@@ -71,3 +71,9 @@ D:\Training\CaseStudy\Case Study\FlightManagement\InventoryManagement\obj\Debug\
 D:\Training\CaseStudy\Case Study\FlightManagement\InventoryManagement\obj\Debug\netcoreapp3.1\InventoryManagement.MvcApplicationPartsAssemblyInfo.cs
 D:\Training\CaseStudy\Case Study\FlightManagement\InventoryManagement\bin\Debug\netcoreapp3.1\Humanizer.dll
 D:\Training\CaseStudy\Case Study\FlightManagement\InventoryManagement\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Design.dll
+D:\Training\CaseStudy\Case Study\FlightManagement\InventoryManagement\obj\Debug\netcoreapp3.1\InventoryManagement.csproj.CopyComplete
+D:\Training\CaseStudy\Case Study\FlightManagement\InventoryManagement\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Cryptography.Internal.dll
+D:\Training\CaseStudy\Case Study\FlightManagement\InventoryManagement\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Cryptography.KeyDerivation.dll
+D:\Training\CaseStudy\Case Study\FlightManagement\InventoryManagement\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
+D:\Training\CaseStudy\Case Study\FlightManagement\InventoryManagement\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Core.dll
+D:\Training\CaseStudy\Case Study\FlightManagement\InventoryManagement\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Stores.dll

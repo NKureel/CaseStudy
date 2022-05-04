@@ -5,6 +5,6 @@ namespace LoginManagement.Interfaces
 {
     public interface IAdminAuthenticate
     {
-        Tokens Authenticate(Admin admin);
+        Tokens Authenticate(UserRegisterTbl admin);
     }
 }
