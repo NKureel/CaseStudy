@@ -1,12 +1,17 @@
 {
-  "Routes": [    
+  "Routes": [
+
     {
       "UseServiceDiscovery": true,
       "DownstreamPathTemplate": "/api/v1.0/airline",
       "DownstreamScheme": "http",
       "ServiceName": "airlineManagement",
       "UpstreamPathTemplate": "/api/v1.0/flight/airline",
-      "UpstreamHttpMethod": [ "Get" ]
+      "UpstreamHttpMethod": [ "Get" ],
+      //"AuthenticationOptions": {
+      //  "AuthenticationProviderKey": "TestKey",
+      //  "AllowedScopes": []
+      //}
     },
     {
       "UseServiceDiscovery": true,
@@ -23,7 +28,7 @@
       "ServiceName": "airlineManagement",
       "UpstreamPathTemplate": "/api/v1.0/flight/airline/block/{airlineno}",
       "UpstreamHttpMethod": [ "Delete" ]
-      },
+    },
     {
       "UseServiceDiscovery": true,
       "DownstreamPathTemplate": "/api/v1.0/airline/inventory",
@@ -88,14 +93,14 @@
       "UpstreamPathTemplate": "/api/v1.0/flight/booking/ticket/{pnr}",
       "UpstreamHttpMethod": [ "Get" ]
     }
-      //{
-      //  "UseServiceDiscovery": true,
-      //  "DownstreamPathTemplate": "/api/product/findall",
-      //  "DownstreamScheme": "http",
-      //  "ServiceName": "productService",
-      //  "UpstreamPathTemplate": "/api/gatway/product/findall",
-      //  "UpstreamHttpMethod": [ "Get" ]
-      //}
+    //{
+    //  "UseServiceDiscovery": true,
+    //  "DownstreamPathTemplate": "/api/product/findall",
+    //  "DownstreamScheme": "http",
+    //  "ServiceName": "productService",
+    //  "UpstreamPathTemplate": "/api/gatway/product/findall",
+    //  "UpstreamHttpMethod": [ "Get" ]
+    //}
   ],
   "GlobalConfiguration": {
     "ServiceDiscoveryProvider": {

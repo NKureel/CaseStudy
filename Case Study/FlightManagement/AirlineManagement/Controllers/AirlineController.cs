@@ -1,5 +1,6 @@
 ﻿using AirlineManagement.Repository;
 using Common.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Transactions;
 
@@ -18,6 +19,7 @@ namespace AirlineManagement.Controllers
         }
 
         [HttpGet]
+        //[Authorize]
         //[Route("GetAllAirline")]
         public IActionResult Get()
         {

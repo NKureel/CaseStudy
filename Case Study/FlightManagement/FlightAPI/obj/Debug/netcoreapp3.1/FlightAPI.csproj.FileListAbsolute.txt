@@ -365,3 +365,10 @@ D:\Training\CaseStudy\Case Study\FlightManagement\FlightAPI\obj\Debug\netcoreapp
 D:\Training\CaseStudy\Case Study\FlightManagement\FlightAPI\obj\Debug\netcoreapp3.1\FlightAPI.pdb
 D:\Training\CaseStudy\Case Study\FlightManagement\FlightAPI\obj\Debug\netcoreapp3.1\FlightAPI.genruntimeconfig.cache
 D:\Training\CaseStudy\Case Study\FlightManagement\FlightAPI\obj\Debug\netcoreapp3.1\FlightAPI.csproj.AssemblyReference.cache
+D:\Training\CaseStudy\Case Study\FlightManagement\FlightAPI\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll
+D:\Training\CaseStudy\Case Study\FlightManagement\FlightAPI\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.JsonWebTokens.dll
+D:\Training\CaseStudy\Case Study\FlightManagement\FlightAPI\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Logging.dll
+D:\Training\CaseStudy\Case Study\FlightManagement\FlightAPI\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.dll
+D:\Training\CaseStudy\Case Study\FlightManagement\FlightAPI\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
+D:\Training\CaseStudy\Case Study\FlightManagement\FlightAPI\bin\Debug\netcoreapp3.1\Microsoft.IdentityModel.Tokens.dll
+D:\Training\CaseStudy\Case Study\FlightManagement\FlightAPI\bin\Debug\netcoreapp3.1\System.IdentityModel.Tokens.Jwt.dll
