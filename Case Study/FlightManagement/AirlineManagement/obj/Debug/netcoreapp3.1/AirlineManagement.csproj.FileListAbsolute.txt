@@ -145,3 +145,4 @@ D:\Training\CaseStudy\Case Study\FlightManagement\AirlineManagement\bin\Debug\ne
 D:\Training\CaseStudy\Case Study\FlightManagement\AirlineManagement\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Identity.EntityFrameworkCore.dll
 D:\Training\CaseStudy\Case Study\FlightManagement\AirlineManagement\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Core.dll
 D:\Training\CaseStudy\Case Study\FlightManagement\AirlineManagement\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Stores.dll
+D:\Training\CaseStudy\Case Study\FlightManagement\AirlineManagement\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll

@@ -28,54 +28,41 @@ namespace FlightAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddOcelot().AddConsul();
-            //var authenticationProviderKey = "TestKey";
-            //services.AddAuthentication(x =>
-            //{
-            //    x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-            //    x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            //}).AddJwtBearer(authenticationProviderKey,o =>
-            //{
-            //    var key = Encoding.UTF8.GetBytes(Configuration["JWT:Key"]);
-            //    o.SaveToken = true;
-            //    o.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
-            //    {
-            //        ValidateIssuer = true,
-            //        ValidateAudience = true,
-            //        ValidateLifetime = true,
-            //        ValidateIssuerSigningKey = true,
-            //        ValidIssuer = Configuration["JWT:Issuer"],
-            //        ValidAudience = Configuration["JWT:Audience"],
-            //        IssuerSigningKey = new SymmetricSecurityKey(key)
-            //    };
-            //});
+            
+            var authenticationProviderKey = "TestKey";
+            services.AddAuthentication(x =>
+            {
+                x.DefaultAuthenticateScheme = authenticationProviderKey;
+                //x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                //x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                //x.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+            })//JWT Bearer
+                .AddJwtBearer(authenticationProviderKey,o =>
+                {
+                    
+                    var key = Encoding.UTF8.GetBytes(Configuration["JWT:Key"]);
+                    o.SaveToken = true;
+                    o.RequireHttpsMetadata = false;
+                    o.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+                    {
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidateLifetime = true,
+                        ValidateIssuerSigningKey = true,
+                        ValidIssuer = Configuration["JWT:Issuer"],
+                        ValidAudience = Configuration["JWT:Audience"],
+                        IssuerSigningKey = new SymmetricSecurityKey(key)
+                    };
+                });
+            services.AddOcelot(Configuration).AddConsul();
+           
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
         {
-            //app.UseAuthentication();
-            //app.UseAuthorization();
-            app.UseOcelot().Wait();
-            //if (env.IsDevelopment())
-            //{
-            //    app.UseDeveloperExceptionPage();
-            //}
-            //else
-            //{
-            //    app.UseExceptionHandler("/Error");
-            //}
-
-            //app.UseStaticFiles();
-
-            //app.UseRouting();
-
-            //app.UseAuthorization();
-
-            //app.UseEndpoints(endpoints =>
-            //{
-            //    endpoints.MapRazorPages();
-            //});
+            app.UseAuthentication();           
+            app.UseOcelot().Wait();            
         }
     }
 }

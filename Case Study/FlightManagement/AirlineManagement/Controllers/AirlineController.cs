@@ -1,5 +1,6 @@
 ﻿using AirlineManagement.Repository;
 using Common.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Transactions;
 /*
@@ -11,7 +12,7 @@ namespace AirlineManagement.Controllers
     [ApiController]
     [ApiVersion("1.0")]
     [Route("api/v{v:apiVersion}/[controller]")]
- 
+    [Authorize(Roles =UserRoles.Admin)]
     public class AirlineController : ControllerBase
     {
         private readonly IAirlineRepository _airlineRepository;

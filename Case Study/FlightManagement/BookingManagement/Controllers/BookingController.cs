@@ -1,5 +1,6 @@
 ﻿using BookingManagement.Repository;
 using Common.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Transactions;
 /*
@@ -11,6 +12,7 @@ namespace BookingManagement.Controllers
     [ApiController]
     [ApiVersion("1.0")]
     [Route("api/v{v:apiVersion}/[controller]")]
+    [Authorize(Roles = UserRoles.User)]
     public class BookingController : ControllerBase
     {
         IBookingRepository _repository;

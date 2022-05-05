@@ -1,4 +1,6 @@
-﻿using InventoryManagement.Repository;
+﻿using Common.Models;
+using InventoryManagement.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -14,6 +16,7 @@ namespace InventoryManagement.Controllers
     [ApiVersion("1.0")]
     [Route("api/v{v:apiVersion}/[controller]")]
     [ApiController]
+   // [Authorize(Roles = UserRoles.User)]
     public class SearchController : ControllerBase
     {
         private readonly IInventoryRepository _inventoryRepository;

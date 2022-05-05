@@ -77,3 +77,4 @@ D:\Training\CaseStudy\Case Study\FlightManagement\BookingManagement\bin\Debug\ne
 D:\Training\CaseStudy\Case Study\FlightManagement\BookingManagement\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Core.dll
 D:\Training\CaseStudy\Case Study\FlightManagement\BookingManagement\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Stores.dll
 D:\Training\CaseStudy\Case Study\FlightManagement\BookingManagement\obj\Debug\netcoreapp3.1\BookingManagement.csproj.CopyComplete
+D:\Training\CaseStudy\Case Study\FlightManagement\BookingManagement\bin\Debug\netcoreapp3.1\Microsoft.AspNetCore.Authentication.JwtBearer.dll

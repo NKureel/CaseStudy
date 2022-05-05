@@ -1,5 +1,6 @@
 ﻿using Common.Models;
 using InventoryManagement.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Transactions;
 
@@ -12,6 +13,7 @@ namespace InventoryManagement.Controllers
     [ApiVersion("1.0")]
     [Route("api/v{v:apiVersion}/airline/[controller]")]
     [ApiController]
+    [Authorize(Roles =UserRoles.Admin)]
     public class InventoryController : ControllerBase
     {
         private readonly IInventoryRepository _inventoryRepository;

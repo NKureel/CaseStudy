@@ -1,9 +1,11 @@
+using Common;
 using Common.Models;
 using LoginManagement.DBContext;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -31,17 +33,18 @@ namespace LoginManagement
             
             //Identity Part
             services.AddIdentity<ApplicationUser,IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
-            
+
 
             //Authentication Part
-            // var authenticationProviderKey = "TestKey";
+             var authenticationProviderKey = "TestKey";
             services.AddAuthentication(x =>
             {
-                x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-                x.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultAuthenticateScheme = authenticationProviderKey;
+                //x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                //x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                //x.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
             })//JWT Bearer
-                .AddJwtBearer(o =>
+                .AddJwtBearer(authenticationProviderKey, o =>
             {
                 var key = Encoding.UTF8.GetBytes(Configuration["JWT:Key"]);
                 o.SaveToken = true;
@@ -56,7 +59,13 @@ namespace LoginManagement
                     IssuerSigningKey = new SymmetricSecurityKey(key)
                 };
             });
-           // services.AddSingleton<IAdminAuthenticate, AdminAuthenticateManager>();
+            services.AddApiVersioning(x =>
+            {
+                x.DefaultApiVersion = new ApiVersion(1, 0);
+                x.AssumeDefaultVersionWhenUnspecified = true;
+                x.ReportApiVersions = true;
+            });
+            services.AddConsulConfig(Configuration);
             services.AddSwaggerGen();
         }
 
@@ -69,6 +78,7 @@ namespace LoginManagement
             }
             app.UseSwagger();
             app.UseSwaggerUI();
+            app.UseConsul(Configuration);
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();

@@ -77,3 +77,4 @@ D:\Training\CaseStudy\Case Study\FlightManagement\LoginManagement\bin\Debug\netc
 D:\Training\CaseStudy\Case Study\FlightManagement\LoginManagement\bin\Debug\netcoreapp3.1\Microsoft.Extensions.Identity.Stores.dll
 D:\Training\CaseStudy\Case Study\FlightManagement\LoginManagement\bin\Debug\netcoreapp3.1\Humanizer.dll
 D:\Training\CaseStudy\Case Study\FlightManagement\LoginManagement\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Design.dll
+D:\Training\CaseStudy\Case Study\FlightManagement\LoginManagement\obj\Debug\netcoreapp3.1\LoginManagement.csproj.CopyComplete

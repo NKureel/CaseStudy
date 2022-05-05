@@ -8,6 +8,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 namespace BookingManagement
 {
@@ -34,6 +36,30 @@ namespace BookingManagement
             });
             services.AddSwaggerGen();
             services.AddConsulConfig(Configuration);
+
+            var authenticationProviderKey = "TestKey";
+            services.AddAuthentication(x =>
+            {
+                x.DefaultAuthenticateScheme = authenticationProviderKey;
+                //x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                //x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+                //x.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+            })//JWT Bearer
+                .AddJwtBearer(authenticationProviderKey, o =>
+                {
+                    var key = Encoding.UTF8.GetBytes(Configuration["JWT:Key"]);
+                    o.SaveToken = true;
+                    o.TokenValidationParameters = new Microsoft.IdentityModel.Tokens.TokenValidationParameters
+                    {
+                        ValidateIssuer = true,
+                        ValidateAudience = true,
+                        ValidateLifetime = true,
+                        ValidateIssuerSigningKey = true,
+                        ValidIssuer = Configuration["JWT:Issuer"],
+                        ValidAudience = Configuration["JWT:Audience"],
+                        IssuerSigningKey = new SymmetricSecurityKey(key)
+                    };
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,7 +73,7 @@ namespace BookingManagement
             app.UseSwagger();
             app.UseSwaggerUI();
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
