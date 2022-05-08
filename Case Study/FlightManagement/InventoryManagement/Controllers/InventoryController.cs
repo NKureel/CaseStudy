@@ -1,7 +1,9 @@
 ﻿using Common.Models;
 using InventoryManagement.Repository;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Transactions;
 
 /*
@@ -30,11 +32,22 @@ namespace InventoryManagement.Controllers
         [HttpGet]      
         public IActionResult Get()
         {
-            var airline = _inventoryRepository.GetInventory();
-            if (airline!= null)
-                return new OkObjectResult(airline);
-            else
-                return new NotFoundResult();
+            Response response = new Response();
+            try
+            {
+                var airline = _inventoryRepository.GetInventory();
+                if (airline != null)
+                    throw new Exception("No flight exists");
+                else
+                    return new NotFoundResult();
+            }
+            catch (Exception ex)
+            {
+                response.Message = ex.Message;
+                response.Status = "Error";
+                response.StatusCode = StatusCodes.Status500InternalServerError.ToString();
+            }
+            return new NotFoundObjectResult(response);
         }
 
 
@@ -47,14 +60,29 @@ namespace InventoryManagement.Controllers
         [Route("add")]
         public IActionResult Add([FromBody] InventoryTbl tbl)
         {
-            using (var scope = new TransactionScope())
+            Response response = new Response();
+            try
             {
-                _inventoryRepository.AddInventory(tbl);
-                scope.Complete();
-                return Created("api/airline/inventory/", tbl);
+                using (var scope = new TransactionScope())
+                {
+                    _inventoryRepository.AddInventory(tbl);
+                    scope.Complete();
+                    response.Message = "Successfully add inevntory ";
+                    response.Status = "Success";
+                    response.StatusCode = StatusCodes.Status200OK.ToString();
+                    return new OkObjectResult(response);
+                }
             }
+            catch (Exception ex)
+            {
+                response.Message = "Failed to add " + ex.Message;
+                response.Status = "Error";
+                response.StatusCode = StatusCodes.Status500InternalServerError.ToString();
+            }
+            return new NotFoundObjectResult(response);
         }
 
+        
 
     }
 }

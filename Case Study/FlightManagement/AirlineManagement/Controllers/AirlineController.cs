@@ -1,7 +1,9 @@
 ﻿using AirlineManagement.Repository;
 using Common.Models;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
 using System.Transactions;
 /*
  Created By: Naina Kureel
@@ -26,17 +28,26 @@ namespace AirlineManagement.Controllers
         /// Get all registered airline
         /// </summary>
         /// <returns></returns>
-        [HttpGet]
-        //[Authorize]
-        //[Route("GetAllAirline")]
+        [HttpGet]        
         public IActionResult Get()
-        {            
-                var airline = _airlineRepository.GetAirlines();
+        {
+            Response response = new Response();
+            try
+            {
+                var airline = _airlineRepository.GetAirlines();                     
                 if (airline != null)
+                {                   
                     return new OkObjectResult(airline);
-                else
-                    return new NotFoundResult();
-           
+                }
+                throw new Exception("Failed to get all airlines");   
+            }
+            catch(Exception ex) 
+            {
+                response.Message = ex.Message;
+                response.Status = "Error";
+                response.StatusCode = StatusCodes.Status500InternalServerError.ToString();
+            }
+            return new NotFoundObjectResult(response);
         }
                        
 
@@ -49,12 +60,23 @@ namespace AirlineManagement.Controllers
         [Route("[Action]")]
         public IActionResult Register([FromBody] AirlineTbl tbl)
         {
-            using (var scope = new TransactionScope())
+            Response response = new Response();
+            try
             {
-                _airlineRepository.InsertAirline(tbl);
-                scope.Complete();
-                return Created("api/airline/",tbl);
+                using (var scope = new TransactionScope())
+                {
+                    _airlineRepository.InsertAirline(tbl);
+                    scope.Complete();
+                    return Created("api/airline/", tbl);
+                }
             }
+            catch (Exception ex)
+            {
+                response.Message = "Failed to register airlines "+ex.Message;
+                response.Status = "Error";
+                response.StatusCode = StatusCodes.Status500InternalServerError.ToString();
+            }
+            return new NotFoundObjectResult(response);
         }
 
 
@@ -67,8 +89,22 @@ namespace AirlineManagement.Controllers
         [Route("[Action]/{airlineNo}")]
         public IActionResult Block(string airlineNo)
         {
-            _airlineRepository.DeleteAirline(airlineNo);
-            return new OkResult();
+            Response response = new Response();
+            try
+            {
+                _airlineRepository.DeleteAirline(airlineNo);
+                response.Message = "Deleted Successfully";
+                response.Status = "Success";
+                response.StatusCode = StatusCodes.Status200OK.ToString();
+               
+            }
+            catch (Exception ex)
+            {
+                response.Message = "Deletion failed "+ex.Message;
+                response.Status = "Error";
+                response.StatusCode = StatusCodes.Status500InternalServerError.ToString();
+            }
+            return new OkObjectResult(response);
         }
         
     }

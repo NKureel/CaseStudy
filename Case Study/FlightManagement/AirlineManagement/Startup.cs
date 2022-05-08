@@ -40,10 +40,7 @@ namespace AirlineManagement
             var authenticationProviderKey = "TestKey";
             services.AddAuthentication(x =>
             {
-                x.DefaultAuthenticateScheme = authenticationProviderKey;
-                //x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                //x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-                //x.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultAuthenticateScheme = authenticationProviderKey;                
             })//JWT Bearer
                 .AddJwtBearer(authenticationProviderKey, o =>
                 {

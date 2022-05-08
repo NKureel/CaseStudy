@@ -1,7 +1,11 @@
 ﻿using BookingManagement.Repository;
 using Common.Models;
+using MassTransit.KafkaIntegration;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Threading.Tasks;
 using System.Transactions;
 /*
  Created By: Naina Kureel
@@ -16,9 +20,11 @@ namespace BookingManagement.Controllers
     public class BookingController : ControllerBase
     {
         IBookingRepository _repository;
-        public BookingController(IBookingRepository repository)
+        private ITopicProducer<UserBookingTbl> _topicProducer;
+        public BookingController(IBookingRepository repository, ITopicProducer<UserBookingTbl> topic)
         {
             _repository = repository;
+            _topicProducer = topic;
         }
 
         /// <summary>
@@ -28,14 +34,41 @@ namespace BookingManagement.Controllers
         [HttpGet]
         public IActionResult Get()
         {
-            //var allBookings = _repository.GetBookingDetail();
-            var allBookings = _repository.GetBookingDetail();
-            if (allBookings != null)
-                return new OkObjectResult(allBookings);
-            else
-                return new NoContentResult();
+            Response response = new Response();
+            try
+            {
+                var allBookings = _repository.GetBookingDetail();
+                if (allBookings != null)
+                    return new OkObjectResult(allBookings);
+                else
+                    throw new Exception("No record found");
+            }
+            catch (Exception ex)
+            {
+                response.Message = ex.Message;
+                response.Status = "Error";
+                response.StatusCode = StatusCodes.Status404NotFound.ToString();
+            }
+            return new NotFoundObjectResult(response);
+
         }
 
+        public async Task<IActionResult> SendToInventory(UserBookingTbl user)
+        {
+            Response response = new Response();
+            try
+            {
+                await _topicProducer.Produce(user);
+                response.Message = "Success";
+                response.StatusCode = StatusCodes.Status200OK.ToString();
+                response.Status = "Success";
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return new OkObjectResult(response);
+        }
         /// <summary>
         /// Booking Details for user
         /// </summary>
@@ -44,14 +77,29 @@ namespace BookingManagement.Controllers
 
         [HttpPost]
         [Route("{flightid}")]
-        public string Post([FromBody] UserBookingTbl userDetail)
+        public IActionResult Post([FromBody] UserBookingTbl userDetail)
         {
-            using(var scope=new TransactionScope())
+            Response response = new Response();
+            try
             {
-                var res=_repository.AddUserBookingDetail(userDetail);
-                scope.Complete();
-                return res;
+                using (var scope = new TransactionScope())
+                {
+                    var res = _repository.AddUserBookingDetail(userDetail);
+                    scope.Complete();
+                    SendToInventory(userDetail).Status.ToString();
+                    response.Message = "PNR " + res;
+                    response.StatusCode = StatusCodes.Status200OK.ToString();
+                    response.Status = "Success";
+                    return new OkObjectResult(response);
+                }
             }
+            catch (Exception ex)
+            {
+                response.Message = ex.Message;
+                response.StatusCode = StatusCodes.Status500InternalServerError.ToString();
+                response.Status = "Error";
+            }
+            return new NotFoundObjectResult(response);
         }
 
         /// <summary>
@@ -63,12 +111,22 @@ namespace BookingManagement.Controllers
         [Route("[Action]/{emailId}")]
         public IActionResult History(string emailId)
         {
-            var history = _repository.GetUserHistory(emailId);
-            if (history != null)
-                return new OkObjectResult(history);
-            else
-                return new NoContentResult();
-
+            Response response = new Response();
+            try
+            {
+                var history = _repository.GetUserHistory(emailId);
+                if (history != null)
+                    return new OkObjectResult(history);
+                else
+                    throw new Exception("No history found");
+            }
+            catch (Exception ex)
+            {
+                response.Message = ex.Message;
+                response.StatusCode = StatusCodes.Status500InternalServerError.ToString();
+                response.Status = "Error";
+            }
+            return new NotFoundObjectResult(response);
         }
 
 
@@ -81,8 +139,23 @@ namespace BookingManagement.Controllers
         [Route("[Action]/{pnr}")]
         public IActionResult Cancel(string pnr)
         {
-            _repository.CancelBooking(pnr);
-            return new OkResult();
+            Response response = new Response();
+            try
+            {
+                _repository.CancelBooking(pnr);
+                response.Message = "Successfully deleted";
+                response.StatusCode = StatusCodes.Status200OK.ToString();
+                response.Status = "Success";
+                return new OkObjectResult(response);
+
+            }
+            catch (Exception ex)
+            {
+                response.Message = ex.Message;
+                response.StatusCode = StatusCodes.Status500InternalServerError.ToString();
+                response.Status = "Error";
+            }
+            return new NotFoundObjectResult(response);
         }
 
 
@@ -96,11 +169,19 @@ namespace BookingManagement.Controllers
         [Route("[Action]/{pnr}")]
         public IActionResult Ticket(string pnr)
         {
-            var result = _repository.GetBookingDetailFromPNR(pnr);
-            if (result != null)
-                return new OkObjectResult(result);
-            else
-                return new NotFoundResult();
+            Response response = new Response();
+            try
+            {
+                var result = _repository.GetBookingDetailFromPNR(pnr);
+                if (result != null)
+                {
+                    return new OkObjectResult(result);
+                }
+                else
+                    throw new Exception("Failed to get ticket based upon PNR " + pnr);
+            }
+            catch (Exception ex) { response.Message = ex.Message; response.StatusCode = StatusCodes.Status500InternalServerError.ToString(); response.Status = "Error"; }
+            return new NotFoundObjectResult(response);
         }
     }
 }

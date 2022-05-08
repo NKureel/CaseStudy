@@ -1,6 +1,9 @@
 using BookingManagement.DBContext;
 using BookingManagement.Repository;
 using Common;
+using Common.Models;
+using MassTransit;
+using MassTransit.KafkaIntegration;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -60,6 +63,7 @@ namespace BookingManagement
                         IssuerSigningKey = new SymmetricSecurityKey(key)
                     };
                 });
+            MasTransit(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -80,6 +84,23 @@ namespace BookingManagement
             {
                 endpoints.MapControllers();
             });
+        }
+
+        public void MasTransit(IServiceCollection services)
+        {
+            services.AddMassTransit(x =>
+            {
+                x.UsingRabbitMq((context, cfg) => cfg.ConfigureEndpoints(context));
+                x.AddRider(rider =>
+                {
+                    rider.AddProducer<UserBookingTbl>(nameof(UserBookingTbl));
+                    rider.UsingKafka((context, k) =>
+                    {
+                        k.Host("localhost:9092");
+                    });
+                });
+            });
+            services.AddMassTransitHostedService();
         }
     }
 }

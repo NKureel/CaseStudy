@@ -18,6 +18,32 @@ namespace BookingManagement.Migrations
                 .HasAnnotation("ProductVersion", "5.0.16")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+            modelBuilder.Entity("Common.Models.FlightBookingDetails", b =>
+                {
+                    b.Property<int>("id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("FlightNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SeatClass")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("seatNo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("id");
+
+                    b.ToTable("flightDetail");
+                });
+
             modelBuilder.Entity("Common.Models.Person", b =>
                 {
                     b.Property<int>("PeopleId")
@@ -26,6 +52,9 @@ namespace BookingManagement.Migrations
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
                     b.Property<int>("Age")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Class")
                         .HasColumnType("int");
 
                     b.Property<string>("Gender")
@@ -67,6 +96,10 @@ namespace BookingManagement.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Pnr")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SeatClass")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SeatNo")

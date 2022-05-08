@@ -21,13 +21,31 @@ namespace Common.Models
 
         public Food Meal { get; set; }
         public string SeatNo { get; set; }
+        public Seatclass SeatClass { get; set; }
 
         public string FlightNumber { get; set; }     
         public  string Pnr {  get; set; }
        
     }
-  
-   // [Owned]   
+    public class FlightBookingDetails
+    {
+        [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public int id { get; set; }
+
+        [ForeignKey("UserBookingTbl")]
+        public string FlightNumber { get; set; }
+        public string seatNo { get; set; }
+        public Seatclass SeatClass { get; set; }
+
+        public SeatStatus status { get; set; }
+    }
+    // [Owned]   
+    public enum SeatStatus
+    {
+        Booked,
+        NotBooked
+    }
     public class Person
     {
         public Person()
@@ -45,9 +63,15 @@ namespace Common.Models
         public UserIdentity Gender { get; set; }
 
         public int Age { get; set; }
+        public Seatclass Class { get; set; }
         public virtual UserBookingTbl User { get; set; }
     }
 
+    public enum Seatclass
+    {
+        Business,
+        NonBusiness
+    }
     public enum UserIdentity
     {
         Female,

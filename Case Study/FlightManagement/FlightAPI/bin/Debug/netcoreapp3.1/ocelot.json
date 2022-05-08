@@ -10,6 +10,22 @@
     },
     {
       "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/api/v1.0/authentication/register",
+      "DownstreamScheme": "http",
+      "ServiceName": "LoginManagement",
+      "UpstreamPathTemplate": "/api/v1.0/flight/authentication/register",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+    {
+      "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/api/v1.0/authentication/registeradmin",
+      "DownstreamScheme": "http",
+      "ServiceName": "LoginManagement",
+      "UpstreamPathTemplate": "/api/v1.0/flight/authentication/registeradmin",
+      "UpstreamHttpMethod": [ "Post" ]
+    },
+    {
+      "UseServiceDiscovery": true,
       "DownstreamPathTemplate": "/api/v1.0/authentication",
       "DownstreamScheme": "http",
       "ServiceName": "LoginManagement",

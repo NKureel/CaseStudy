@@ -34,11 +34,22 @@ namespace InventoryManagement.Controllers
         [HttpGet]        
         public IActionResult Get(string fromplace,string toplace)
         {
-            var flights = _inventoryRepository.GetAllFlightBasedUponPlaces(fromplace, toplace);
-            if (flights.Count() != 0)
-                return new OkObjectResult(flights);
-            else
-                return new NoContentResult();
+            Response response = new Response();
+            try
+            {
+                var flights = _inventoryRepository.GetAllFlightBasedUponPlaces(fromplace, toplace);
+                if (flights.Count() != 0)
+                    return new OkObjectResult(flights);
+                else
+                    throw new Exception("No flight exists");
+            }
+            catch (Exception ex)
+            {
+                response.Message =  ex.Message;
+                response.Status = "Error";
+                response.StatusCode = StatusCodes.Status500InternalServerError.ToString();
+            }
+            return new NotFoundObjectResult(Response);
         }
     }
 }

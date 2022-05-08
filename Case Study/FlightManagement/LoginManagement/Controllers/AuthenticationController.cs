@@ -41,7 +41,7 @@ namespace LoginManagement.Controllers
         //[AllowAnonymous]
         [HttpPost]
         [Route("register")]
-        public async Task<IActionResult> Register([FromBody] UserRegisterTbl userRegister)
+        public async Task<IActionResult> RegisterUser([FromBody] UserRegisterTbl userRegister)
         {
             Response response = new Response();
             try
@@ -68,10 +68,19 @@ namespace LoginManagement.Controllers
                     response.StatusCode = StatusCodes.Status401Unauthorized.ToString();
                     throw new Exception();
                 }
+                if (!await _roleManager.RoleExistsAsync(UserRoles.User))
+                    await _roleManager.CreateAsync(new IdentityRole(UserRoles.User));
+                if (await _roleManager.RoleExistsAsync(UserRoles.User))
+                {
+                    await _userManager.AddToRoleAsync(user, UserRoles.User);
+                }
 
             }
-            catch
+            catch(Exception ex)
             {
+                response.Message = ex.Message;
+                response.Status = "Error";
+                response.StatusCode = StatusCodes.Status404NotFound.ToString();
                 return NotFound(response);
             }
             response.Status = "Success";
@@ -85,6 +94,7 @@ namespace LoginManagement.Controllers
         [AllowAnonymous]
         public async Task<IActionResult> Login([FromBody] UserLoginTbl userLogin)
         {
+            Response response = new Response();
             try
             {
                 var user = await _userManager.FindByNameAsync(userLogin.UserName);
@@ -110,8 +120,14 @@ namespace LoginManagement.Controllers
                     return Ok(new { token = new JwtSecurityTokenHandler().WriteToken(token) });
                 }
             }
-            catch { }
-            Response response = new Response();
+            catch (Exception ex)
+            {
+                response.Message = ex.Message;
+                response.Status = "Error";
+                response.StatusCode = StatusCodes.Status404NotFound.ToString();
+                return NotFound(response);
+            }
+                
             response.Message = "Unauthorized User";
             response.Status = "Error";
             response.StatusCode = StatusCodes.Status401Unauthorized.ToString();
@@ -156,8 +172,11 @@ namespace LoginManagement.Controllers
                     await _userManager.AddToRoleAsync(user, UserRoles.Admin);
                 }
             }
-            catch
+            catch(Exception ex)
             {
+                response.Message = ex.Message;
+                response.Status = "Error";
+                response.StatusCode = StatusCodes.Status404NotFound.ToString();
                 return NotFound(response);
             }
             response.Status = "Success";

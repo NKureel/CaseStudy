@@ -1,6 +1,8 @@
 using Common;
+using Common.Models;
 using InventoryManagement.DBContext;
 using InventoryManagement.Repository;
+using MassTransit;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
@@ -9,6 +11,9 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
+using System;
+using System.Net;
+using System.Reflection;
 using System.Text;
 
 namespace InventoryManagement
@@ -39,10 +44,7 @@ namespace InventoryManagement
             var authenticationProviderKey = "TestKey";
             services.AddAuthentication(x =>
             {
-                x.DefaultAuthenticateScheme = authenticationProviderKey;
-                //x.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
-                //x.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-                //x.DefaultScheme = JwtBearerDefaults.AuthenticationScheme;
+                x.DefaultAuthenticateScheme = authenticationProviderKey;               
             })//JWT Bearer
                 .AddJwtBearer(authenticationProviderKey, o =>
                 {
@@ -59,6 +61,7 @@ namespace InventoryManagement
                         IssuerSigningKey = new SymmetricSecurityKey(key)
                     };
                 });
+            MassTransit(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -81,6 +84,33 @@ namespace InventoryManagement
             {
                 endpoints.MapControllers();
             });
+        }
+
+        public void MassTransit(IServiceCollection services)
+        {
+            services.AddMassTransit(x =>
+            {
+                x.UsingRabbitMq((context, cfg) => cfg.ConfigureEndpoints(context));
+                x.AddRider(rider =>
+                {
+                    rider.AddConsumer<InventoryRepository>();
+                    rider.UsingKafka((context, k) =>
+                    {
+                        k.Host("localhost:9092");
+                        k.TopicEndpoint<UserBookingTbl>(nameof(UserBookingTbl), GetUniqueName(nameof(UserBookingTbl)), e => {
+                            e.CheckpointInterval = TimeSpan.FromSeconds(10);
+                            e.ConfigureConsumer<InventoryRepository>(context);
+                        });
+                    });
+                });
+            });
+            services.AddMassTransitHostedService();
+        }
+        private string GetUniqueName(string eventname)
+        {
+            string hostname = Dns.GetHostName();
+            string classAssembly = Assembly.GetCallingAssembly().GetName().Name;
+            return $"{hostname}.{classAssembly}.{eventname}";
         }
     }
 }

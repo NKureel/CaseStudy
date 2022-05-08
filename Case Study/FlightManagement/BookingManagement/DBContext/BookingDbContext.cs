@@ -15,10 +15,14 @@ namespace BookingManagement.DBContext
 
        public  DbSet<UserBookingTbl> bookingTbls { get; set; }
         public DbSet<Person> person { get; set; }
+        public DbSet<FlightBookingDetails> flightDetail { get; set; }
         protected override void OnModelCreating(ModelBuilder model)
         { 
             base.OnModelCreating(model);            
             model.Entity<UserBookingTbl>().HasEnum(e => e.Meal);
+            model.Entity<UserBookingTbl>().HasEnum(e => e.SeatClass);
+            model.Entity<FlightBookingDetails>().HasEnum(e => e.SeatClass);
+            model.Entity<FlightBookingDetails>().HasEnum(e => e.status);
             model.Entity<Person>().HasEnum(e => e.Gender);            
             model.Entity<UserBookingTbl>().HasOne(p => p.peopleId);
             model.Entity<Person>(x => { x.ToTable("Person");x.HasKey(k => k.PeopleId);
