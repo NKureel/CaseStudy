@@ -47,9 +47,7 @@ namespace BookingManagement.Migrations
             modelBuilder.Entity("Common.Models.Person", b =>
                 {
                     b.Property<int>("PeopleId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+                        .HasColumnType("int");
 
                     b.Property<int>("Age")
                         .HasColumnType("int");
@@ -57,16 +55,19 @@ namespace BookingManagement.Migrations
                     b.Property<int>("Class")
                         .HasColumnType("int");
 
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Gender")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("PeopleId");
 
-                    b.ToTable("Person");
+                    b.ToTable("person");
                 });
 
             modelBuilder.Entity("Common.Models.UserBookingTbl", b =>

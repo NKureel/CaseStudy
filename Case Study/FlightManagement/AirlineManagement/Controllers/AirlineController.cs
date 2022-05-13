@@ -67,7 +67,11 @@ namespace AirlineManagement.Controllers
                 {
                     _airlineRepository.InsertAirline(tbl);
                     scope.Complete();
-                    return Created("api/airline/", tbl);
+                    response.Message = "Successfully register airline";
+                    response.Status = "Success";
+                    response.StatusCode = StatusCodes.Status200OK.ToString();
+                    //return Created("api/airline/", tbl);
+                    return new OkObjectResult(response);
                 }
             }
             catch (Exception ex)

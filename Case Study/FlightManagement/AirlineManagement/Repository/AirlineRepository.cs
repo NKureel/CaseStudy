@@ -30,7 +30,8 @@ namespace AirlineManagement.Repository
                 if (airline != null)
                 {
                    _airlineDb.airlineTbls.Remove(airline);
-                    Save();                    
+                    Save();
+                    return;
                 }
                 throw new System.Exception("Failed to delete the airline");
                 

@@ -18,12 +18,36 @@ namespace BookingManagement.Repository
             _Context = context;
         }
 
+
         /// <summary>
-        /// Update User Booking
+        /// Add User Details
+        /// </summary>
+        /// <param name="person"></param>
+        public void AddUserDetail(Person person)
+        {
+            try
+            {
+                var res = _Context.person.Where(x => x.FirstName == person.LastName && x.LastName == person.LastName).ToList();
+                if (res.Count != 0)
+                {
+                    throw new Exception(person.FirstName + " " + person.LastName + " already exists");
+                }
+                _Context.person.Add(person);
+                SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
+
+        /// <summary>
+        /// Update User Booking 
+        /// Relation betwenn Person and Booking is 1 to 1
         /// </summary>
         /// <param name="tbl"></param>
         /// <returns></returns>
-        public string AddUserBookingDetail(UserBookingTbl tbl)
+        public string AddBookingDetail(UserBookingTbl tbl)
         {
             string pnr = String.Empty;
             try
@@ -41,13 +65,13 @@ namespace BookingManagement.Repository
                 Random generateRandom = new Random();
                 if (tbl != null)
                     tbl.Pnr = generateRandom.Next(1, 100) + tbl.FlightNumber;
-                var res = _Context.person.Find(tbl.peopleId.Name);
-                if (res != null)
+                var res = _Context.person.Where(x => x.FirstName == tbl.peopleId.LastName && x.LastName == tbl.peopleId.LastName).ToList();
+                if (res.Count != 0)
                 {
-                    tbl.peopleId = res;
+                    throw new Exception(tbl.peopleId.FirstName + " " + tbl.peopleId.LastName + " already booked ticket");
                 }
                 _Context.bookingTbls.Add(tbl);
-                SaveChanges();
+                _Context.SaveChanges();
                 pnr = tbl.Pnr;
             }
             catch (Exception ex)
@@ -56,7 +80,7 @@ namespace BookingManagement.Repository
             }
             return pnr;
         }
-        
+
 
         /// <summary>
         /// Get Flight details
@@ -64,12 +88,13 @@ namespace BookingManagement.Repository
         /// <param name="flightno"></param>
         /// <param name="seatno"></param>
         /// <returns></returns>
-        public IEnumerable<FlightBookingDetails> GetFlightDetail(string flightno,string seatno)
+        public IEnumerable<FlightBookingDetails> GetFlightDetail(string flightno, string seatno)
         {
-            
-            try {
+
+            try
+            {
                 var flight = _Context.flightDetail.Where(x => x.FlightNumber == flightno && x.seatNo == seatno).ToList();
-                if (flight.Count == 0)                 
+                if (flight.Count == 0)
                     throw new Exception("Failed to book the flight");
                 return flight;
             }
@@ -77,10 +102,9 @@ namespace BookingManagement.Repository
             {
                 throw new Exception(ex.Message);
             }
-           
+
         }
 
-        
 
         /// <summary>
         /// Cancel Booking
@@ -94,10 +118,7 @@ namespace BookingManagement.Repository
                 if (pnrdetail != null)
                 {
                     foreach (var cancel in pnrdetail)
-                    {
-                        //var persondetail = _Context.person.Where(x => x.PeopleId == cancel.id).ToList();
-                        //foreach(var person in persondetail)
-                        //_Context.person.Remove(person);
+                    {                       
                         _Context.bookingTbls.Remove(cancel);
                         SaveChanges();
                     }
@@ -108,9 +129,9 @@ namespace BookingManagement.Repository
             {
                 throw new Exception(ex.Message);
             }
-            
+
         }
-       
+
         /// <summary>
         /// Get User Booking Detail based upon PNR
         /// </summary>
@@ -121,15 +142,15 @@ namespace BookingManagement.Repository
             List<UserBookingTbl> res = new List<UserBookingTbl>();
             try
             {
-                 res= _Context.bookingTbls.Where(x => x.Pnr.ToLower() == pnr.ToLower()).ToList<UserBookingTbl>();
-                if (res.Count == 0)                  
+                res = _Context.bookingTbls.Where(x => x.Pnr.ToLower() == pnr.ToLower()).ToList<UserBookingTbl>();
+                if (res.Count == 0)
                     throw new Exception("Failed to get the booking detail for PNR " + pnr);
             }
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }
-            return res;            
+            return res;
         }
 
         /// <summary>
@@ -143,7 +164,7 @@ namespace BookingManagement.Repository
             }
             catch (DbUpdateException ex)
             {
-                throw new Exception("Failed to save db "+ex.Message);
+                throw new Exception("Failed to save db " + ex.Message);
             }
         }
 
@@ -153,20 +174,20 @@ namespace BookingManagement.Repository
         /// <returns></returns>
         IEnumerable<UserBookingTbl> IBookingRepository.GetBookingDetail()
         {
-            List<UserBookingTbl> res = new List<UserBookingTbl>();
             try
             {
-                res= _Context.bookingTbls.ToList();
+                var res = _Context.bookingTbls.ToList();
                 if (res.Count == 0)
                     throw new Exception("No booking found");
+                return res;
             }
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }
-            return res;
+
         }
-        
+
         /// <summary>
         /// Get History of User based upon emailId
         /// </summary>
@@ -180,7 +201,7 @@ namespace BookingManagement.Repository
                 res = _Context.bookingTbls.Where(x => x.EmailId.ToLower() == emailId.ToString().ToLower()).
                    ToList();
                 if (res.Count == 0)
-                    throw new Exception("No history found for emailid "+emailId);
+                    throw new Exception("No history found for emailid " + emailId);
             }
             catch (Exception ex)
             {
@@ -188,5 +209,6 @@ namespace BookingManagement.Repository
             }
             return res;
         }
+
     }
 }

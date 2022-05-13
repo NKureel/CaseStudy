@@ -63,10 +63,14 @@ namespace LoginManagement.Controllers
                 var result = await _userManager.CreateAsync(user, userRegister.Password);
                 if (!result.Succeeded)
                 {
-                    response.Message = "User Creation is failed";
-                    response.Status = "Error";
-                    response.StatusCode = StatusCodes.Status401Unauthorized.ToString();
-                    throw new Exception();
+                    string message = String.Empty;
+                    foreach (var err in result.Errors)
+                    {
+                        var m = err.Description.ToString();
+                        message += m;
+                    }
+                    response.Message = message;
+                    throw new Exception(response.Message);
                 }
                 if (!await _roleManager.RoleExistsAsync(UserRoles.User))
                     await _roleManager.CreateAsync(new IdentityRole(UserRoles.User));
@@ -158,10 +162,14 @@ namespace LoginManagement.Controllers
                 var result = await _userManager.CreateAsync(user, userRegister.Password);
                 if (!result.Succeeded)
                 {
-                    response.Message = "User Creation is failed";
-                    response.Status = "Error";
-                    response.StatusCode = StatusCodes.Status401Unauthorized.ToString();
-                    throw new Exception();
+                    string message = String.Empty;
+                    foreach (var err in result.Errors)
+                    { 
+                        var m=err.Description.ToString();
+                        message += m;
+                    }
+                    response.Message = message;
+                    throw new Exception(response.Message);
                 }
                 if (!await _roleManager.RoleExistsAsync(UserRoles.Admin))
                     await _roleManager.CreateAsync(new IdentityRole(UserRoles.Admin));

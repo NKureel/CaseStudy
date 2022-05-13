@@ -17,7 +17,7 @@ namespace InventoryManagement.DBContext
         
  
         public DbSet<InventoryTbl> inventoryTbls { get; set; }        
-        public DbSet<FlightBookingDetails> flightdetails { get; set; }
+        public DbSet<FlightBookingDetails> flightDetail { get; set; }
         protected override void OnModelCreating(ModelBuilder model)
         {
             base.OnModelCreating(model);
@@ -25,10 +25,12 @@ namespace InventoryManagement.DBContext
             model.Entity<InventoryTbl>().HasEnum(e => e.ScheduleDays);
             model.Entity<InventoryTbl>().HasEnum(e => e.Meal);
             model.Entity<InventoryTbl>().HasEnum(e => e.InstrumentUsed);
-           model.Entity<InventoryTbl>().HasOne<AirlineTbl>(e => e.Airlines).WithMany(d=>d.Inventories)
+            model.Entity<FlightBookingDetails>().HasEnum(e => e.SeatClass);
+            model.Entity<FlightBookingDetails>().HasEnum(e => e.status);
+            model.Entity<InventoryTbl>().HasOne<AirlineTbl>(e => e.Airlines).WithMany(d=>d.Inventories)
                .HasForeignKey(e => e.AirlineNo).IsRequired(true).OnDelete(DeleteBehavior.Cascade);
-            base.OnModelCreating(model);
-            
+            base.OnModelCreating(model);            
+
         }
 
       

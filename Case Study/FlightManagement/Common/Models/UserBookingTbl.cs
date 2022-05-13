@@ -50,17 +50,19 @@ namespace Common.Models
     {
         public Person()
         { }        
-        public Person(string name, UserIdentity gender,int age)
+        public Person(string firstname,string lastname, UserIdentity gender,int age)
         {
-            Name = name;
+            FirstName = firstname;
+            LastName = lastname;
             Gender = gender;
             Age = age;
         }
         [Key,ForeignKey("UserBookingTbl")]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int PeopleId { get; set; }
-        public string Name { get; set; }
+        public string FirstName { get; set; }
         public UserIdentity Gender { get; set; }
+        public string LastName { get; set; }
 
         public int Age { get; set; }
         public Seatclass Class { get; set; }

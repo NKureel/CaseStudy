@@ -43,6 +43,12 @@ namespace InventoryManagement.Controllers
             }
             catch (Exception ex)
             {
+                if (String.Equals(ex.Message, "No Inventory exists", StringComparison.OrdinalIgnoreCase) || String.Equals(ex.Message, "No flight exists", StringComparison.OrdinalIgnoreCase))
+                {
+                    response.Message = ex.Message;
+                    response.Status = "Success";
+                    response.StatusCode = StatusCodes.Status200OK.ToString();
+                }
                 response.Message = ex.Message;
                 response.Status = "Error";
                 response.StatusCode = StatusCodes.Status500InternalServerError.ToString();

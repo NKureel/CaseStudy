@@ -110,11 +110,23 @@
     },
     {
       "UseServiceDiscovery": true,
-      "DownstreamPathTemplate": "/api/v1.0/booking",
+      "DownstreamPathTemplate": "/api/v1.0/booking/GetAllBooking",
       "DownstreamScheme": "http",
       "ServiceName": "bookingManagement",
-      "UpstreamPathTemplate": "/api/v1.0/flight/booking",
+      "UpstreamPathTemplate": "/api/v1.0/flight/booking/GetAllBooking",
       "UpstreamHttpMethod": [ "Get" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "TestKey",
+        "AllowedScopes": []
+      }
+    },
+    {
+      "UseServiceDiscovery": true,
+      "DownstreamPathTemplate": "/api/v1.0/booking/AddUserDetail",
+      "DownstreamScheme": "http",
+      "ServiceName": "bookingManagement",
+      "UpstreamPathTemplate": "/api/v1.0/flight/booking/AddUserDetail",
+      "UpstreamHttpMethod": [ "Post" ],
       "AuthenticationOptions": {
         "AuthenticationProviderKey": "TestKey",
         "AllowedScopes": []

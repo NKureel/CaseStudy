@@ -19,12 +19,19 @@ namespace BookingManagement.Controllers
     [Authorize(Roles = UserRoles.User)]
     public class BookingController : ControllerBase
     {
-        IBookingRepository _repository;
+        private readonly IBookingRepository _repository;
         private ITopicProducer<UserBookingTbl> _topicProducer;
+
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="repository"></param>
+        /// <param name="topic"></param>
         public BookingController(IBookingRepository repository, ITopicProducer<UserBookingTbl> topic)
         {
             _repository = repository;
             _topicProducer = topic;
+
         }
 
         /// <summary>
@@ -32,6 +39,7 @@ namespace BookingManagement.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet]
+        [Route("GetAllBooking")]
         public IActionResult Get()
         {
             Response response = new Response();
@@ -53,40 +61,50 @@ namespace BookingManagement.Controllers
 
         }
 
-        public async Task<IActionResult> SendToInventory(UserBookingTbl user)
+        /// <summary>
+        /// Add User Details
+        /// </summary>
+        /// <param name="user"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("AddUserDetail")]
+        public IActionResult AddUserDetail([FromBody] Person user)
         {
             Response response = new Response();
             try
             {
-                await _topicProducer.Produce(user);
-                response.Message = "Success";
+                _repository.AddUserDetail(user);
+                response.Message = "Successfully add user detail";
                 response.StatusCode = StatusCodes.Status200OK.ToString();
                 response.Status = "Success";
+                return new OkObjectResult(response);
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                response.Message = ex.Message;
+                response.StatusCode = StatusCodes.Status500InternalServerError.ToString();
+                response.Status = "Error";
             }
-            return new OkObjectResult(response);
+            return new NotFoundObjectResult(response);
         }
+
         /// <summary>
         /// Booking Details for user
         /// </summary>
         /// <param name="userDetail"></param>
         /// <returns></returns>
-
         [HttpPost]
         [Route("{flightid}")]
-        public IActionResult Post([FromBody] UserBookingTbl userDetail)
+        public async Task<IActionResult> Post([FromBody] UserBookingTbl bookingDetail)
         {
             Response response = new Response();
             try
             {
                 using (var scope = new TransactionScope())
                 {
-                    var res = _repository.AddUserBookingDetail(userDetail);
+                    var res = _repository.AddBookingDetail(bookingDetail);
                     scope.Complete();
-                    SendToInventory(userDetail).Status.ToString();
+                    await _topicProducer.Produce(new UserBookingTbl { FlightNumber = bookingDetail.FlightNumber, SeatNo = bookingDetail.SeatNo, SeatClass = bookingDetail.SeatClass });                    
                     response.Message = "PNR " + res;
                     response.StatusCode = StatusCodes.Status200OK.ToString();
                     response.Status = "Success";
@@ -142,11 +160,15 @@ namespace BookingManagement.Controllers
             Response response = new Response();
             try
             {
-                _repository.CancelBooking(pnr);
-                response.Message = "Successfully deleted";
-                response.StatusCode = StatusCodes.Status200OK.ToString();
-                response.Status = "Success";
-                return new OkObjectResult(response);
+                using (var scope = new TransactionScope())
+                {
+                    _repository.CancelBooking(pnr);
+                    scope.Complete();
+                    response.Message = "Successfully deleted";
+                    response.StatusCode = StatusCodes.Status200OK.ToString();
+                    response.Status = "Success";
+                    return new OkObjectResult(response);
+                }
 
             }
             catch (Exception ex)

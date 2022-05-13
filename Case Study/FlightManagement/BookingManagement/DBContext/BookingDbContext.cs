@@ -15,7 +15,7 @@ namespace BookingManagement.DBContext
 
        public  DbSet<UserBookingTbl> bookingTbls { get; set; }
         public DbSet<Person> person { get; set; }
-        public DbSet<FlightBookingDetails> flightDetail { get; set; }
+       public DbSet<FlightBookingDetails> flightDetail { get; set; }
         protected override void OnModelCreating(ModelBuilder model)
         { 
             base.OnModelCreating(model);            
@@ -25,14 +25,18 @@ namespace BookingManagement.DBContext
             model.Entity<FlightBookingDetails>().HasEnum(e => e.status);
             model.Entity<Person>().HasEnum(e => e.Gender);            
             model.Entity<UserBookingTbl>().HasOne(p => p.peopleId);
-            model.Entity<Person>(x => { x.ToTable("Person");x.HasKey(k => k.PeopleId);
-                x.Property(p => p.Name);
+            model.Entity<Person>(x =>
+            {
+                x.ToTable("Person"); x.HasKey(k => k.PeopleId);
+                x.Property(p => p.FirstName);
+                x.Property(p => p.LastName);
                 x.Property(p => p.Age);
                 x.Property(p => p.Gender);
             }
-            ) ;
+            );
             model.Entity<UserBookingTbl>().HasOne<Person>(e => e.peopleId).WithOne(d => d.User)
               .IsRequired(true).OnDelete(DeleteBehavior.Cascade);
+            model.Entity<Person>().Property(e => e.PeopleId).ValueGeneratedNever();
 
         }
     }

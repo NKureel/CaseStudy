@@ -9,8 +9,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookingManagement.Migrations
 {
     [DbContext(typeof(BookingDbContext))]
-    [Migration("20220503191645_InitialCreateBookingDb")]
-    partial class InitialCreateBookingDb
+    [Migration("20220510120204_InitialCreateBookingFlight")]
+    partial class InitialCreateBookingFlight
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,26 +20,56 @@ namespace BookingManagement.Migrations
                 .HasAnnotation("ProductVersion", "5.0.16")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Common.Models.Person", b =>
+            modelBuilder.Entity("Common.Models.FlightBookingDetails", b =>
                 {
-                    b.Property<int>("PeopleId")
+                    b.Property<int>("id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("FlightNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SeatClass")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("seatNo")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("status")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("id");
+
+                    b.ToTable("flightDetail");
+                });
+
+            modelBuilder.Entity("Common.Models.Person", b =>
+                {
+                    b.Property<int>("PeopleId")
+                        .HasColumnType("int");
+
                     b.Property<int>("Age")
                         .HasColumnType("int");
+
+                    b.Property<int>("Class")
+                        .HasColumnType("int");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Gender")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("LastName")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("PeopleId");
 
-                    b.ToTable("Person");
+                    b.ToTable("person");
                 });
 
             modelBuilder.Entity("Common.Models.UserBookingTbl", b =>
@@ -69,6 +99,10 @@ namespace BookingManagement.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Pnr")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SeatClass")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SeatNo")
