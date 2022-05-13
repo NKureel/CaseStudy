@@ -110,20 +110,12 @@ namespace BookingManagement.Repository
         /// Cancel Booking
         /// </summary>
         /// <param name="pnr"></param>
-        public void CancelBooking(string pnr)
+        public void CancelBooking(UserBookingTbl tbl)
         {
             try
             {
-                var pnrdetail = _Context.bookingTbls.Where(x => x.Pnr.ToLower() == pnr.ToLower()).ToList(); ;
-                if (pnrdetail != null)
-                {
-                    foreach (var cancel in pnrdetail)
-                    {                       
-                        _Context.bookingTbls.Remove(cancel);
-                        SaveChanges();
-                    }
-                }
-                throw new Exception("PNR " + pnr + " is not exists. Failed to cancel the ticket");
+                _Context.bookingTbls.Remove(tbl);
+                SaveChanges();
             }
             catch (Exception ex)
             {
@@ -131,6 +123,7 @@ namespace BookingManagement.Repository
             }
 
         }
+       
 
         /// <summary>
         /// Get User Booking Detail based upon PNR
@@ -144,7 +137,7 @@ namespace BookingManagement.Repository
             {
                 res = _Context.bookingTbls.Where(x => x.Pnr.ToLower() == pnr.ToLower()).ToList<UserBookingTbl>();
                 if (res.Count == 0)
-                    throw new Exception("Failed to get the booking detail for PNR " + pnr);
+                    throw new Exception("PNR " + pnr + " is not exists. Failed to cancel the ticket");
             }
             catch (Exception ex)
             {

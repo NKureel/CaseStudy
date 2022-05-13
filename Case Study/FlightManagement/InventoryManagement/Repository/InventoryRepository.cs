@@ -20,11 +20,11 @@ namespace InventoryManagement.Repository
         {
             _inventoryContext = context;
         }
-
+       
         public async Task Consume(ConsumeContext<UserBookingTbl> context)
         {
             try
-            {
+            {                
                 string flightno = context.Message.FlightNumber;
                 Seatclass seatclass = context.Message.SeatClass;
                 string seatno = context.Message.SeatNo;

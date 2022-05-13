@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Transactions;
 /*
@@ -97,11 +98,14 @@ namespace BookingManagement.Controllers
         [Route("{flightid}")]
         public async Task<IActionResult> Post([FromBody] UserBookingTbl bookingDetail)
         {
-            Response response = new Response();
+            Response response = new Response();            
+            var list = new List<Tuple<UserBookingTbl, string>>();
             try
             {
                 using (var scope = new TransactionScope())
                 {
+                    //list.Add(new Tuple<UserBookingTbl, string>(bookingDetail, "Add"));
+                    //await _topicProducer.Produce(list);
                     var res = _repository.AddBookingDetail(bookingDetail);
                     scope.Complete();
                     await _topicProducer.Produce(new UserBookingTbl { FlightNumber = bookingDetail.FlightNumber, SeatNo = bookingDetail.SeatNo, SeatClass = bookingDetail.SeatClass });                    
@@ -155,19 +159,27 @@ namespace BookingManagement.Controllers
         /// <returns></returns>
         [HttpDelete]
         [Route("[Action]/{pnr}")]
-        public IActionResult Cancel(string pnr)
+        public async Task<IActionResult> Cancel(string pnr)
         {
             Response response = new Response();
             try
             {
                 using (var scope = new TransactionScope())
                 {
-                    _repository.CancelBooking(pnr);
-                    scope.Complete();
-                    response.Message = "Successfully deleted";
-                    response.StatusCode = StatusCodes.Status200OK.ToString();
-                    response.Status = "Success";
-                    return new OkObjectResult(response);
+                    var res = _repository.GetBookingDetailFromPNR(pnr);
+                    //var list = new List<Tuple<UserBookingTbl, string>>();
+                    foreach (var flight in res)
+                    {
+                        //list.Add(new Tuple<UserBookingTbl, string>(flight, "Delete"));
+                        //await _topicProducer.Produce(list);
+                        //await _topicProducer.Produce( new UserBookingTbl { FlightNumber = flight.FlightNumber, SeatNo = flight.SeatNo, SeatClass = flight.SeatClass });                        
+                        _repository.CancelBooking(flight);
+                        scope.Complete();
+                        response.Message = "Successfully deleted";
+                        response.StatusCode = StatusCodes.Status200OK.ToString();
+                        response.Status = "Success";
+                        return new OkObjectResult(response);
+                    }
                 }
 
             }
