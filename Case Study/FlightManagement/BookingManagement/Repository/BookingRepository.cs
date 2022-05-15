@@ -217,9 +217,10 @@ namespace BookingManagement.Repository
             {
                 var res = _Context.person.Find(person);
                 if (res != null)
-                    return res.peopleId.ToString(); ;
-                else
-                    throw new Exception("Failed to get the user detail");
+                {
+                    return res.peopleId.ToString();
+                }
+            }
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
