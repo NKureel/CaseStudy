@@ -111,3 +111,4 @@ D:\Training\CaseStudy\Case Study\FlightManagement\InventoryManagement\obj\Debug\
 D:\Training\CaseStudy\Case Study\FlightManagement\InventoryManagement\obj\Debug\netcoreapp3.1\InventoryManagement.dll
 D:\Training\CaseStudy\Case Study\FlightManagement\InventoryManagement\obj\Debug\netcoreapp3.1\InventoryManagement.pdb
 D:\Training\CaseStudy\Case Study\FlightManagement\InventoryManagement\obj\Debug\netcoreapp3.1\InventoryManagement.genruntimeconfig.cache
+D:\Training\CaseStudy\Case Study\FlightManagement\InventoryManagement\obj\Debug\netcoreapp3.1\InventoryManagement.csproj.CopyComplete

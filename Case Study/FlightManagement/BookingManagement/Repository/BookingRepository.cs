@@ -70,6 +70,7 @@ namespace BookingManagement.Repository
                 {
                     throw new Exception(tbl.peopleId.FirstName + " " + tbl.peopleId.LastName + " already booked ticket");
                 }
+               
                 _Context.bookingTbls.Add(tbl);
                 _Context.SaveChanges();
                 pnr = tbl.Pnr;
