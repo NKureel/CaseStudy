@@ -75,7 +75,8 @@ namespace BookingManagement.Controllers
             try
             {
                 _repository.AddUserDetail(user);
-                response.Message = "Successfully add user detail";
+                var res=_repository.GetUserDetail(user);
+                response.Message = "User Number "+res;
                 response.StatusCode = StatusCodes.Status200OK.ToString();
                 response.Status = "Success";
                 return new OkObjectResult(response);

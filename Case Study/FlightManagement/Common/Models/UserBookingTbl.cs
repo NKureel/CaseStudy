@@ -13,10 +13,12 @@ namespace Common.Models
         public int id { get; set; }
         public string Name { get; set; }
         public string EmailId { get; set; }
-        public int NoOfSeatBook { get; set; }
+        public int? NoOfSeatBook { get; set; }
 
-        [ForeignKey("PeopleId")]        
-        public virtual Person peopleId { get; set; }
+        public int? personId { get; set; }
+
+                      
+        public virtual Person userDetail { get; set; }
             
 
         public Food Meal { get; set; }
@@ -32,8 +34,7 @@ namespace Common.Models
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int id { get; set; }
-
-        [ForeignKey("UserBookingTbl")]
+        
         public string FlightNumber { get; set; }
         public string seatNo { get; set; }
         public Seatclass SeatClass { get; set; }
@@ -49,7 +50,9 @@ namespace Common.Models
     public class Person
     {
         public Person()
-        { }        
+        {
+            bookingdetailsofUser = new HashSet<UserBookingTbl>();
+        }             
         public Person(string firstname,string lastname, UserIdentity gender,int age)
         {
             FirstName = firstname;
@@ -57,16 +60,17 @@ namespace Common.Models
             Gender = gender;
             Age = age;
         }
-        [Key,ForeignKey("UserBookingTbl")]
+        [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int PeopleId { get; set; }
+        public int peopleId { get; set; }
         public string FirstName { get; set; }
         public UserIdentity Gender { get; set; }
         public string LastName { get; set; }
 
-        public int Age { get; set; }
+        public int? Age { get; set; }
         public Seatclass Class { get; set; }
-        public virtual UserBookingTbl User { get; set; }
+        public virtual ICollection<UserBookingTbl> bookingdetailsofUser { get; set; }
+        //public virtual UserBookingTbl User { get; set; }
     }
 
     public enum Seatclass

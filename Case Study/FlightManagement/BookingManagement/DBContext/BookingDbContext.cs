@@ -27,13 +27,19 @@ namespace BookingManagement.DBContext
             //model.Entity<UserBookingTbl>().HasOne(p => p.peopleId);
             model.Entity<Person>(x =>
             {
-                x.ToTable("Person"); x.HasKey(k => k.PeopleId);
+                x.ToTable("Person");
+                x.Property(e => e.peopleId)
+                    .ValueGeneratedNever()
+                    .HasColumnName("PeopleId");
                 x.Property(p => p.FirstName);
                 x.Property(p => p.LastName);
                 x.Property(p => p.Age);
                 x.Property(p => p.Gender);
             }
             );
+            model.Entity<UserBookingTbl>().HasOne(d => d.userDetail)
+                    .WithMany(p => p.bookingdetailsofUser)
+                    .HasForeignKey(d => d.personId);                   
             //model.Entity<UserBookingTbl>().HasOne<Person>(e => e.peopleId).WithOne(d => d.User)
             //  .IsRequired(true).OnDelete(DeleteBehavior.Cascade);
             //model.Entity<Person>().Property(e => e.PeopleId).ValueGeneratedOnAdd();

@@ -16,6 +16,8 @@ namespace BookingManagement.Repository
 
         public void AddUserDetail(Person person);
 
+        public string GetUserDetail(Person person);
+
         public void SaveChanges();
     }
 }

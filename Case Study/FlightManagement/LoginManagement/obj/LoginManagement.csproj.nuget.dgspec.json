@@ -1,33 +1,32 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Training\\CaseStudy\\Case Study\\FlightManagement\\LoginManagement\\LoginManagement.csproj": {}
+    "C:\\Users\\student\\Desktop\\New folder\\CaseStudy\\Case Study\\FlightManagement\\LoginManagement\\LoginManagement.csproj": {}
   },
   "projects": {
-    "D:\\Training\\CaseStudy\\Case Study\\FlightManagement\\Common\\Common.csproj": {
+    "C:\\Users\\student\\Desktop\\New folder\\CaseStudy\\Case Study\\FlightManagement\\Common\\Common.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Training\\CaseStudy\\Case Study\\FlightManagement\\Common\\Common.csproj",
+        "projectUniqueName": "C:\\Users\\student\\Desktop\\New folder\\CaseStudy\\Case Study\\FlightManagement\\Common\\Common.csproj",
         "projectName": "Common",
-        "projectPath": "D:\\Training\\CaseStudy\\Case Study\\FlightManagement\\Common\\Common.csproj",
-        "packagesPath": "C:\\Users\\cogdotnet07\\.nuget\\packages\\",
-        "outputPath": "D:\\Training\\CaseStudy\\Case Study\\FlightManagement\\Common\\obj\\",
+        "projectPath": "C:\\Users\\student\\Desktop\\New folder\\CaseStudy\\Case Study\\FlightManagement\\Common\\Common.csproj",
+        "packagesPath": "C:\\Users\\student\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\student\\Desktop\\New folder\\CaseStudy\\Case Study\\FlightManagement\\Common\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\cogdotnet07\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\student\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
+          "C:\\Plugins-Nuget": {},
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Users\\student\\Desktop": {},
           "https://api.nuget.org/v3/index.json": {},
           "https://nuget.org/api/v2/": {}
         },
@@ -107,34 +106,33 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     },
-    "D:\\Training\\CaseStudy\\Case Study\\FlightManagement\\LoginManagement\\LoginManagement.csproj": {
+    "C:\\Users\\student\\Desktop\\New folder\\CaseStudy\\Case Study\\FlightManagement\\LoginManagement\\LoginManagement.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Training\\CaseStudy\\Case Study\\FlightManagement\\LoginManagement\\LoginManagement.csproj",
+        "projectUniqueName": "C:\\Users\\student\\Desktop\\New folder\\CaseStudy\\Case Study\\FlightManagement\\LoginManagement\\LoginManagement.csproj",
         "projectName": "LoginManagement",
-        "projectPath": "D:\\Training\\CaseStudy\\Case Study\\FlightManagement\\LoginManagement\\LoginManagement.csproj",
-        "packagesPath": "C:\\Users\\cogdotnet07\\.nuget\\packages\\",
-        "outputPath": "D:\\Training\\CaseStudy\\Case Study\\FlightManagement\\LoginManagement\\obj\\",
+        "projectPath": "C:\\Users\\student\\Desktop\\New folder\\CaseStudy\\Case Study\\FlightManagement\\LoginManagement\\LoginManagement.csproj",
+        "packagesPath": "C:\\Users\\student\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\student\\Desktop\\New folder\\CaseStudy\\Case Study\\FlightManagement\\LoginManagement\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
-          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+          "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
         ],
         "configFilePaths": [
-          "C:\\Users\\cogdotnet07\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
+          "C:\\Users\\student\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
         ],
         "sources": {
+          "C:\\Plugins-Nuget": {},
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Users\\student\\Desktop": {},
           "https://api.nuget.org/v3/index.json": {},
           "https://nuget.org/api/v2/": {}
         },
@@ -142,8 +140,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "D:\\Training\\CaseStudy\\Case Study\\FlightManagement\\Common\\Common.csproj": {
-                "projectPath": "D:\\Training\\CaseStudy\\Case Study\\FlightManagement\\Common\\Common.csproj"
+              "C:\\Users\\student\\Desktop\\New folder\\CaseStudy\\Case Study\\FlightManagement\\Common\\Common.csproj": {
+                "projectPath": "C:\\Users\\student\\Desktop\\New folder\\CaseStudy\\Case Study\\FlightManagement\\Common\\Common.csproj"
               }
             }
           }
@@ -205,7 +203,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
         }
       }
     }

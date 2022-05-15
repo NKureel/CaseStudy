@@ -62,15 +62,22 @@ namespace BookingManagement.Repository
                     if (flightdetail.status == SeatStatus.Booked)
                         throw new Exception("SeatNo " + tbl.SeatNo + " is already occupied by another user. Please select different seat");
                 }
+
                 Random generateRandom = new Random();
                 if (tbl != null)
                     tbl.Pnr = generateRandom.Next(1, 100) + tbl.FlightNumber;
-                var res = _Context.person.Where(x => x.FirstName == tbl.peopleId.LastName && x.LastName == tbl.peopleId.LastName).ToList();
+                List<Person> res = new List<Person>(); ;
+                if (tbl.userDetail!=null)
+                 res= _Context.person.Where(x => x.FirstName.ToLower().Trim() == tbl.userDetail.FirstName.ToLower().Trim() && x.LastName.ToLower().Trim() == tbl.userDetail.LastName.ToLower().Trim()).ToList();
                 if (res.Count != 0)
                 {
-                    throw new Exception(tbl.peopleId.FirstName + " " + tbl.peopleId.LastName + " already booked ticket");
+                    tbl.personId = res[0].peopleId;
+                    tbl.userDetail = res[0];
+                    //    throw new Exception(tbl.peopleId.FirstName + " " + tbl.peopleId.LastName + " already booked ticket");
                 }
-               
+                var bookingtblres = _Context.bookingTbls.FirstOrDefault(x => x.FlightNumber == tbl.FlightNumber && x.personId == tbl.personId);
+                if (bookingtblres != null)
+                    throw new Exception(tbl.userDetail.FirstName + " " + tbl.userDetail.LastName + " already booked ticket for flight " + tbl.FlightNumber);
                 _Context.bookingTbls.Add(tbl);
                 _Context.SaveChanges();
                 pnr = tbl.Pnr;
@@ -124,7 +131,7 @@ namespace BookingManagement.Repository
             }
 
         }
-       
+
 
         /// <summary>
         /// Get User Booking Detail based upon PNR
@@ -204,5 +211,20 @@ namespace BookingManagement.Repository
             return res;
         }
 
+        public string GetUserDetail(Person person)
+        {
+            try
+            {
+                var res = _Context.person.Find(person);
+                if (res != null)
+                    return res.peopleId.ToString(); ;
+                else
+                    throw new Exception("Failed to get the user detail");
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            return "null";
+        }
     }
 }
