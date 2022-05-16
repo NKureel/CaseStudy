@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "0A4Vkk50CWW6bOvyKb70sFpKuIvtqyrgfC/OUWMh+fhFcZ85kVz7NwqmXUPKR0MpGlybGGGxXNY5NzpK46ZF8g==",
+  "dgSpecHash": "5B1O8SrjLd9SU1+z42RVppeQvlngrnxBZv3h2de3UdUiX5oGAa+r4oqytOyDsvPK4MgYgNzsfoAAyAqfN+/nLw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\student\\Desktop\\New folder (2)\\CaseStudy\\Case Study\\FlightManagement\\InventoryManagement\\InventoryManagement.csproj",
+  "projectFilePath": "C:\\Users\\student\\Desktop\\API\\CaseStudy\\Case Study\\FlightManagement\\InventoryManagement\\InventoryManagement.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\student\\.nuget\\packages\\automatonymous\\5.0.1\\automatonymous.5.0.1.nupkg.sha512",
     "C:\\Users\\student\\.nuget\\packages\\confluent.kafka\\1.5.0\\confluent.kafka.1.5.0.nupkg.sha512",

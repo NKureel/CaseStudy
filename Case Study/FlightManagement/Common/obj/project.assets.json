@@ -6508,11 +6508,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\student\\Desktop\\New folder (2)\\CaseStudy\\Case Study\\FlightManagement\\Common\\Common.csproj",
+      "projectUniqueName": "C:\\Users\\student\\Desktop\\API\\CaseStudy\\Case Study\\FlightManagement\\Common\\Common.csproj",
       "projectName": "Common",
-      "projectPath": "C:\\Users\\student\\Desktop\\New folder (2)\\CaseStudy\\Case Study\\FlightManagement\\Common\\Common.csproj",
+      "projectPath": "C:\\Users\\student\\Desktop\\API\\CaseStudy\\Case Study\\FlightManagement\\Common\\Common.csproj",
       "packagesPath": "C:\\Users\\student\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\student\\Desktop\\New folder (2)\\CaseStudy\\Case Study\\FlightManagement\\Common\\obj\\",
+      "outputPath": "C:\\Users\\student\\Desktop\\API\\CaseStudy\\Case Study\\FlightManagement\\Common\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

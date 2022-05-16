@@ -8733,11 +8733,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\student\\Desktop\\New folder (2)\\CaseStudy\\Case Study\\FlightManagement\\InventoryManagement\\InventoryManagement.csproj",
+      "projectUniqueName": "C:\\Users\\student\\Desktop\\API\\CaseStudy\\Case Study\\FlightManagement\\InventoryManagement\\InventoryManagement.csproj",
       "projectName": "InventoryManagement",
-      "projectPath": "C:\\Users\\student\\Desktop\\New folder (2)\\CaseStudy\\Case Study\\FlightManagement\\InventoryManagement\\InventoryManagement.csproj",
+      "projectPath": "C:\\Users\\student\\Desktop\\API\\CaseStudy\\Case Study\\FlightManagement\\InventoryManagement\\InventoryManagement.csproj",
       "packagesPath": "C:\\Users\\student\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\student\\Desktop\\New folder (2)\\CaseStudy\\Case Study\\FlightManagement\\InventoryManagement\\obj\\",
+      "outputPath": "C:\\Users\\student\\Desktop\\API\\CaseStudy\\Case Study\\FlightManagement\\InventoryManagement\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -8760,8 +8760,8 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\Users\\student\\Desktop\\New folder (2)\\CaseStudy\\Case Study\\FlightManagement\\Common\\Common.csproj": {
-              "projectPath": "C:\\Users\\student\\Desktop\\New folder (2)\\CaseStudy\\Case Study\\FlightManagement\\Common\\Common.csproj"
+            "C:\\Users\\student\\Desktop\\API\\CaseStudy\\Case Study\\FlightManagement\\Common\\Common.csproj": {
+              "projectPath": "C:\\Users\\student\\Desktop\\API\\CaseStudy\\Case Study\\FlightManagement\\Common\\Common.csproj"
             }
           }
         }

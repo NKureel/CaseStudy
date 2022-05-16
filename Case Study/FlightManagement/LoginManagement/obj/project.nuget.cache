@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "6AZub1DefXwYLVtZAAfO/QTiYHABVN1dg8cGXBLoi8uq+leundctI4z0nLDS7/Yc+B4tjq3F+9qQhJrUwyAFQQ==",
+  "dgSpecHash": "gM2WXGH8PvqZADJqbNnW2J0ED65VBGAdjejFnt6kHaegQgx76DORjnQJ7bBQq6ktfCx8RjNlj+SXB3IKWe8Oiw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\student\\Desktop\\New folder (2)\\CaseStudy\\Case Study\\FlightManagement\\LoginManagement\\LoginManagement.csproj",
+  "projectFilePath": "C:\\Users\\student\\Desktop\\API\\CaseStudy\\Case Study\\FlightManagement\\LoginManagement\\LoginManagement.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\student\\.nuget\\packages\\consul\\1.6.10.5\\consul.1.6.10.5.nupkg.sha512",
     "C:\\Users\\student\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
@@ -168,7 +168,8 @@
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.xml.readerwriter\\4.3.0\\system.xml.readerwriter.4.3.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.xml.xdocument\\4.3.0\\system.xml.xdocument.4.3.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512"
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512",
+    "C:\\Users\\student\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\3.1.23\\microsoft.netcore.app.host.win-x64.3.1.23.nupkg.sha512"
   ],
   "logs": []
 }

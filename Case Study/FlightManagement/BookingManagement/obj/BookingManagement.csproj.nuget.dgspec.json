@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\student\\Desktop\\New folder (2)\\CaseStudy\\Case Study\\FlightManagement\\BookingManagement\\BookingManagement.csproj": {}
+    "C:\\Users\\student\\Desktop\\API\\CaseStudy\\Case Study\\FlightManagement\\BookingManagement\\BookingManagement.csproj": {}
   },
   "projects": {
-    "C:\\Users\\student\\Desktop\\New folder (2)\\CaseStudy\\Case Study\\FlightManagement\\BookingManagement\\BookingManagement.csproj": {
+    "C:\\Users\\student\\Desktop\\API\\CaseStudy\\Case Study\\FlightManagement\\BookingManagement\\BookingManagement.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\student\\Desktop\\New folder (2)\\CaseStudy\\Case Study\\FlightManagement\\BookingManagement\\BookingManagement.csproj",
+        "projectUniqueName": "C:\\Users\\student\\Desktop\\API\\CaseStudy\\Case Study\\FlightManagement\\BookingManagement\\BookingManagement.csproj",
         "projectName": "BookingManagement",
-        "projectPath": "C:\\Users\\student\\Desktop\\New folder (2)\\CaseStudy\\Case Study\\FlightManagement\\BookingManagement\\BookingManagement.csproj",
+        "projectPath": "C:\\Users\\student\\Desktop\\API\\CaseStudy\\Case Study\\FlightManagement\\BookingManagement\\BookingManagement.csproj",
         "packagesPath": "C:\\Users\\student\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\student\\Desktop\\New folder (2)\\CaseStudy\\Case Study\\FlightManagement\\BookingManagement\\obj\\",
+        "outputPath": "C:\\Users\\student\\Desktop\\API\\CaseStudy\\Case Study\\FlightManagement\\BookingManagement\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -34,8 +34,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\student\\Desktop\\New folder (2)\\CaseStudy\\Case Study\\FlightManagement\\Common\\Common.csproj": {
-                "projectPath": "C:\\Users\\student\\Desktop\\New folder (2)\\CaseStudy\\Case Study\\FlightManagement\\Common\\Common.csproj"
+              "C:\\Users\\student\\Desktop\\API\\CaseStudy\\Case Study\\FlightManagement\\Common\\Common.csproj": {
+                "projectPath": "C:\\Users\\student\\Desktop\\API\\CaseStudy\\Case Study\\FlightManagement\\Common\\Common.csproj"
               }
             }
           }
@@ -105,6 +105,12 @@
           ],
           "assetTargetFallback": true,
           "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.NETCore.App.Host.win-x64",
+              "version": "[3.1.23, 3.1.23]"
+            }
+          ],
           "frameworkReferences": {
             "Microsoft.AspNetCore.App": {
               "privateAssets": "none"
@@ -117,14 +123,14 @@
         }
       }
     },
-    "C:\\Users\\student\\Desktop\\New folder (2)\\CaseStudy\\Case Study\\FlightManagement\\Common\\Common.csproj": {
+    "C:\\Users\\student\\Desktop\\API\\CaseStudy\\Case Study\\FlightManagement\\Common\\Common.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\student\\Desktop\\New folder (2)\\CaseStudy\\Case Study\\FlightManagement\\Common\\Common.csproj",
+        "projectUniqueName": "C:\\Users\\student\\Desktop\\API\\CaseStudy\\Case Study\\FlightManagement\\Common\\Common.csproj",
         "projectName": "Common",
-        "projectPath": "C:\\Users\\student\\Desktop\\New folder (2)\\CaseStudy\\Case Study\\FlightManagement\\Common\\Common.csproj",
+        "projectPath": "C:\\Users\\student\\Desktop\\API\\CaseStudy\\Case Study\\FlightManagement\\Common\\Common.csproj",
         "packagesPath": "C:\\Users\\student\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\student\\Desktop\\New folder (2)\\CaseStudy\\Case Study\\FlightManagement\\Common\\obj\\",
+        "outputPath": "C:\\Users\\student\\Desktop\\API\\CaseStudy\\Case Study\\FlightManagement\\Common\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
