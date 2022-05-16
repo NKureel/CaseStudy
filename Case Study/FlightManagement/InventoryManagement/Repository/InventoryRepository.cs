@@ -26,7 +26,7 @@ namespace InventoryManagement.Repository
             try
             {                
                 string flightno = context.Message.FlightNumber;
-                Seatclass seatclass = context.Message.SeatClass;
+                string seatclass = context.Message.SeatClass;
                 string seatno = context.Message.SeatNo;
                 var tbl = _inventoryContext.inventoryTbls.Find(flightno);
                 if (string.Equals(context.Message.SeatClass.ToString(), "Business", StringComparison.OrdinalIgnoreCase))
@@ -54,18 +54,18 @@ namespace InventoryManagement.Repository
         /// <param name="flightno"></param>
         /// <param name="seatclass"></param>
         /// <param name="seatno"></param>
-        public void UpdateFlightDetail(string flightno, Seatclass seatclass, string seatno)
+        public void UpdateFlightDetail(string flightno, string seatclass, string seatno)
         {
             try
             {
-                var res = _inventoryContext.flightDetail.Where(x => x.FlightNumber == flightno && x.seatNo == seatno && x.SeatClass == seatclass).ToList();
+                var res = _inventoryContext.flightDetail.Where(x => x.FlightNumber.ToLower().Trim() == flightno.ToLower().Trim() && x.seatNo.ToLower().Trim() == seatno.ToLower().Trim() && x.SeatClass.ToLower().Trim() == seatclass.ToLower().Trim()).ToList();
                 if (res.Count != 0)
                 {
                     foreach (var flight in res)
                     {
                         using (var scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
                         {
-                            flight.status = SeatStatus.Booked;
+                            flight.status = SeatStatus.Booked.ToString();
                             _inventoryContext.Entry(flight).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
                             Save();
                             scope.Complete();
@@ -125,10 +125,10 @@ namespace InventoryManagement.Repository
                 flight.FlightNumber = flightno;
                 flight.seatNo = "A" + i.ToString();
                 if (i <= Convert.ToInt32(businessClass))
-                    flight.SeatClass = Seatclass.Business;
+                    flight.SeatClass = Seatclass.Business.ToString();
                 else
-                    flight.SeatClass = Seatclass.NonBusiness;
-                flight.status = SeatStatus.NotBooked;
+                    flight.SeatClass = Seatclass.NonBusiness.ToString();
+                flight.status = SeatStatus.NotBooked.ToString();
                 _inventoryContext.flightDetail.Add(flight);
                 Save();
             }

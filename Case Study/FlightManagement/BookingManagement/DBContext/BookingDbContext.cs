@@ -19,11 +19,11 @@ namespace BookingManagement.DBContext
         protected override void OnModelCreating(ModelBuilder model)
         { 
             base.OnModelCreating(model);            
-            model.Entity<UserBookingTbl>().HasEnum(e => e.Meal);
-            model.Entity<UserBookingTbl>().HasEnum(e => e.SeatClass);
-            model.Entity<FlightBookingDetails>().HasEnum(e => e.SeatClass);
-            model.Entity<FlightBookingDetails>().HasEnum(e => e.status);
-            model.Entity<Person>().HasEnum(e => e.Gender);
+            //model.Entity<UserBookingTbl>().HasEnum(e => e.Meal);
+            //model.Entity<UserBookingTbl>().HasEnum(e => e.SeatClass);
+            //model.Entity<FlightBookingDetails>().HasEnum(e => e.SeatClass);
+            //model.Entity<FlightBookingDetails>().HasEnum(e => e.status);
+            //model.Entity<Person>().HasEnum(e => e.Gender);
             //model.Entity<UserBookingTbl>().HasOne(p => p.peopleId);
             model.Entity<Person>(x =>
             {
@@ -37,9 +37,9 @@ namespace BookingManagement.DBContext
                 x.Property(p => p.Gender);
             }
             );
-            model.Entity<UserBookingTbl>().HasOne(d => d.userDetail)
-                    .WithMany(p => p.bookingdetailsofUser)
-                    .HasForeignKey(d => d.personId);                   
+          ////  model.Entity<UserBookingTbl>().HasOne(d => d.userDetail)
+          //          .WithMany(p => p.bookingdetailsofUser)
+          //          .HasForeignKey(d => d.personId);                   
             //model.Entity<UserBookingTbl>().HasOne<Person>(e => e.peopleId).WithOne(d => d.User)
             //  .IsRequired(true).OnDelete(DeleteBehavior.Cascade);
             //model.Entity<Person>().Property(e => e.PeopleId).ValueGeneratedOnAdd();

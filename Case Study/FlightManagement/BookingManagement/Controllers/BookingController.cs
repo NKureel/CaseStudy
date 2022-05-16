@@ -104,9 +104,12 @@ namespace BookingManagement.Controllers
             try
             {
                 using (var scope = new TransactionScope())
-                {
-                    //list.Add(new Tuple<UserBookingTbl, string>(bookingDetail, "Add"));
-                    //await _topicProducer.Produce(list);
+                {                  
+                    for (int i = 0; i < bookingDetail.userDetail.Length; i++)
+                    {
+                            var user = bookingDetail.userDetail[i];
+                            _repository.AddUserDetail(user);
+                    }
                     var res = _repository.AddBookingDetail(bookingDetail);
                     scope.Complete();
                     await _topicProducer.Produce(new UserBookingTbl { FlightNumber = bookingDetail.FlightNumber, SeatNo = bookingDetail.SeatNo, SeatClass = bookingDetail.SeatClass });                    

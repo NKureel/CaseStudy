@@ -96,6 +96,22 @@
           "Microsoft.AspNetCore.App"
         ]
       },
+      "Microsoft.AspNetCore.Cors/2.2.0": {
+        "type": "package",
+        "dependencies": {
+          "Microsoft.AspNetCore.Http.Extensions": "2.2.0",
+          "Microsoft.Extensions.Configuration.Abstractions": "2.2.0",
+          "Microsoft.Extensions.DependencyInjection.Abstractions": "2.2.0",
+          "Microsoft.Extensions.Logging.Abstractions": "2.2.0",
+          "Microsoft.Extensions.Options": "2.2.0"
+        },
+        "compile": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Cors.dll": {}
+        },
+        "runtime": {
+          "lib/netstandard2.0/Microsoft.AspNetCore.Cors.dll": {}
+        }
+      },
       "Microsoft.AspNetCore.Cryptography.Internal/5.0.16": {
         "type": "package",
         "compile": {
@@ -2553,6 +2569,7 @@
         "framework": ".NETCoreApp,Version=v3.1",
         "dependencies": {
           "Consul": "1.6.10.5",
+          "Microsoft.AspNetCore.Cors": "2.2.0",
           "Microsoft.AspNetCore.Hosting.Abstractions": "2.2.0",
           "Microsoft.AspNetCore.Http.Abstractions": "2.2.0",
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": "5.0.16",
@@ -2668,6 +2685,19 @@
         "lib/netcoreapp3.1/Microsoft.AspNetCore.Authentication.JwtBearer.xml",
         "microsoft.aspnetcore.authentication.jwtbearer.3.1.20.nupkg.sha512",
         "microsoft.aspnetcore.authentication.jwtbearer.nuspec"
+      ]
+    },
+    "Microsoft.AspNetCore.Cors/2.2.0": {
+      "sha512": "LFlTM3ThS3ZCILuKnjy8HyK9/IlDh3opogdbCVx6tMGyDzTQBgMPXLjGDLtMk5QmLDCcP3l1TO3z/+1viA8GUg==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.cors/2.2.0",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Cors.dll",
+        "lib/netstandard2.0/Microsoft.AspNetCore.Cors.xml",
+        "microsoft.aspnetcore.cors.2.2.0.nupkg.sha512",
+        "microsoft.aspnetcore.cors.nuspec"
       ]
     },
     "Microsoft.AspNetCore.Cryptography.Internal/5.0.16": {
@@ -8357,11 +8387,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\student\\Desktop\\New folder\\CaseStudy\\Case Study\\FlightManagement\\LoginManagement\\LoginManagement.csproj",
+      "projectUniqueName": "C:\\Users\\student\\Desktop\\New folder (2)\\CaseStudy\\Case Study\\FlightManagement\\LoginManagement\\LoginManagement.csproj",
       "projectName": "LoginManagement",
-      "projectPath": "C:\\Users\\student\\Desktop\\New folder\\CaseStudy\\Case Study\\FlightManagement\\LoginManagement\\LoginManagement.csproj",
+      "projectPath": "C:\\Users\\student\\Desktop\\New folder (2)\\CaseStudy\\Case Study\\FlightManagement\\LoginManagement\\LoginManagement.csproj",
       "packagesPath": "C:\\Users\\student\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\student\\Desktop\\New folder\\CaseStudy\\Case Study\\FlightManagement\\LoginManagement\\obj\\",
+      "outputPath": "C:\\Users\\student\\Desktop\\New folder (2)\\CaseStudy\\Case Study\\FlightManagement\\LoginManagement\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -8384,8 +8414,8 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\Users\\student\\Desktop\\New folder\\CaseStudy\\Case Study\\FlightManagement\\Common\\Common.csproj": {
-              "projectPath": "C:\\Users\\student\\Desktop\\New folder\\CaseStudy\\Case Study\\FlightManagement\\Common\\Common.csproj"
+            "C:\\Users\\student\\Desktop\\New folder (2)\\CaseStudy\\Case Study\\FlightManagement\\Common\\Common.csproj": {
+              "projectPath": "C:\\Users\\student\\Desktop\\New folder (2)\\CaseStudy\\Case Study\\FlightManagement\\Common\\Common.csproj"
             }
           }
         }

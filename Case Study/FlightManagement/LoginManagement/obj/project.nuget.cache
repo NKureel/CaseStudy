@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "Uayfbw+7pimbmTi/GxC3ezhZjSrKB205dkUWDcDAKqTZ1K9bEHByRlRqjKFOaBHuTukvjvsgrieA9Yw+VMxjSw==",
+  "dgSpecHash": "6AZub1DefXwYLVtZAAfO/QTiYHABVN1dg8cGXBLoi8uq+leundctI4z0nLDS7/Yc+B4tjq3F+9qQhJrUwyAFQQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\student\\Desktop\\New folder\\CaseStudy\\Case Study\\FlightManagement\\LoginManagement\\LoginManagement.csproj",
+  "projectFilePath": "C:\\Users\\student\\Desktop\\New folder (2)\\CaseStudy\\Case Study\\FlightManagement\\LoginManagement\\LoginManagement.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\student\\.nuget\\packages\\consul\\1.6.10.5\\consul.1.6.10.5.nupkg.sha512",
     "C:\\Users\\student\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
@@ -11,6 +11,7 @@
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.aspnetcore.authentication.cookies\\2.2.0\\microsoft.aspnetcore.authentication.cookies.2.2.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.aspnetcore.authentication.core\\2.2.0\\microsoft.aspnetcore.authentication.core.2.2.0.nupkg.sha512",
     "C:\\Users\\student\\.nuget\\packages\\microsoft.aspnetcore.authentication.jwtbearer\\3.1.20\\microsoft.aspnetcore.authentication.jwtbearer.3.1.20.nupkg.sha512",
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.aspnetcore.cors\\2.2.0\\microsoft.aspnetcore.cors.2.2.0.nupkg.sha512",
     "C:\\Users\\student\\.nuget\\packages\\microsoft.aspnetcore.cryptography.internal\\5.0.16\\microsoft.aspnetcore.cryptography.internal.5.0.16.nupkg.sha512",
     "C:\\Users\\student\\.nuget\\packages\\microsoft.aspnetcore.cryptography.keyderivation\\5.0.16\\microsoft.aspnetcore.cryptography.keyderivation.5.0.16.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.aspnetcore.dataprotection\\2.2.0\\microsoft.aspnetcore.dataprotection.2.2.0.nupkg.sha512",

@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\student\\Desktop\\New folder\\CaseStudy\\Case Study\\FlightManagement\\AirlineManagement\\AirlineManagement.csproj": {}
+    "C:\\Users\\student\\Desktop\\New folder (2)\\CaseStudy\\Case Study\\FlightManagement\\AirlineManagement\\AirlineManagement.csproj": {}
   },
   "projects": {
-    "C:\\Users\\student\\Desktop\\New folder\\CaseStudy\\Case Study\\FlightManagement\\AirlineManagement\\AirlineManagement.csproj": {
+    "C:\\Users\\student\\Desktop\\New folder (2)\\CaseStudy\\Case Study\\FlightManagement\\AirlineManagement\\AirlineManagement.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\student\\Desktop\\New folder\\CaseStudy\\Case Study\\FlightManagement\\AirlineManagement\\AirlineManagement.csproj",
+        "projectUniqueName": "C:\\Users\\student\\Desktop\\New folder (2)\\CaseStudy\\Case Study\\FlightManagement\\AirlineManagement\\AirlineManagement.csproj",
         "projectName": "AirlineManagement",
-        "projectPath": "C:\\Users\\student\\Desktop\\New folder\\CaseStudy\\Case Study\\FlightManagement\\AirlineManagement\\AirlineManagement.csproj",
+        "projectPath": "C:\\Users\\student\\Desktop\\New folder (2)\\CaseStudy\\Case Study\\FlightManagement\\AirlineManagement\\AirlineManagement.csproj",
         "packagesPath": "C:\\Users\\student\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\student\\Desktop\\New folder\\CaseStudy\\Case Study\\FlightManagement\\AirlineManagement\\obj\\",
+        "outputPath": "C:\\Users\\student\\Desktop\\New folder (2)\\CaseStudy\\Case Study\\FlightManagement\\AirlineManagement\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -34,8 +34,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\student\\Desktop\\New folder\\CaseStudy\\Case Study\\FlightManagement\\Common\\Common.csproj": {
-                "projectPath": "C:\\Users\\student\\Desktop\\New folder\\CaseStudy\\Case Study\\FlightManagement\\Common\\Common.csproj"
+              "C:\\Users\\student\\Desktop\\New folder (2)\\CaseStudy\\Case Study\\FlightManagement\\Common\\Common.csproj": {
+                "projectPath": "C:\\Users\\student\\Desktop\\New folder (2)\\CaseStudy\\Case Study\\FlightManagement\\Common\\Common.csproj"
               }
             }
           }
@@ -93,14 +93,14 @@
         }
       }
     },
-    "C:\\Users\\student\\Desktop\\New folder\\CaseStudy\\Case Study\\FlightManagement\\Common\\Common.csproj": {
+    "C:\\Users\\student\\Desktop\\New folder (2)\\CaseStudy\\Case Study\\FlightManagement\\Common\\Common.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\student\\Desktop\\New folder\\CaseStudy\\Case Study\\FlightManagement\\Common\\Common.csproj",
+        "projectUniqueName": "C:\\Users\\student\\Desktop\\New folder (2)\\CaseStudy\\Case Study\\FlightManagement\\Common\\Common.csproj",
         "projectName": "Common",
-        "projectPath": "C:\\Users\\student\\Desktop\\New folder\\CaseStudy\\Case Study\\FlightManagement\\Common\\Common.csproj",
+        "projectPath": "C:\\Users\\student\\Desktop\\New folder (2)\\CaseStudy\\Case Study\\FlightManagement\\Common\\Common.csproj",
         "packagesPath": "C:\\Users\\student\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\student\\Desktop\\New folder\\CaseStudy\\Case Study\\FlightManagement\\Common\\obj\\",
+        "outputPath": "C:\\Users\\student\\Desktop\\New folder (2)\\CaseStudy\\Case Study\\FlightManagement\\Common\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
@@ -138,6 +138,10 @@
             "Consul": {
               "target": "Package",
               "version": "[1.6.10.5, )"
+            },
+            "Microsoft.AspNetCore.Cors": {
+              "target": "Package",
+              "version": "[2.2.0, )"
             },
             "Microsoft.AspNetCore.Hosting.Abstractions": {
               "target": "Package",

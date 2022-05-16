@@ -53,34 +53,41 @@ namespace BookingManagement.Repository
             try
             {
                 var detail = GetFlightDetail(tbl.FlightNumber, tbl.SeatNo);
-                if (detail.Count() == 0)
+                if (detail == null)
                 {
                     throw new Exception("Failed to book the flight");
                 }
-                foreach (var flightdetail in detail)
-                {
-                    if (flightdetail.status == SeatStatus.Booked)
-                        throw new Exception("SeatNo " + tbl.SeatNo + " is already occupied by another user. Please select different seat");
-                }
+
+                if (string.Equals(detail.status, SeatStatus.Booked.ToString(), StringComparison.OrdinalIgnoreCase))
+                    throw new Exception("SeatNo " + tbl.SeatNo + " is already occupied by another user. Please select different seat");
 
                 Random generateRandom = new Random();
                 if (tbl != null)
                     tbl.Pnr = generateRandom.Next(1, 100) + tbl.FlightNumber;
                 List<Person> res = new List<Person>(); ;
-                if (tbl.userDetail!=null)
-                 res= _Context.person.Where(x => x.FirstName.ToLower().Trim() == tbl.userDetail.FirstName.ToLower().Trim() && x.LastName.ToLower().Trim() == tbl.userDetail.LastName.ToLower().Trim()).ToList();
-                if (res.Count != 0)
+                if (tbl.userDetail != null)
                 {
-                    tbl.personId = res[0].peopleId;
-                    tbl.userDetail = res[0];
-                    //    throw new Exception(tbl.peopleId.FirstName + " " + tbl.peopleId.LastName + " already booked ticket");
+                    for (int i = 0; i < tbl.userDetail.Count(); i++)
+                    {                        
+                        res = _Context.person.Where(x => x.FirstName.ToLower().Trim() == tbl.userDetail[i].FirstName.ToLower().Trim() && x.LastName.ToLower().Trim() == tbl.userDetail[i].LastName.ToLower().Trim()).ToList();
+                        if (res.Count != 0)
+                            tbl.personId = res[0].peopleId;
+                    }
+                    var bookingtblres = _Context.bookingTbls.FirstOrDefault(x => x.FlightNumber == tbl.FlightNumber && x.personId == tbl.personId);
+                    if (bookingtblres != null)
+                        throw new Exception(" User already booked ticket for flight " + tbl.FlightNumber);
+                    _Context.bookingTbls.Add(tbl);
+                    _Context.SaveChanges();
+                    pnr = tbl.Pnr;
                 }
-                var bookingtblres = _Context.bookingTbls.FirstOrDefault(x => x.FlightNumber == tbl.FlightNumber && x.personId == tbl.personId);
-                if (bookingtblres != null)
-                    throw new Exception(tbl.userDetail.FirstName + " " + tbl.userDetail.LastName + " already booked ticket for flight " + tbl.FlightNumber);
-                _Context.bookingTbls.Add(tbl);
-                _Context.SaveChanges();
-                pnr = tbl.Pnr;
+                //if (tbl.userDetail!=null)
+                // res= _Context.person.Where(x => x.FirstName.ToLower().Trim() == tbl.userDetail.FirstName.ToLower().Trim() && x.LastName.ToLower().Trim() == tbl.userDetail.LastName.ToLower().Trim()).ToList();
+                //if (res.Count != 0)
+                //{
+                //    tbl.personId = res[0].peopleId;
+                //    tbl.userDetail = res[0];
+                //    //    throw new Exception(tbl.peopleId.FirstName + " " + tbl.peopleId.LastName + " already booked ticket");
+                //}                
             }
             catch (Exception ex)
             {
@@ -96,13 +103,13 @@ namespace BookingManagement.Repository
         /// <param name="flightno"></param>
         /// <param name="seatno"></param>
         /// <returns></returns>
-        public IEnumerable<FlightBookingDetails> GetFlightDetail(string flightno, string seatno)
+        public FlightBookingDetails GetFlightDetail(string flightno, string seatno)
         {
 
             try
             {
-                var flight = _Context.flightDetail.Where(x => x.FlightNumber == flightno && x.seatNo == seatno).ToList();
-                if (flight.Count == 0)
+                var flight = _Context.flightDetail.Where(x => x.FlightNumber == flightno && x.seatNo == seatno).FirstOrDefault();
+                if (flight == null)
                     throw new Exception("Failed to book the flight");
                 return flight;
             }
@@ -110,7 +117,6 @@ namespace BookingManagement.Repository
             {
                 throw new Exception(ex.Message);
             }
-
         }
 
 

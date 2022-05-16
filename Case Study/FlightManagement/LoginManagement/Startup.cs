@@ -67,6 +67,7 @@ namespace LoginManagement
             });
             services.AddConsulConfig(Configuration);
             services.AddSwaggerGen();
+           
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

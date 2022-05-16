@@ -7,10 +7,9 @@ namespace Common.Models
 {
      public class UserLoginTbl
     {
-        [Required(ErrorMessage ="UserName is required")]
-        public string UserName { get; set; }
 
-        [Required(ErrorMessage = "Password is required")]
+        public string UserName { get; set; }
+        
         public string Password { get; set; }
     }
 }

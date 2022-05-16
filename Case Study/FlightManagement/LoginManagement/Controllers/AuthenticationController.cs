@@ -52,7 +52,7 @@ namespace LoginManagement.Controllers
                     response.Message = "User Already Exists";
                     response.Status = "Error";
                     response.StatusCode = StatusCodes.Status500InternalServerError.ToString();
-                    throw new Exception();
+                    throw new Exception(response.Message);
                 }
                 ApplicationUser user = new ApplicationUser()
                 {
@@ -78,7 +78,7 @@ namespace LoginManagement.Controllers
                 {
                     await _userManager.AddToRoleAsync(user, UserRoles.User);
                 }
-
+                
             }
             catch(Exception ex)
             {
@@ -89,7 +89,7 @@ namespace LoginManagement.Controllers
             }
             response.Status = "Success";
             response.Message = "User Created Successfully";
-            response.StatusCode = StatusCodes.Status200OK.ToString();
+            response.StatusCode = StatusCodes.Status200OK.ToString();          
             return Ok(response);
         }
 

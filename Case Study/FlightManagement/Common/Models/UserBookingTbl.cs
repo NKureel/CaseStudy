@@ -18,12 +18,12 @@ namespace Common.Models
         public int? personId { get; set; }
 
                       
-        public virtual Person userDetail { get; set; }
+        public  Person[] userDetail { get; set; }
             
 
-        public Food Meal { get; set; }
+        public string Meal { get; set; }
         public string SeatNo { get; set; }
-        public Seatclass SeatClass { get; set; }
+        public string SeatClass { get; set; }
 
         public string FlightNumber { get; set; }     
         public  string Pnr {  get; set; }
@@ -37,9 +37,9 @@ namespace Common.Models
         
         public string FlightNumber { get; set; }
         public string seatNo { get; set; }
-        public Seatclass SeatClass { get; set; }
+        public string SeatClass { get; set; }
 
-        public SeatStatus status { get; set; }
+        public string status { get; set; }
     }
     // [Owned]   
     public enum SeatStatus
@@ -49,27 +49,27 @@ namespace Common.Models
     }
     public class Person
     {
-        public Person()
-        {
-            bookingdetailsofUser = new HashSet<UserBookingTbl>();
-        }             
-        public Person(string firstname,string lastname, UserIdentity gender,int age)
-        {
-            FirstName = firstname;
-            LastName = lastname;
-            Gender = gender;
-            Age = age;
-        }
+        //public Person()
+        //{
+        //    bookingdetailsofUser = new HashSet<UserBookingTbl>();
+        //}             
+        //public Person(string firstname,string lastname, string gender,int age)
+        //{
+        //    FirstName = firstname;
+        //    LastName = lastname;
+        //    Gender = gender;
+        //    Age = age;
+        //}
         [Key]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int peopleId { get; set; }
         public string FirstName { get; set; }
-        public UserIdentity Gender { get; set; }
+        public string Gender { get; set; }
         public string LastName { get; set; }
 
         public int? Age { get; set; }
         public Seatclass Class { get; set; }
-        public virtual ICollection<UserBookingTbl> bookingdetailsofUser { get; set; }
+        //public virtual ICollection<UserBookingTbl> bookingdetailsofUser { get; set; }
         //public virtual UserBookingTbl User { get; set; }
     }
 
