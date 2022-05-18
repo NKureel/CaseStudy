@@ -26,10 +26,10 @@
     },
     {
       "UseServiceDiscovery": true,
-      "DownstreamPathTemplate": "/api/v1.0/authentication",
+      "DownstreamPathTemplate": "/api/v1.0/authentication/loginuserdetail",
       "DownstreamScheme": "http",
       "ServiceName": "LoginManagement",
-      "UpstreamPathTemplate": "/api/v1.0/flight/authentication",
+      "UpstreamPathTemplate": "/api/v1.0/flight/authentication/loginuserdetail",
       "UpstreamHttpMethod": [ "Get" ],
       "AuthenticationOptions": {
         "AuthenticationProviderKey": "TestKey",

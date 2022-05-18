@@ -37,9 +37,36 @@ namespace LoginManagement.Controllers
             return "Hello World";
         }
 
+        [HttpGet]
+        [Route("loginuserdetail")]
+        public async Task<UserRegisterTbl> Get(string user)
+        {
+            Response response = new Response();
+            try
+            {
+                UserRegisterTbl tbl = new UserRegisterTbl();
+                var userres = await _userManager.FindByNameAsync(user);
+                if (userres != null)
+                {
+                    tbl.UserName = userres.UserName;
+                    tbl.Email = userres.Email;
+                    return tbl;
+                }
+                else
+                    throw new Exception("failed to find user");
+            }
+            catch (Exception ex)
+            {
+                response.Message = ex.Message;
+                response.Status = "Error";
+                response.StatusCode = StatusCodes.Status500InternalServerError.ToString();
+            }
+            return null;
+        }
+    
 
-        //[AllowAnonymous]
-        [HttpPost]
+    //[AllowAnonymous]
+    [HttpPost]
         [Route("register")]
         public async Task<IActionResult> RegisterUser([FromBody] UserRegisterTbl userRegister)
         {

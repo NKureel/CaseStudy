@@ -13,33 +13,76 @@ namespace BookingManagement.DBContext
         {
         }
 
-       public  DbSet<UserBookingTbl> bookingTbls { get; set; }
-        public DbSet<Person> person { get; set; }
-       public DbSet<FlightBookingDetails> flightDetail { get; set; }
+        public virtual DbSet<BookflightTbl> BookflightTbls { get; set; }
+        //public virtual DbSet<UserDetailTbl> UserDetailTbls { get; set; }
+
         protected override void OnModelCreating(ModelBuilder model)
         { 
-            base.OnModelCreating(model);            
-            //model.Entity<UserBookingTbl>().HasEnum(e => e.Meal);
-            //model.Entity<UserBookingTbl>().HasEnum(e => e.SeatClass);
-            //model.Entity<FlightBookingDetails>().HasEnum(e => e.SeatClass);
-            //model.Entity<FlightBookingDetails>().HasEnum(e => e.status);
-            //model.Entity<Person>().HasEnum(e => e.Gender);
-            //model.Entity<UserBookingTbl>().HasOne(p => p.peopleId);
-            model.Entity<Person>(x =>
+            base.OnModelCreating(model);
+            model.Entity<BookflightTbl>(entity =>
             {
-                x.ToTable("Person");
-                x.Property(e => e.peopleId)
-                    .ValueGeneratedNever()
-                    .HasColumnName("PeopleId");
-                x.Property(p => p.FirstName);
-                x.Property(p => p.LastName);
-                x.Property(p => p.Age);
-                x.Property(p => p.Gender);
-            }
-            );
-          ////  model.Entity<UserBookingTbl>().HasOne(d => d.userDetail)
-          //          .WithMany(p => p.bookingdetailsofUser)
-          //          .HasForeignKey(d => d.personId);                   
+                entity.ToTable("bookflightTbl");
+               entity.Property(e => e.Id).ValueGeneratedNever().HasColumnName("Id");
+                entity.Property(e => e.Id).HasColumnName("id");
+
+                entity.Property(e => e.EmailId).HasMaxLength(50);
+
+                entity.Property(e => e.FlightNumber).HasMaxLength(50);
+
+                entity.Property(e => e.Meal).HasMaxLength(50);
+
+                entity.Property(e => e.Name).HasMaxLength(50);
+
+               // entity.Property(e => e.PersonId).HasColumnName("personId");
+
+                entity.Property(e => e.Pnr).HasMaxLength(50);
+
+                entity.Property(e => e.Class).HasMaxLength(50);
+
+                entity.Property(e => e.FirstName).HasMaxLength(50);
+
+                entity.Property(e => e.Gender).HasMaxLength(50);
+
+                entity.Property(e => e.LastName).HasMaxLength(50);
+                //entity.HasOne(d => d.Person)
+                //    .WithMany(p => p.BookflightTbls)
+                //    .HasForeignKey(d => d.PersonId)
+                //    .HasConstraintName("FK_bookflightTbl_UserDetailTbl");
+            });
+
+            //model.Entity<UserDetailTbl>(entity =>
+            //{
+            //    entity.HasKey(e => e.PeopleId);
+
+            //    entity.ToTable("UserDetailTbl");
+            //   entity.Property(e => e.PeopleId).ValueGeneratedNever().HasColumnName("PeopleId");
+            //    entity.Property(e => e.Age)
+            //        .HasMaxLength(10)
+            //        .IsFixedLength(true);
+
+            //    entity.Property(e => e.Class).HasMaxLength(50);
+
+            //    entity.Property(e => e.FirstName).HasMaxLength(50);
+
+            //    entity.Property(e => e.Gender).HasMaxLength(50);
+
+            //    entity.Property(e => e.LastName).HasMaxLength(50);
+            //});
+            //model.Entity<Person>(x =>
+            //{
+            //    x.ToTable("Person");
+            //    x.Property(e => e.peopleId)
+            //        .ValueGeneratedNever()
+            //        .HasColumnName("PeopleId");
+            //    x.Property(p => p.FirstName);
+            //    x.Property(p => p.LastName);
+            //    x.Property(p => p.Age);
+            //    x.Property(p => p.Gender);
+            //}
+            //);
+            //model.Entity<UserBookingTbl>().HasOne(d => d.userDetail)
+                   //.WithMany(p => p.bookingdetailsofUser)
+                   // .HasForeignKey(d => d.personId);                   
             //model.Entity<UserBookingTbl>().HasOne<Person>(e => e.peopleId).WithOne(d => d.User)
             //  .IsRequired(true).OnDelete(DeleteBehavior.Cascade);
             //model.Entity<Person>().Property(e => e.PeopleId).ValueGeneratedOnAdd();

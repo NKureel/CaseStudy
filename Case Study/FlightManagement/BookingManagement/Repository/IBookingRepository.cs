@@ -6,17 +6,17 @@ namespace BookingManagement.Repository
 {
     public interface IBookingRepository
     {
-        public IEnumerable<UserBookingTbl> GetBookingDetail();
-        public void CancelBooking(UserBookingTbl tbl);
+        public IEnumerable<BookflightTbl> GetBookingDetail();
+        public void CancelBooking(BookflightTbl tbl);
         
-        public IEnumerable<UserBookingTbl> GetBookingDetailFromPNR(string pnr);
-        public IEnumerable<UserBookingTbl> GetUserHistory(string emailId);
+        public IEnumerable<BookflightTbl> GetBookingDetailFromPNR(string pnr);
+        public IEnumerable<BookflightTbl> GetUserHistory(string emailId);
         
-        public  string AddBookingDetail(UserBookingTbl tbl);
+        public  string AddBookingDetail(BookflightTbl tbl);
 
-        public void AddUserDetail(Person person);
+        //public void AddUserDetail(UserDetailTbl person);
 
-        public string GetUserDetail(Person person);
+        //public string GetUserDetail(UserDetailTbl person);
 
         public void SaveChanges();
     }

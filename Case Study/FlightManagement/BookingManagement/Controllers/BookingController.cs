@@ -21,14 +21,14 @@ namespace BookingManagement.Controllers
     public class BookingController : ControllerBase
     {
         private readonly IBookingRepository _repository;
-        private ITopicProducer<UserBookingTbl> _topicProducer;
+        private ITopicProducer<BookflightTbl> _topicProducer;
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="repository"></param>
         /// <param name="topic"></param>
-        public BookingController(IBookingRepository repository, ITopicProducer<UserBookingTbl> topic)
+        public BookingController(IBookingRepository repository, ITopicProducer<BookflightTbl> topic)
         {
             _repository = repository;
             _topicProducer = topic;
@@ -67,28 +67,28 @@ namespace BookingManagement.Controllers
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
-        [HttpPost]
-        [Route("AddUserDetail")]
-        public IActionResult AddUserDetail([FromBody] Person user)
-        {
-            Response response = new Response();
-            try
-            {
-                _repository.AddUserDetail(user);
-                var res=_repository.GetUserDetail(user);
-                response.Message = "User Number "+res;
-                response.StatusCode = StatusCodes.Status200OK.ToString();
-                response.Status = "Success";
-                return new OkObjectResult(response);
-            }
-            catch (Exception ex)
-            {
-                response.Message = ex.Message;
-                response.StatusCode = StatusCodes.Status500InternalServerError.ToString();
-                response.Status = "Error";
-            }
-            return new NotFoundObjectResult(response);
-        }
+        //[HttpPost]
+        //[Route("AddUserDetail")]
+        //public IActionResult AddUserDetail([FromBody] UserDetailTbl user)
+        //{
+        //    Response response = new Response();
+        //    try
+        //    {
+        //        _repository.AddUserDetail(user);
+        //        var res=_repository.GetUserDetail(user);
+        //        response.Message = "User Number "+res;
+        //        response.StatusCode = StatusCodes.Status200OK.ToString();
+        //        response.Status = "Success";
+        //        return new OkObjectResult(response);
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        response.Message = ex.Message;
+        //        response.StatusCode = StatusCodes.Status500InternalServerError.ToString();
+        //        response.Status = "Error";
+        //    }
+        //    return new NotFoundObjectResult(response);
+        //}
 
         /// <summary>
         /// Booking Details for user
@@ -97,27 +97,28 @@ namespace BookingManagement.Controllers
         /// <returns></returns>
         [HttpPost]
         [Route("{flightid}")]
-        public async Task<IActionResult> Post([FromBody] UserBookingTbl bookingDetail)
+        public async Task<IActionResult> Post([FromBody] List<BookflightTbl> bookingDetail)
         {
             Response response = new Response();            
-            var list = new List<Tuple<UserBookingTbl, string>>();
+            //var list = new List<Tuple<UserBookingTbl, string>>();
             try
             {
-                using (var scope = new TransactionScope())
-                {                  
-                    for (int i = 0; i < bookingDetail.userDetail.Length; i++)
+                string message = String.Empty;
+                foreach (var book in bookingDetail)
+                {
+                    
+                    using (var scope = new TransactionScope())
                     {
-                            var user = bookingDetail.userDetail[i];
-                            _repository.AddUserDetail(user);
+                        var res = _repository.AddBookingDetail(book);
+                        scope.Complete();
+                        await _topicProducer.Produce(new BookflightTbl { FlightNumber = book.FlightNumber,Class=book.Class });
+                        message += "PNR" + res+" for "+book.FirstName+book.LastName+"\n";                       
                     }
-                    var res = _repository.AddBookingDetail(bookingDetail);
-                    scope.Complete();
-                    await _topicProducer.Produce(new UserBookingTbl { FlightNumber = bookingDetail.FlightNumber, SeatNo = bookingDetail.SeatNo, SeatClass = bookingDetail.SeatClass });                    
-                    response.Message = "PNR " + res;
-                    response.StatusCode = StatusCodes.Status200OK.ToString();
-                    response.Status = "Success";
-                    return new OkObjectResult(response);
                 }
+                response.Message = message;
+                response.StatusCode = StatusCodes.Status200OK.ToString();
+                response.Status = "Success";
+                return new OkObjectResult(response);
             }
             catch (Exception ex)
             {

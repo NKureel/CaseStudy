@@ -93,7 +93,7 @@ namespace BookingManagement
                 x.UsingRabbitMq((context, cfg) => cfg.ConfigureEndpoints(context));
                 x.AddRider(rider =>
                 {
-                    rider.AddProducer<UserBookingTbl>(nameof(UserBookingTbl));
+                    rider.AddProducer<BookflightTbl>(nameof(BookflightTbl));
                     rider.UsingKafka((context, k) =>
                     {
                         k.Host("localhost:9092");

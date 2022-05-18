@@ -4,9 +4,10 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Transactions;
 /*
- Created By: Naina Kureel
- Detail: Booking Management Repository
+Created By: Naina Kureel
+Detail: Booking Management Repository
 */
 namespace BookingManagement.Repository
 {
@@ -23,23 +24,23 @@ namespace BookingManagement.Repository
         /// Add User Details
         /// </summary>
         /// <param name="person"></param>
-        public void AddUserDetail(Person person)
-        {
-            try
-            {
-                var res = _Context.person.Where(x => x.FirstName == person.LastName && x.LastName == person.LastName).ToList();
-                if (res.Count != 0)
-                {
-                    throw new Exception(person.FirstName + " " + person.LastName + " already exists");
-                }
-                _Context.person.Add(person);
-                SaveChanges();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
+        //public void AddUserDetail(UserDetailTbl person)
+        //{
+        //    try
+        //    {
+        //        var res = _Context.UserDetailTbls.Where(x => x.FirstName == person.LastName && x.LastName == person.LastName).ToList();
+        //        if (res.Count != 0)
+        //        {
+        //            throw new Exception(person.FirstName + " " + person.LastName + " already exists");
+        //        }
+        //        _Context.UserDetailTbls.Add(person);
+        //        SaveChanges();
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw new Exception(ex.Message);
+        //    }
+        //}
 
         /// <summary>
         /// Update User Booking 
@@ -47,47 +48,26 @@ namespace BookingManagement.Repository
         /// </summary>
         /// <param name="tbl"></param>
         /// <returns></returns>
-        public string AddBookingDetail(UserBookingTbl tbl)
+        public string AddBookingDetail(BookflightTbl tbl)
         {
             string pnr = String.Empty;
             try
             {
-                //var detail = GetFlightDetail(tbl.FlightNumber, tbl.SeatNo);
-                //if (detail == null)
-                //{
-                //    throw new Exception("Failed to book the flight");
-                //}
-
-                //if (string.Equals(detail.status, SeatStatus.Booked.ToString(), StringComparison.OrdinalIgnoreCase))
-                //    throw new Exception("SeatNo " + tbl.SeatNo + " is already occupied by another user. Please select different seat");
-
                 Random generateRandom = new Random();
-                if (tbl != null)
-                    tbl.Pnr = generateRandom.Next(1, 100) + tbl.FlightNumber;
-                List<Person> res = new List<Person>(); ;
-                if (tbl.userDetail != null)
-                {
-                    for (int i = 0; i < tbl.userDetail.Count(); i++)
-                    {                        
-                        res = _Context.person.Where(x => x.FirstName.ToLower().Trim() == tbl.userDetail[i].FirstName.ToLower().Trim() && x.LastName.ToLower().Trim() == tbl.userDetail[i].LastName.ToLower().Trim()).ToList();
-                        if (res.Count != 0)
-                            tbl.personId = res[0].peopleId;
-                    }
-                    var bookingtblres = _Context.bookingTbls.FirstOrDefault(x => x.FlightNumber == tbl.FlightNumber && x.personId == tbl.personId);
+               string userpnr= generateRandom.Next(1, 100) + tbl.FlightNumber;              
+                
+
+                    if (tbl != null)
+                        tbl.Pnr = userpnr;                    
+                    var bookingtblres = _Context.BookflightTbls.FirstOrDefault(x => x.FlightNumber == tbl.FlightNumber && x.FirstName == tbl.FirstName && x.LastName==tbl.LastName);
                     if (bookingtblres != null)
-                        throw new Exception(" User already booked ticket for flight " + tbl.FlightNumber);
-                    _Context.bookingTbls.Add(tbl);
-                    _Context.SaveChanges();
-                    pnr = tbl.Pnr;
-                }
-                //if (tbl.userDetail!=null)
-                // res= _Context.person.Where(x => x.FirstName.ToLower().Trim() == tbl.userDetail.FirstName.ToLower().Trim() && x.LastName.ToLower().Trim() == tbl.userDetail.LastName.ToLower().Trim()).ToList();
-                //if (res.Count != 0)
-                //{
-                //    tbl.personId = res[0].peopleId;
-                //    tbl.userDetail = res[0];
-                //    //    throw new Exception(tbl.peopleId.FirstName + " " + tbl.peopleId.LastName + " already booked ticket");
-                //}                
+                        throw new Exception(" User already booked ticket for flight " + tbl.FlightNumber);                    
+                    {
+                        _Context.BookflightTbls.Add(tbl);
+                    }
+                    _Context.SaveChanges();                                   
+                    pnr = userpnr;
+                
             }
             catch (Exception ex)
             {
@@ -103,32 +83,32 @@ namespace BookingManagement.Repository
         /// <param name="flightno"></param>
         /// <param name="seatno"></param>
         /// <returns></returns>
-        public FlightBookingDetails GetFlightDetail(string flightno, string seatno)
-        {
+        //public FlightBookingDetails GetFlightDetail(string flightno, string seatno)
+        //{
 
-            try
-            {
-                var flight = _Context.flightDetail.Where(x => x.FlightNumber == flightno && x.seatNo == seatno).FirstOrDefault();
-                if (flight == null)
-                    throw new Exception("Failed to book the flight");
-                return flight;
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
+        //    try
+        //    {
+        //        var flight = _Context.flightDetail.Where(x => x.FlightNumber == flightno && x.seatNo == seatno).FirstOrDefault();
+        //        if (flight == null)
+        //            throw new Exception("Failed to book the flight");
+        //        return flight;
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw new Exception(ex.Message);
+        //    }
+        //}
 
 
         /// <summary>
         /// Cancel Booking
         /// </summary>
         /// <param name="pnr"></param>
-        public void CancelBooking(UserBookingTbl tbl)
+        public void CancelBooking(BookflightTbl tbl)
         {
             try
             {
-                _Context.bookingTbls.Remove(tbl);
+                _Context.BookflightTbls.Remove(tbl);
                 SaveChanges();
             }
             catch (Exception ex)
@@ -144,12 +124,12 @@ namespace BookingManagement.Repository
         /// </summary>
         /// <param name="pnr"></param>
         /// <returns></returns>
-        public IEnumerable<UserBookingTbl> GetBookingDetailFromPNR(string pnr)
+        public IEnumerable<BookflightTbl> GetBookingDetailFromPNR(string pnr)
         {
-            List<UserBookingTbl> res = new List<UserBookingTbl>();
+            List<BookflightTbl> res = new List<BookflightTbl>();
             try
             {
-                res = _Context.bookingTbls.Where(x => x.Pnr.ToLower() == pnr.ToLower()).ToList<UserBookingTbl>();
+                res = _Context.BookflightTbls.Where(x => x.Pnr.ToLower() == pnr.ToLower()).ToList<BookflightTbl>();
                 if (res.Count == 0)
                     throw new Exception("PNR " + pnr + " is not exists. Failed to cancel the ticket");
             }
@@ -179,11 +159,11 @@ namespace BookingManagement.Repository
         /// Get All Booking details of Users
         /// </summary>
         /// <returns></returns>
-        IEnumerable<UserBookingTbl> IBookingRepository.GetBookingDetail()
+        IEnumerable<BookflightTbl> IBookingRepository.GetBookingDetail()
         {
             try
             {
-                var res = _Context.bookingTbls.ToList();
+                var res = _Context.BookflightTbls.ToList();
                 if (res.Count == 0)
                     throw new Exception("No booking found");
                 return res;
@@ -200,12 +180,12 @@ namespace BookingManagement.Repository
         /// </summary>
         /// <param name="emailId"></param>
         /// <returns></returns>
-        IEnumerable<UserBookingTbl> IBookingRepository.GetUserHistory(string emailId)
+        IEnumerable<BookflightTbl> IBookingRepository.GetUserHistory(string emailId)
         {
-            List<UserBookingTbl> res = new List<UserBookingTbl>();
+            List<BookflightTbl> res = new List<BookflightTbl>();
             try
             {
-                res = _Context.bookingTbls.Where(x => x.EmailId.ToLower() == emailId.ToString().ToLower()).
+                res = _Context.BookflightTbls.Where(x => x.EmailId.ToLower() == emailId.ToString().ToLower()).
                    ToList();
                 if (res.Count == 0)
                     throw new Exception("No history found for emailid " + emailId);
@@ -217,21 +197,21 @@ namespace BookingManagement.Repository
             return res;
         }
 
-        public string GetUserDetail(Person person)
-        {
-            try
-            {
-                var res = _Context.person.Find(person);
-                if (res != null)
-                {
-                    return res.peopleId.ToString();
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-            return "null";
-        }
+        //public string GetUserDetail(UserDetailTbl person)
+        //{
+        //    try
+        //    {
+        //        var res = _Context.UserDetailTbls.Find(person);
+        //        if (res != null)
+        //        {
+        //            return res.PeopleId.ToString();
+        //        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw new Exception(ex.Message);
+        //    }
+        //    return "null";
+        //}
     }
 }

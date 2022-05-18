@@ -98,7 +98,7 @@ namespace InventoryManagement
                     rider.UsingKafka((context, k) =>
                     {
                         k.Host("localhost:9092");
-                        k.TopicEndpoint<UserBookingTbl>(nameof(UserBookingTbl), GetUniqueName(nameof(UserBookingTbl)), e => {
+                        k.TopicEndpoint<BookflightTbl>(nameof(BookflightTbl), GetUniqueName(nameof(BookflightTbl)), e => {
                             e.CheckpointInterval = TimeSpan.FromSeconds(10);
                             e.ConfigureConsumer<InventoryRepository>(context);
                         });

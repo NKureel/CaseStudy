@@ -13,7 +13,7 @@ using System.Transactions;
 
 namespace InventoryManagement.Repository
 {
-    public class InventoryRepository : IInventoryRepository, IConsumer<UserBookingTbl>
+    public class InventoryRepository : IInventoryRepository, IConsumer<BookflightTbl>
     {
         private readonly InventoryDbContext _inventoryContext;
         public InventoryRepository(InventoryDbContext context)
@@ -21,18 +21,12 @@ namespace InventoryManagement.Repository
             _inventoryContext = context;
         }
        
-        public async Task Consume(ConsumeContext<UserBookingTbl> context)
+        public async Task Consume(ConsumeContext<BookflightTbl> context)
         {
             try
             {                
-                string flightno = context.Message.FlightNumber;
-                string seatclass = context.Message.SeatClass;
-                string seatno = context.Message.SeatNo;
-                var tbl = _inventoryContext.inventoryTbls.Find(flightno);
-                if (string.Equals(context.Message.SeatClass.ToString(), "Business", StringComparison.OrdinalIgnoreCase))
-                    tbl.BusinessClassSeat -= 1;
-                else
-                    tbl.NonBusinessClassSeat -= 1;
+                string flightno = context.Message.FlightNumber;             
+                var tbl = _inventoryContext.inventoryTbls.Find(flightno);             
                 using (var scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
                 {
                     _inventoryContext.Entry(tbl).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
