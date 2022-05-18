@@ -7,12 +7,12 @@ namespace BookingManagement.Repository
     public interface IBookingRepository
     {
         public IEnumerable<BookflightTbl> GetBookingDetail();
-        public void CancelBooking(BookflightTbl tbl);
+        public void CancelBooking(string pnr);
         
-        public IEnumerable<BookflightTbl> GetBookingDetailFromPNR(string pnr);
-        public IEnumerable<BookflightTbl> GetUserHistory(string emailId);
+        public IEnumerable<TicketDetail> GetBookingDetailFromPNR(string pnr);
+        public IEnumerable<TicketDetail> GetUserHistory(string emailId);
         
-        public  string AddBookingDetail(BookflightTbl tbl);
+        public  string AddBookingDetail(BookflightTblUsr tbl);
 
         //public void AddUserDetail(UserDetailTbl person);
 

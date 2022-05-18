@@ -32,8 +32,7 @@ namespace InventoryManagement.Repository
                     _inventoryContext.Entry(tbl).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
                     await this._inventoryContext.SaveChangesAsync();
                     scope.Complete();
-                }
-                //UpdateFlightDetail(flightno, seatclass, seatno);
+                }                
             }
             catch (Exception ex)
             {
@@ -48,31 +47,31 @@ namespace InventoryManagement.Repository
         /// <param name="flightno"></param>
         /// <param name="seatclass"></param>
         /// <param name="seatno"></param>
-        public void UpdateFlightDetail(string flightno, string seatclass, string seatno)
-        {
-            try
-            {
-                var res = _inventoryContext.flightDetail.Where(x => x.FlightNumber.ToLower().Trim() == flightno.ToLower().Trim() && x.seatNo.ToLower().Trim() == seatno.ToLower().Trim() && x.SeatClass.ToLower().Trim() == seatclass.ToLower().Trim()).ToList();
-                if (res.Count != 0)
-                {
-                    foreach (var flight in res)
-                    {
-                        using (var scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
-                        {
-                            flight.status = SeatStatus.Booked.ToString();
-                            _inventoryContext.Entry(flight).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-                            Save();
-                            scope.Complete();
-                        }
-                    }
-                }
+        //public void UpdateFlightDetail(string flightno, string seatclass, string seatno)
+        //{
+        //    try
+        //    {
+        //        var res = _inventoryContext.flightDetail.Where(x => x.FlightNumber.ToLower().Trim() == flightno.ToLower().Trim() && x.seatNo.ToLower().Trim() == seatno.ToLower().Trim() && x.SeatClass.ToLower().Trim() == seatclass.ToLower().Trim()).ToList();
+        //        if (res.Count != 0)
+        //        {
+        //            foreach (var flight in res)
+        //            {
+        //                using (var scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
+        //                {
+        //                    flight.status = SeatStatus.Booked.ToString();
+        //                    _inventoryContext.Entry(flight).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
+        //                    Save();
+        //                    scope.Complete();
+        //                }
+        //            }
+        //        }
 
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
-        }
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw new Exception(ex.Message);
+        //    }
+        //}
         /// <summary>
         /// Get all Inventory
         /// </summary>
@@ -101,7 +100,7 @@ namespace InventoryManagement.Repository
                 if (res.Count != 0)
                     throw new Exception("Inventory for airline " + tbl.AirlineNo + " is alreday exists in system");
                 _inventoryContext.inventoryTbls.Add(tbl);
-                  AddFlightDetail(tbl.FlightNumber, tbl.BusinessClassSeat.ToString(), tbl.NonBusinessClassSeat.ToString());
+                 // AddFlightDetail(tbl.FlightNumber, tbl.BusinessClassSeat.ToString(), tbl.NonBusinessClassSeat.ToString());
                  Save();
                 
             }
@@ -111,28 +110,28 @@ namespace InventoryManagement.Repository
             }
         }
 
-        public void AddFlightDetail(string flightno, string businessClass, string NonBusinessclass)
-        {
-            var totalseat = Convert.ToInt64(businessClass) + Convert.ToInt64(NonBusinessclass);
-            for (int i = 0; i < Convert.ToInt32(totalseat); i++)
-            {
-                using (var scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
-                {
-                    FlightBookingDetails flight = new FlightBookingDetails();
-                    flight.FlightNumber = flightno;
-                    flight.seatNo = "A" + i.ToString();
-                    if (i <= Convert.ToInt32(businessClass))
-                        flight.SeatClass = Seatclass.Business.ToString();
-                    else
-                        flight.SeatClass = Seatclass.NonBusiness.ToString();
-                    flight.status = SeatStatus.NotBooked.ToString();
-                    _inventoryContext.flightDetail.Add(flight);
-                    Save();
-                    scope.Complete();
+        //public void AddFlightDetail(string flightno, string businessClass, string NonBusinessclass)
+        //{
+        //    var totalseat = Convert.ToInt64(businessClass) + Convert.ToInt64(NonBusinessclass);
+        //    for (int i = 0; i < Convert.ToInt32(totalseat); i++)
+        //    {
+        //        using (var scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
+        //        {
+        //            FlightBookingDetails flight = new FlightBookingDetails();
+        //            flight.FlightNumber = flightno;
+        //            flight.seatNo = "A" + i.ToString();
+        //            if (i <= Convert.ToInt32(businessClass))
+        //                flight.SeatClass = Seatclass.Business.ToString();
+        //            else
+        //                flight.SeatClass = Seatclass.NonBusiness.ToString();
+        //            flight.status = SeatStatus.NotBooked.ToString();
+        //            _inventoryContext.flightDetail.Add(flight);
+        //            Save();
+        //            scope.Complete();
 
-                }
-            }
-        }
+        //        }
+        //    }
+       // }
         /// <summary>
         /// Update Inventory
         /// </summary>

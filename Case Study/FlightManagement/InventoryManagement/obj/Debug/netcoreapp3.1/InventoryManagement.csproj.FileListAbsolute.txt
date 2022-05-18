@@ -451,6 +451,7 @@ C:\Users\student\Desktop\API\CaseStudy\Case Study\FlightManagement\InventoryMana
 C:\Users\student\Desktop\API\CaseStudy\Case Study\FlightManagement\InventoryManagement\obj\Debug\netcoreapp3.1\InventoryManagement.dll
 C:\Users\student\Desktop\API\CaseStudy\Case Study\FlightManagement\InventoryManagement\obj\Debug\netcoreapp3.1\InventoryManagement.pdb
 C:\Users\student\Desktop\API\CaseStudy\Case Study\FlightManagement\InventoryManagement\obj\Debug\netcoreapp3.1\InventoryManagement.genruntimeconfig.cache
+D:\Training\CaseStudy\CaseStudy\Case Study\FlightManagement\InventoryManagement\bin\Debug\netcoreapp3.1\runtimes\linux-x64\native\alpine-librdkafka.so
 D:\Training\CaseStudy\CaseStudy\Case Study\FlightManagement\InventoryManagement\bin\Debug\netcoreapp3.1\appsettings.Development.json
 D:\Training\CaseStudy\CaseStudy\Case Study\FlightManagement\InventoryManagement\bin\Debug\netcoreapp3.1\appsettings.json
 D:\Training\CaseStudy\CaseStudy\Case Study\FlightManagement\InventoryManagement\bin\Debug\netcoreapp3.1\InventoryManagement.exe
@@ -519,7 +520,6 @@ D:\Training\CaseStudy\CaseStudy\Case Study\FlightManagement\InventoryManagement\
 D:\Training\CaseStudy\CaseStudy\Case Study\FlightManagement\InventoryManagement\bin\Debug\netcoreapp3.1\System.Runtime.CompilerServices.Unsafe.dll
 D:\Training\CaseStudy\CaseStudy\Case Study\FlightManagement\InventoryManagement\bin\Debug\netcoreapp3.1\System.Security.Cryptography.ProtectedData.dll
 D:\Training\CaseStudy\CaseStudy\Case Study\FlightManagement\InventoryManagement\bin\Debug\netcoreapp3.1\System.Threading.Channels.dll
-D:\Training\CaseStudy\CaseStudy\Case Study\FlightManagement\InventoryManagement\bin\Debug\netcoreapp3.1\runtimes\linux-x64\native\alpine-librdkafka.so
 D:\Training\CaseStudy\CaseStudy\Case Study\FlightManagement\InventoryManagement\bin\Debug\netcoreapp3.1\runtimes\linux-x64\native\centos7-librdkafka.so
 D:\Training\CaseStudy\CaseStudy\Case Study\FlightManagement\InventoryManagement\bin\Debug\netcoreapp3.1\runtimes\linux-x64\native\debian9-librdkafka.so
 D:\Training\CaseStudy\CaseStudy\Case Study\FlightManagement\InventoryManagement\bin\Debug\netcoreapp3.1\runtimes\linux-x64\native\librdkafka.so

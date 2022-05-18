@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookingManagement.Migrations
 {
     [DbContext(typeof(BookingDbContext))]
-    [Migration("20220518133655_InitialCreateBoo")]
-    partial class InitialCreateBoo
+    [Migration("20220518194737_InitialCreateDb")]
+    partial class InitialCreateDb
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -43,13 +43,13 @@ namespace BookingManagement.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<int?>("PersonId")
-                        .HasColumnType("int")
-                        .HasColumnName("personId");
-
                     b.Property<string>("Pnr")
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
+
+                    b.Property<int?>("peopleid")
+                        .HasColumnType("int")
+                        .HasColumnName("peopleid");
 
                     b.HasKey("Id");
 
@@ -58,7 +58,7 @@ namespace BookingManagement.Migrations
 
             modelBuilder.Entity("Common.Models.UserDetailTbl", b =>
                 {
-                    b.Property<int?>("PeopleId")
+                    b.Property<int>("PeopleId")
                         .HasColumnType("int")
                         .HasColumnName("PeopleId");
 

@@ -134,10 +134,10 @@
     },
     {
       "UseServiceDiscovery": true,
-      "DownstreamPathTemplate": "/api/v1.0/booking/{flightid}",
+      "DownstreamPathTemplate": "/api/v1.0/booking/add",
       "DownstreamScheme": "http",
       "ServiceName": "bookingManagement",
-      "UpstreamPathTemplate": "/api/v1.0/flight/booking/{flightid}",
+      "UpstreamPathTemplate": "/api/v1.0/flight/booking/add",
       "UpstreamHttpMethod": [ "Post" ],
       "AuthenticationOptions": {
         "AuthenticationProviderKey": "TestKey",

@@ -2,7 +2,7 @@
 
 namespace BookingManagement.Migrations
 {
-    public partial class InitialCreateBoo : Migration
+    public partial class InitialCreateDb : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -13,10 +13,10 @@ namespace BookingManagement.Migrations
                     id = table.Column<int>(type: "int", nullable: false),
                     Name = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     EmailId = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    personId = table.Column<int>(type: "int", nullable: true),
                     Meal = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
                     FlightNumber = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
-                    Pnr = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true)
+                    Pnr = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: true),
+                    peopleid = table.Column<int>(type: "int", nullable: true)
                 },
                 constraints: table =>
                 {

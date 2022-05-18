@@ -67,28 +67,28 @@ namespace BookingManagement.Controllers
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
-        //[HttpPost]
-        //[Route("AddUserDetail")]
-        //public IActionResult AddUserDetail([FromBody] UserDetailTbl user)
-        //{
-        //    Response response = new Response();
-        //    try
-        //    {
-        //        _repository.AddUserDetail(user);
-        //        var res=_repository.GetUserDetail(user);
-        //        response.Message = "User Number "+res;
-        //        response.StatusCode = StatusCodes.Status200OK.ToString();
-        //        response.Status = "Success";
-        //        return new OkObjectResult(response);
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        response.Message = ex.Message;
-        //        response.StatusCode = StatusCodes.Status500InternalServerError.ToString();
-        //        response.Status = "Error";
-        //    }
-        //    return new NotFoundObjectResult(response);
-        //}
+        ////[HttpPost]
+        ////[Route("AddUserDetail")]
+        ////public IActionResult AddUserDetail([FromBody] UserDetailTbl user)
+        ////{
+        ////    Response response = new Response();
+        ////    try
+        ////    {
+        ////        _repository.AddUserDetail(user);
+        ////        var res=_repository.GetUserDetail(user);
+        ////        response.Message = "User Number "+res;
+        ////        response.StatusCode = StatusCodes.Status200OK.ToString();
+        ////        response.Status = "Success";
+        ////        return new OkObjectResult(response);
+        ////    }
+        ////    catch (Exception ex)
+        ////    {
+        ////        response.Message = ex.Message;
+        ////        response.StatusCode = StatusCodes.Status500InternalServerError.ToString();
+        ////        response.Status = "Error";
+        ////    }
+        ////    return new NotFoundObjectResult(response);
+        ////}
 
         /// <summary>
         /// Booking Details for user
@@ -96,29 +96,25 @@ namespace BookingManagement.Controllers
         /// <param name="userDetail"></param>
         /// <returns></returns>
         [HttpPost]
-        [Route("{flightid}")]
-        public async Task<IActionResult> Post([FromBody] List<BookflightTbl> bookingDetail)
+        [Route("add")]
+        public async Task<IActionResult> Post([FromBody] BookflightTblUsr bookflight)
         {
             Response response = new Response();            
             //var list = new List<Tuple<UserBookingTbl, string>>();
             try
             {
-                string message = String.Empty;
-                foreach (var book in bookingDetail)
-                {
-                    
-                    using (var scope = new TransactionScope())
-                    {
-                        var res = _repository.AddBookingDetail(book);
-                        scope.Complete();
-                        await _topicProducer.Produce(new BookflightTbl { FlightNumber = book.FlightNumber,Class=book.Class });
-                        message += "PNR" + res+" for "+book.FirstName+book.LastName+"\n";                       
-                    }
+                
+                using (var scope = new TransactionScope())
+                {                  
+                   
+                    var res = _repository.AddBookingDetail(bookflight);
+                    await _topicProducer.Produce(new BookflightTbl { FlightNumber = bookflight.FlightNumber });
+                    scope.Complete();                   
+                    response.Message = "PNR " + res;
+                    response.StatusCode = StatusCodes.Status200OK.ToString();
+                    response.Status = "Success";                    
+                    return new OkObjectResult(response);
                 }
-                response.Message = message;
-                response.StatusCode = StatusCodes.Status200OK.ToString();
-                response.Status = "Success";
-                return new OkObjectResult(response);
             }
             catch (Exception ex)
             {
@@ -164,27 +160,21 @@ namespace BookingManagement.Controllers
         /// <returns></returns>
         [HttpDelete]
         [Route("[Action]/{pnr}")]
-        public async Task<IActionResult> Cancel(string pnr)
+        public ActionResult Cancel(string pnr)
         {
             Response response = new Response();
             try
             {
                 using (var scope = new TransactionScope())
                 {
-                    var res = _repository.GetBookingDetailFromPNR(pnr);
-                    //var list = new List<Tuple<UserBookingTbl, string>>();
-                    foreach (var flight in res)
-                    {
-                        //list.Add(new Tuple<UserBookingTbl, string>(flight, "Delete"));
-                        //await _topicProducer.Produce(list);
-                        //await _topicProducer.Produce( new UserBookingTbl { FlightNumber = flight.FlightNumber, SeatNo = flight.SeatNo, SeatClass = flight.SeatClass });                        
-                        _repository.CancelBooking(flight);
+                    var res = _repository.GetBookingDetailFromPNR(pnr);                   
+                        _repository.CancelBooking(pnr);
                         scope.Complete();
                         response.Message = "Successfully deleted";
                         response.StatusCode = StatusCodes.Status200OK.ToString();
                         response.Status = "Success";
                         return new OkObjectResult(response);
-                    }
+                    //}
                 }
 
             }
