@@ -52,14 +52,14 @@ namespace BookingManagement.Repository
             string pnr = String.Empty;
             try
             {
-                var detail = GetFlightDetail(tbl.FlightNumber, tbl.SeatNo);
-                if (detail == null)
-                {
-                    throw new Exception("Failed to book the flight");
-                }
+                //var detail = GetFlightDetail(tbl.FlightNumber, tbl.SeatNo);
+                //if (detail == null)
+                //{
+                //    throw new Exception("Failed to book the flight");
+                //}
 
-                if (string.Equals(detail.status, SeatStatus.Booked.ToString(), StringComparison.OrdinalIgnoreCase))
-                    throw new Exception("SeatNo " + tbl.SeatNo + " is already occupied by another user. Please select different seat");
+                //if (string.Equals(detail.status, SeatStatus.Booked.ToString(), StringComparison.OrdinalIgnoreCase))
+                //    throw new Exception("SeatNo " + tbl.SeatNo + " is already occupied by another user. Please select different seat");
 
                 Random generateRandom = new Random();
                 if (tbl != null)

@@ -38,3 +38,13 @@ C:\Users\student\Desktop\API\CaseStudy\Case Study\FlightManagement\Common\obj\De
 C:\Users\student\Desktop\API\CaseStudy\Case Study\FlightManagement\Common\obj\Debug\netcoreapp3.1\Common.csproj.CoreCompileInputs.cache
 C:\Users\student\Desktop\API\CaseStudy\Case Study\FlightManagement\Common\obj\Debug\netcoreapp3.1\Common.dll
 C:\Users\student\Desktop\API\CaseStudy\Case Study\FlightManagement\Common\obj\Debug\netcoreapp3.1\Common.pdb
+D:\Training\CaseStudy\CaseStudy\Case Study\FlightManagement\Common\bin\Debug\netcoreapp3.1\Common.deps.json
+D:\Training\CaseStudy\CaseStudy\Case Study\FlightManagement\Common\bin\Debug\netcoreapp3.1\Common.dll
+D:\Training\CaseStudy\CaseStudy\Case Study\FlightManagement\Common\bin\Debug\netcoreapp3.1\Common.pdb
+D:\Training\CaseStudy\CaseStudy\Case Study\FlightManagement\Common\obj\Debug\netcoreapp3.1\Common.GeneratedMSBuildEditorConfig.editorconfig
+D:\Training\CaseStudy\CaseStudy\Case Study\FlightManagement\Common\obj\Debug\netcoreapp3.1\Common.AssemblyInfoInputs.cache
+D:\Training\CaseStudy\CaseStudy\Case Study\FlightManagement\Common\obj\Debug\netcoreapp3.1\Common.AssemblyInfo.cs
+D:\Training\CaseStudy\CaseStudy\Case Study\FlightManagement\Common\obj\Debug\netcoreapp3.1\Common.csproj.CoreCompileInputs.cache
+D:\Training\CaseStudy\CaseStudy\Case Study\FlightManagement\Common\obj\Debug\netcoreapp3.1\Common.dll
+D:\Training\CaseStudy\CaseStudy\Case Study\FlightManagement\Common\obj\Debug\netcoreapp3.1\Common.pdb
+D:\Training\CaseStudy\CaseStudy\Case Study\FlightManagement\Common\obj\Debug\netcoreapp3.1\Common.csproj.AssemblyReference.cache

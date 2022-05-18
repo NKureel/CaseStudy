@@ -39,7 +39,7 @@ namespace InventoryManagement.Repository
                     await this._inventoryContext.SaveChangesAsync();
                     scope.Complete();
                 }
-                UpdateFlightDetail(flightno, seatclass, seatno);
+                //UpdateFlightDetail(flightno, seatclass, seatno);
             }
             catch (Exception ex)
             {
@@ -107,8 +107,9 @@ namespace InventoryManagement.Repository
                 if (res.Count != 0)
                     throw new Exception("Inventory for airline " + tbl.AirlineNo + " is alreday exists in system");
                 _inventoryContext.inventoryTbls.Add(tbl);
-                AddFlightDetail(tbl.FlightNumber, tbl.BusinessClassSeat.ToString(), tbl.NonBusinessClassSeat.ToString());
-                Save();
+                  AddFlightDetail(tbl.FlightNumber, tbl.BusinessClassSeat.ToString(), tbl.NonBusinessClassSeat.ToString());
+                 Save();
+                
             }
             catch (Exception ex)
             {
@@ -121,16 +122,21 @@ namespace InventoryManagement.Repository
             var totalseat = Convert.ToInt64(businessClass) + Convert.ToInt64(NonBusinessclass);
             for (int i = 0; i < Convert.ToInt32(totalseat); i++)
             {
-                FlightBookingDetails flight = new FlightBookingDetails();
-                flight.FlightNumber = flightno;
-                flight.seatNo = "A" + i.ToString();
-                if (i <= Convert.ToInt32(businessClass))
-                    flight.SeatClass = Seatclass.Business.ToString();
-                else
-                    flight.SeatClass = Seatclass.NonBusiness.ToString();
-                flight.status = SeatStatus.NotBooked.ToString();
-                _inventoryContext.flightDetail.Add(flight);
-                Save();
+                using (var scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
+                {
+                    FlightBookingDetails flight = new FlightBookingDetails();
+                    flight.FlightNumber = flightno;
+                    flight.seatNo = "A" + i.ToString();
+                    if (i <= Convert.ToInt32(businessClass))
+                        flight.SeatClass = Seatclass.Business.ToString();
+                    else
+                        flight.SeatClass = Seatclass.NonBusiness.ToString();
+                    flight.status = SeatStatus.NotBooked.ToString();
+                    _inventoryContext.flightDetail.Add(flight);
+                    Save();
+                    scope.Complete();
+
+                }
             }
         }
         /// <summary>

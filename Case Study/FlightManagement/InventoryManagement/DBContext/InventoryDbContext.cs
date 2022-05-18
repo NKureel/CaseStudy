@@ -16,7 +16,7 @@ namespace InventoryManagement.DBContext
 
         
  
-        public DbSet<InventoryTbl> inventoryTbls { get; set; }        
+        public DbSet<InventoryTbl> inventoryTbls { get; set; }
         public DbSet<FlightBookingDetails> flightDetail { get; set; }
         protected override void OnModelCreating(ModelBuilder model)
         {

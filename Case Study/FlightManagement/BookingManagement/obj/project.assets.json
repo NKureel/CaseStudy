@@ -8728,41 +8728,42 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\student\\.nuget\\packages\\": {},
-    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
+    "C:\\Users\\cogdotnet07\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {},
+    "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\student\\Desktop\\API\\CaseStudy\\Case Study\\FlightManagement\\BookingManagement\\BookingManagement.csproj",
+      "projectUniqueName": "D:\\Training\\CaseStudy\\CaseStudy\\Case Study\\FlightManagement\\BookingManagement\\BookingManagement.csproj",
       "projectName": "BookingManagement",
-      "projectPath": "C:\\Users\\student\\Desktop\\API\\CaseStudy\\Case Study\\FlightManagement\\BookingManagement\\BookingManagement.csproj",
-      "packagesPath": "C:\\Users\\student\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\student\\Desktop\\API\\CaseStudy\\Case Study\\FlightManagement\\BookingManagement\\obj\\",
+      "projectPath": "D:\\Training\\CaseStudy\\CaseStudy\\Case Study\\FlightManagement\\BookingManagement\\BookingManagement.csproj",
+      "packagesPath": "C:\\Users\\cogdotnet07\\.nuget\\packages\\",
+      "outputPath": "D:\\Training\\CaseStudy\\CaseStudy\\Case Study\\FlightManagement\\BookingManagement\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
-        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+        "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
       ],
       "configFilePaths": [
-        "C:\\Users\\student\\AppData\\Roaming\\NuGet\\NuGet.Config",
-        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        "C:\\Users\\cogdotnet07\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
       ],
       "originalTargetFrameworks": [
         "netcoreapp3.1"
       ],
       "sources": {
-        "C:\\Plugins-Nuget": {},
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Users\\student\\Desktop": {},
-        "https://api.nuget.org/v3/index.json": {},
-        "https://nuget.org/api/v2/": {}
+        "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\Users\\student\\Desktop\\API\\CaseStudy\\Case Study\\FlightManagement\\Common\\Common.csproj": {
-              "projectPath": "C:\\Users\\student\\Desktop\\API\\CaseStudy\\Case Study\\FlightManagement\\Common\\Common.csproj"
+            "D:\\Training\\CaseStudy\\CaseStudy\\Case Study\\FlightManagement\\Common\\Common.csproj": {
+              "projectPath": "D:\\Training\\CaseStudy\\CaseStudy\\Case Study\\FlightManagement\\Common\\Common.csproj"
             }
           }
         }
@@ -8832,12 +8833,6 @@
         ],
         "assetTargetFallback": true,
         "warn": true,
-        "downloadDependencies": [
-          {
-            "name": "Microsoft.NETCore.App.Host.win-x64",
-            "version": "[3.1.23, 3.1.23]"
-          }
-        ],
         "frameworkReferences": {
           "Microsoft.AspNetCore.App": {
             "privateAssets": "none"
@@ -8846,7 +8841,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.402\\RuntimeIdentifierGraph.json"
       }
     }
   }

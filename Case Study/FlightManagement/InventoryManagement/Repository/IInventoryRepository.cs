@@ -1,5 +1,6 @@
 ﻿using Common.Models;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace InventoryManagement.Repository
 {

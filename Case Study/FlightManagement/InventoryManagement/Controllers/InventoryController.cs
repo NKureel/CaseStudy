@@ -36,10 +36,10 @@ namespace InventoryManagement.Controllers
             try
             {
                 var airline = _inventoryRepository.GetInventory();
-                if (airline != null)
+                if (airline == null)
                     throw new Exception("No flight exists");
                 else
-                    return new NotFoundResult();
+                    return new OkObjectResult(airline);
             }
             catch (Exception ex)
             {
@@ -48,6 +48,7 @@ namespace InventoryManagement.Controllers
                     response.Message = ex.Message;
                     response.Status = "Success";
                     response.StatusCode = StatusCodes.Status200OK.ToString();
+                    return new OkObjectResult(ex.Message);
                 }
                 response.Message = ex.Message;
                 response.Status = "Error";
