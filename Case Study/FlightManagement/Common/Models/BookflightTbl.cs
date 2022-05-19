@@ -17,8 +17,7 @@ namespace Common.Models
         public string Meal { get; set; }
         public string FlightNumber { get; set; }
         public string Pnr { get; set; }
-        public int? peopleid { get; set; }
-        // public virtual UserDetailTbl Person { get; set; }
+        public int? peopleid { get; set; }        
 
     }
     //public class FlightBookingDetails
@@ -97,6 +96,7 @@ namespace Common.Models
         public string Meal { get; set; }
         public string FlightNumber { get; set; }
         public string Pnr { get; set; }
+        public int count { get; set; }
         public UserDetailTbl[] users { get; set; }
     }
     public enum Seatclass

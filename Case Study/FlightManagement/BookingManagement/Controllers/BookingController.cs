@@ -61,34 +61,7 @@ namespace BookingManagement.Controllers
             return new NotFoundObjectResult(response);
 
         }
-
-        /// <summary>
-        /// Add User Details
-        /// </summary>
-        /// <param name="user"></param>
-        /// <returns></returns>
-        ////[HttpPost]
-        ////[Route("AddUserDetail")]
-        ////public IActionResult AddUserDetail([FromBody] UserDetailTbl user)
-        ////{
-        ////    Response response = new Response();
-        ////    try
-        ////    {
-        ////        _repository.AddUserDetail(user);
-        ////        var res=_repository.GetUserDetail(user);
-        ////        response.Message = "User Number "+res;
-        ////        response.StatusCode = StatusCodes.Status200OK.ToString();
-        ////        response.Status = "Success";
-        ////        return new OkObjectResult(response);
-        ////    }
-        ////    catch (Exception ex)
-        ////    {
-        ////        response.Message = ex.Message;
-        ////        response.StatusCode = StatusCodes.Status500InternalServerError.ToString();
-        ////        response.Status = "Error";
-        ////    }
-        ////    return new NotFoundObjectResult(response);
-        ////}
+        
 
         /// <summary>
         /// Booking Details for user
@@ -99,17 +72,12 @@ namespace BookingManagement.Controllers
         [Route("add")]
         public async Task<IActionResult> Post([FromBody] BookflightTblUsr bookflight)
         {
-            Response response = new Response();            
-            //var list = new List<Tuple<UserBookingTbl, string>>();
+            Response response = new Response();                       
             try
             {
-                
-                //using (var scope = new TransactionScope())
-                {                  
-                   
+                { 
                     var res = _repository.AddBookingDetail(bookflight);
-                    await _topicProducer.Produce(new BookflightTblUsr { FlightNumber = bookflight.FlightNumber });
-                   // scope.Complete();                   
+                    await _topicProducer.Produce(new BookflightTblUsr { FlightNumber = bookflight.FlightNumber,count=bookflight.users.Length });                                  
                     response.Message = res;
                     response.StatusCode = StatusCodes.Status200OK.ToString();
                     response.Status = "Success";                    

@@ -17,16 +17,11 @@ namespace InventoryManagement.DBContext
         
  
         public DbSet<InventoryTbl> inventoryTbls { get; set; }
-        //public DbSet<FlightBookingDetails> flightDetail { get; set; }
+        
         protected override void OnModelCreating(ModelBuilder model)
         {
             base.OnModelCreating(model);
-            model.Entity<InventoryTbl>().Property(p => p.TicketCost).HasColumnType("decimal(8,2)");
-            //model.Entity<InventoryTbl>().HasEnum(e => e.ScheduleDays);
-            //model.Entity<InventoryTbl>().HasEnum(e => e.Meal);
-            //model.Entity<InventoryTbl>().HasEnum(e => e.InstrumentUsed);
-            //model.Entity<FlightBookingDetails>().HasEnum(e => e.SeatClass);
-            //model.Entity<FlightBookingDetails>().HasEnum(e => e.status);
+            model.Entity<InventoryTbl>().Property(p => p.TicketCost).HasColumnType("decimal(8,2)");           
             model.Entity<InventoryTbl>().HasOne<AirlineTbl>(e => e.Airlines).WithMany(d=>d.Inventories)
                .HasForeignKey(e => e.AirlineNo).IsRequired(true).OnDelete(DeleteBehavior.Cascade);
             base.OnModelCreating(model);            

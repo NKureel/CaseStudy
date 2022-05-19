@@ -37,16 +37,11 @@ namespace BookingManagement.DBContext
                 entity.Property(e => e.peopleid).HasColumnName("peopleid");
 
                 entity.Property(e => e.Pnr).HasMaxLength(50);
-
-                //entity.HasOne(d => d.Person)
-                //    .WithMany(p => p.BookflightTbls)
-                //    .HasForeignKey(d => d.PersonId)
-                //    .HasConstraintName("FK_bookflightTbl_UserDetailTbl");
+               
             });
 
             model.Entity<UserDetailTbl>(entity =>
-            {
-             //   entity.HasKey(e => e.PeopleId);
+            {             
 
                 entity.ToTable("UserDetailTbl");
                 entity.Property(e => e.PeopleId)
@@ -63,26 +58,7 @@ namespace BookingManagement.DBContext
                 entity.Property(e => e.Gender).HasMaxLength(50);
 
                 entity.Property(e => e.LastName).HasMaxLength(50);
-            });
-            //model.Entity<Person>(x =>
-            //{
-            //    x.ToTable("Person");
-            //    x.Property(e => e.peopleId)
-            //        .ValueGeneratedNever()
-            //        .HasColumnName("PeopleId");
-            //    x.Property(p => p.FirstName);
-            //    x.Property(p => p.LastName);
-            //    x.Property(p => p.Age);
-            //    x.Property(p => p.Gender);
-            //}
-            //);
-            //model.Entity<UserBookingTbl>().HasOne(d => d.userDetail)
-            //.WithMany(p => p.bookingdetailsofUser)
-            // .HasForeignKey(d => d.personId);                   
-            //model.Entity<UserBookingTbl>().HasOne<Person>(e => e.peopleId).WithOne(d => d.User)
-            //  .IsRequired(true).OnDelete(DeleteBehavior.Cascade);
-            //model.Entity<Person>().Property(e => e.PeopleId).ValueGeneratedOnAdd();
-            //model.Entity<Person>().HasOne(e => e.User).WithOne(u => u.peopleId).HasPrincipalKey<Person>(e => e.PeopleId).HasForeignKey<UserBookingTbl>(e => e.peopleId);
+            });           
 
         }
     }
