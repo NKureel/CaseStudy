@@ -99,7 +99,7 @@ namespace InventoryManagement
                     {
                         k.Host("localhost:9092");
                         k.TopicEndpoint<BookflightTblUsr>(nameof(BookflightTblUsr), GetUniqueName(nameof(BookflightTblUsr)), e => {
-                            e.CheckpointInterval = TimeSpan.FromSeconds(10);
+                            e.CheckpointInterval = TimeSpan.FromSeconds(3000);
                             e.ConfigureConsumer<InventoryRepository>(context);
                         });
                     });

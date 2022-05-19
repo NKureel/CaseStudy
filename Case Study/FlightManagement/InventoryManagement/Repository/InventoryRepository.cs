@@ -21,18 +21,19 @@ namespace InventoryManagement.Repository
             _inventoryContext = context;
         }
        
-        public async Task Consume(ConsumeContext<BookflightTblUsr> context)
+        public  Task Consume(ConsumeContext<BookflightTblUsr> context)
         {
             try
             {                
                 string flightno = context.Message.FlightNumber;             
                 var tbl = _inventoryContext.inventoryTbls.Find(flightno);             
-                using (var scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
-                {
+               // using (var scope = new TransactionScope(TransactionScopeAsyncFlowOption.Enabled))
+                //{
                     _inventoryContext.Entry(tbl).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
-                    await this._inventoryContext.SaveChangesAsync();
-                    scope.Complete();
-                }                
+                     this._inventoryContext.SaveChangesAsync();
+                    return Task.CompletedTask;
+                  //  scope.Complete();
+                //}                
             }
             catch (Exception ex)
             {

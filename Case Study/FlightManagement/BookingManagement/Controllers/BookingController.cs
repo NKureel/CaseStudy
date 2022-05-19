@@ -104,12 +104,12 @@ namespace BookingManagement.Controllers
             try
             {
                 
-                using (var scope = new TransactionScope())
+                //using (var scope = new TransactionScope())
                 {                  
                    
                     var res = _repository.AddBookingDetail(bookflight);
                     await _topicProducer.Produce(new BookflightTblUsr { FlightNumber = bookflight.FlightNumber });
-                    scope.Complete();                   
+                   // scope.Complete();                   
                     response.Message = res;
                     response.StatusCode = StatusCodes.Status200OK.ToString();
                     response.Status = "Success";                    
