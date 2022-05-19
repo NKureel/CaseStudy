@@ -20,27 +20,7 @@ namespace BookingManagement.Repository
         }
 
 
-        /// <summary>
-        /// Add User Details
-        /// </summary>
-        /// <param name="person"></param>
-        //public void AddUserDetail(UserDetailTbl person)
-        //{
-        //    try
-        //    {
-        //        var res = _Context.UserDetailTbls.Where(x => x.FirstName == person.LastName && x.LastName == person.LastName).ToList();
-        //        if (res.Count != 0)
-        //        {
-        //            throw new Exception(person.FirstName + " " + person.LastName + " already exists");
-        //        }
-        //        _Context.UserDetailTbls.Add(person);
-        //        SaveChanges();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw new Exception(ex.Message);
-        //    }
-        //}
+        
 
         /// <summary>
         /// Update User Booking 
@@ -64,12 +44,12 @@ namespace BookingManagement.Repository
                     Random generateRandom = new Random();
                     int people = generateRandom.Next(1, 1000);
                     bookflight.peopleid = people;
-                    bookflight.Id = generateRandom.Next(1, 1000); ;
-                    //if (tbl != null)
-                    //    tbl.Pnr = userpnr;
-                    var bookingtblres = _Context.BookflightTbls.FirstOrDefault(x => x.FlightNumber == tbl.FlightNumber && x.peopleid == people);
-                    if (bookingtblres != null)
+                    bookflight.Id = generateRandom.Next(1, 1000); ;                  
+                    var res=_Context.UserDetailTbls.Where(x => x.FirstName == item.FirstName && x.LastName==item.LastName);
+                    if (res != null)
+                    {
                         throw new Exception(" User already booked ticket for flight " + tbl.FlightNumber);
+                    }                                                   
                     _Context.BookflightTbls.Add(bookflight);
                     int p = generateRandom.Next(1, 1000);
                     bookflight.Pnr = "PNR" + p.ToString();
@@ -96,27 +76,7 @@ namespace BookingManagement.Repository
         }
 
 
-        /// <summary>
-        /// Get Flight details
-        /// </summary>
-        /// <param name="flightno"></param>
-        /// <param name="seatno"></param>
-        /// <returns></returns>
-        //public FlightBookingDetails GetFlightDetail(string flightno, string seatno)
-        //{
-
-        //    try
-        //    {
-        //        var flight = _Context.flightDetail.Where(x => x.FlightNumber == flightno && x.seatNo == seatno).FirstOrDefault();
-        //        if (flight == null)
-        //            throw new Exception("Failed to book the flight");
-        //        return flight;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw new Exception(ex.Message);
-        //    }
-        //}
+        
 
 
         /// <summary>
@@ -163,9 +123,13 @@ namespace BookingManagement.Repository
                     data.Meal = item.Meal;
                     data.Pnr = item.Pnr;
                     data.Emailid = item.EmailId;
-                    data.ScheduleDays = inventory[0].ScheduleDays;
-                    data.startDateTime = inventory[0].startDateTime;
-                    data.endDateTime = inventory[0].endDateTime;
+                    if (inventory.Count != 0)
+                    {
+                        data.ScheduleDays = inventory[0].ScheduleDays;
+                        data.startDateTime = inventory[0].startDateTime;
+                        data.endDateTime = inventory[0].endDateTime;
+                    }
+                    else return res;
                     res.Add(data);
                 }
                 if (res.Count == 0)
@@ -231,15 +195,22 @@ namespace BookingManagement.Repository
                     var inventory = _Context.InventoryTbls.Where(x => x.FlightNumber.ToLower().Trim() == flight[i].FlightNumber.ToLower().Trim()).ToList();
                     var person = _Context.UserDetailTbls.Where(x => x.PeopleId == flight[i].peopleid).ToList();
                     TicketDetail data = new TicketDetail();
-                    data.FlightNumber = flight[i].FlightNumber;
-                    data.FirstName = person[count].FirstName;
-                    data.LastName = person[count].LastName;
+                    data.FlightNumber = flight[i].FlightNumber;                   
                     data.Meal = flight[i].Meal;
                     data.Pnr = flight[i].Pnr;
                     data.Emailid= flight[i].EmailId;
-                    data.ScheduleDays = inventory[count].ScheduleDays;
-                    data.startDateTime = inventory[count].startDateTime;
-                    data.endDateTime = inventory[count].endDateTime;
+                    data.FirstName = person[count].FirstName;
+                    data.LastName = person[count].LastName;
+                    if (inventory.Count != 0)
+                    {
+                        data.ScheduleDays = inventory[count].ScheduleDays;
+                        data.startDateTime = inventory[count].startDateTime;
+                        data.endDateTime = inventory[count].endDateTime;
+                    }
+                    else
+                    {
+                        return res;
+                    }
                     res.Add(data);
                     count++;
                 }
@@ -253,21 +224,6 @@ namespace BookingManagement.Repository
             return res;
         }
 
-        //public string GetUserDetail(UserDetailTbl person)
-        //{
-        //    try
-        //    {
-        //        var res = _Context.UserDetailTbls.Find(person);
-        //        if (res != null)
-        //        {
-        //            return res.PeopleId.ToString();
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw new Exception(ex.Message);
-        //    }
-        //    return "null";
-        //}
+       
     }
 }

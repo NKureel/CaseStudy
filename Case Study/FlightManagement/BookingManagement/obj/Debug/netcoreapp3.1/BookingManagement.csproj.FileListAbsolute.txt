@@ -564,4 +564,3 @@ D:\Training\CaseStudy\CaseStudy\Case Study\FlightManagement\BookingManagement\ob
 D:\Training\CaseStudy\CaseStudy\Case Study\FlightManagement\BookingManagement\obj\Debug\netcoreapp3.1\BookingManagement.dll
 D:\Training\CaseStudy\CaseStudy\Case Study\FlightManagement\BookingManagement\obj\Debug\netcoreapp3.1\BookingManagement.pdb
 D:\Training\CaseStudy\CaseStudy\Case Study\FlightManagement\BookingManagement\obj\Debug\netcoreapp3.1\BookingManagement.genruntimeconfig.cache
-D:\Training\CaseStudy\CaseStudy\Case Study\FlightManagement\BookingManagement\obj\Debug\netcoreapp3.1\BookingManagement.csproj.CopyComplete

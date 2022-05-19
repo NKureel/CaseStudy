@@ -564,4 +564,3 @@ D:\Training\CaseStudy\CaseStudy\Case Study\FlightManagement\InventoryManagement\
 D:\Training\CaseStudy\CaseStudy\Case Study\FlightManagement\InventoryManagement\obj\Debug\netcoreapp3.1\InventoryManagement.dll
 D:\Training\CaseStudy\CaseStudy\Case Study\FlightManagement\InventoryManagement\obj\Debug\netcoreapp3.1\InventoryManagement.pdb
 D:\Training\CaseStudy\CaseStudy\Case Study\FlightManagement\InventoryManagement\obj\Debug\netcoreapp3.1\InventoryManagement.genruntimeconfig.cache
-D:\Training\CaseStudy\CaseStudy\Case Study\FlightManagement\InventoryManagement\obj\Debug\netcoreapp3.1\InventoryManagement.csproj.CopyComplete
