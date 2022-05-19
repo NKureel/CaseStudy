@@ -21,14 +21,14 @@ namespace BookingManagement.Controllers
     public class BookingController : ControllerBase
     {
         private readonly IBookingRepository _repository;
-        private ITopicProducer<BookflightTbl> _topicProducer;
+        private ITopicProducer<BookflightTblUsr> _topicProducer;
 
         /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="repository"></param>
         /// <param name="topic"></param>
-        public BookingController(IBookingRepository repository, ITopicProducer<BookflightTbl> topic)
+        public BookingController(IBookingRepository repository, ITopicProducer<BookflightTblUsr> topic)
         {
             _repository = repository;
             _topicProducer = topic;
@@ -108,9 +108,9 @@ namespace BookingManagement.Controllers
                 {                  
                    
                     var res = _repository.AddBookingDetail(bookflight);
-                    await _topicProducer.Produce(new BookflightTbl { FlightNumber = bookflight.FlightNumber });
+                    await _topicProducer.Produce(new BookflightTblUsr { FlightNumber = bookflight.FlightNumber });
                     scope.Complete();                   
-                    response.Message = "PNR " + res;
+                    response.Message = res;
                     response.StatusCode = StatusCodes.Status200OK.ToString();
                     response.Status = "Success";                    
                     return new OkObjectResult(response);

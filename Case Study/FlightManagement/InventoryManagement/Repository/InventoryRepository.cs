@@ -13,7 +13,7 @@ using System.Transactions;
 
 namespace InventoryManagement.Repository
 {
-    public class InventoryRepository : IInventoryRepository, IConsumer<BookflightTbl>
+    public class InventoryRepository : IInventoryRepository, IConsumer<BookflightTblUsr>
     {
         private readonly InventoryDbContext _inventoryContext;
         public InventoryRepository(InventoryDbContext context)
@@ -21,7 +21,7 @@ namespace InventoryManagement.Repository
             _inventoryContext = context;
         }
        
-        public async Task Consume(ConsumeContext<BookflightTbl> context)
+        public async Task Consume(ConsumeContext<BookflightTblUsr> context)
         {
             try
             {                

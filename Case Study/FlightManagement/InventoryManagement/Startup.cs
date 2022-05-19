@@ -75,7 +75,7 @@ namespace InventoryManagement
             app.UseConsul(Configuration);
             app.UseSwagger();
             app.UseSwaggerUI();
-            app.UseHttpsRedirection();
+          //  app.UseHttpsRedirection();
 
             app.UseRouting();
             app.UseAuthentication();
@@ -98,7 +98,7 @@ namespace InventoryManagement
                     rider.UsingKafka((context, k) =>
                     {
                         k.Host("localhost:9092");
-                        k.TopicEndpoint<BookflightTbl>(nameof(BookflightTbl), GetUniqueName(nameof(BookflightTbl)), e => {
+                        k.TopicEndpoint<BookflightTblUsr>(nameof(BookflightTblUsr), GetUniqueName(nameof(BookflightTblUsr)), e => {
                             e.CheckpointInterval = TimeSpan.FromSeconds(10);
                             e.ConfigureConsumer<InventoryRepository>(context);
                         });

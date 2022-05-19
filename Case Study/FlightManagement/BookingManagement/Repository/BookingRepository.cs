@@ -73,7 +73,7 @@ namespace BookingManagement.Repository
                     _Context.BookflightTbls.Add(bookflight);
                     int p = generateRandom.Next(1, 1000);
                     bookflight.Pnr = "PNR" + p.ToString();
-                    userpnr = userpnr + generateRandom.Next(1, 100) + tbl.FlightNumber + item.FirstName + " " + item.LastName + "\n";
+                    userpnr = userpnr + bookflight.Pnr+"  "+ item.FirstName + " " + item.LastName + "\n";
                     _Context.SaveChanges();
                     UserDetailTbl detailTbl = new UserDetailTbl();
                     detailTbl.FirstName = item.FirstName;
