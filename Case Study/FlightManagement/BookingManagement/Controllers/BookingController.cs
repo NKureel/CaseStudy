@@ -77,7 +77,7 @@ namespace BookingManagement.Controllers
             {
                 { 
                     var res = _repository.AddBookingDetail(bookflight);                    
-                    await _topicProducer.Produce(new BookflightTblUsr { FlightNumber = bookflight.FlightNumber,count=bookflight.users.Length });                                  
+                    await _topicProducer.Produce(new BookflightTblUsr { FlightNumber = bookflight.FlightNumber});                                  
                     response.Message = res;
                     response.StatusCode = StatusCodes.Status200OK.ToString();
                     response.Status = "Success";                    

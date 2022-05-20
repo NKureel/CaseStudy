@@ -44,12 +44,20 @@ namespace BookingManagement.Repository
                     Random generateRandom = new Random();
                     int people = generateRandom.Next(1, 1000);
                     bookflight.peopleid = people;
-                    bookflight.Id = generateRandom.Next(1, 1000); ;                  
-                    var res=_Context.UserDetailTbls.Where(x => x.FirstName == item.FirstName && x.LastName==item.LastName);
-                    if (res != null)
+                    bookflight.Id = generateRandom.Next(1, 1000); ;
+                    var bookres = _Context.BookflightTbls.Where(x => x.FlightNumber == tbl.FlightNumber).ToList();
+                    if (bookres.Count != 0)
                     {
-                        throw new Exception(" User already booked ticket for flight " + tbl.FlightNumber);
-                    }                                                   
+                        for (int i = 0; i < bookres.Count; i++)
+                        {
+                            var res = _Context.UserDetailTbls.Where(x=>x.PeopleId==bookres[i].peopleid).ToList();
+                            if (res != null)
+                            {                                
+                                if(res[0].FirstName == item.FirstName && res[0].LastName == item.LastName)
+                                throw new Exception(" User already booked ticket for flight " + tbl.FlightNumber);
+                            }
+                        }
+                    }
                     _Context.BookflightTbls.Add(bookflight);
                     int p = generateRandom.Next(1, 1000);
                     bookflight.Pnr = "PNR" + p.ToString();
